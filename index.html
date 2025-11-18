@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Know Leap Strategies – Systems, Strategy, and Oversight for Serious Moves</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Know Leap Strategies helps investors, operators, and founders design smarter systems, de-risk decisions, and move from guesswork to proof."
+  />
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-alt: #020617;
+      --accent: #fbbf24;
+      --accent-soft: #fef3c7;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --card-bg: #111827;
+      --border-subtle: #1f2937;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.88);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .brand-tagline {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: 0.9rem;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      padding: 2.5rem 0 3.5rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.75rem;
+      color: var(--accent-soft);
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 3vw + 1.2rem, 2.8rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+    }
+    .hero h1 span {
+      color: var(--accent);
+    }
+    .hero p {
+      margin: 0 0 1.5rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      font-size: 0.98rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .badge {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.3rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #1f2937;
+    }
+    .btn-outline {
+      border-color: var(--accent-soft);
+      color: var(--accent-soft);
+      background: transparent;
+    }
+    .cta-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-subtle);
+      background: linear-gradient(145deg, #020617, #0b1120);
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.7);
+      font-size: 0.85rem;
+    }
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--accent-soft);
+    }
+    .hero-card p {
+      color: var(--text-muted);
+      margin: 0 0 1rem;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.75rem;
+    }
+    .metric {
+      border-radius: 0.85rem;
+      border: 1px solid var(--border-subtle);
+      padding: 0.65rem 0.7rem;
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.04), rgba(15, 23, 42, 0.95));
+    }
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.1rem;
+    }
+    .metric-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    section {
+      margin-bottom: 3.25rem;
+    }
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    section p.lead {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 40rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.4rem;
+    }
+    @media (max-width: 900px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      border-radius: 1rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 1.1rem 1rem;
+      font-size: 0.88rem;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin: 0 0 0.35rem;
+    }
+    .card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    ul.tight {
+      list-style: disc;
+      padding-left: 1.2rem;
+      margin: 0.5rem 0 0;
+    }
+    ul.tight li {
+      margin-bottom: 0.25rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.6rem;
+      margin-top: 1.4rem;
+    }
+    @media (max-width: 860px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+    .note-box {
+      border-radius: 1rem;
+      border: 1px dashed var(--accent-soft);
+      padding: 1rem 1.1rem;
+      background: rgba(24, 24, 27, 0.7);
+      font-size: 0.85rem;
+      color: var(--accent-soft);
+    }
+
+    .shop-placeholder {
+      border-radius: 1rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 1.1rem 1rem;
+      font-size: 0.87rem;
+    }
+    .shop-placeholder strong {
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.6rem 0 1.8rem;
+      background: var(--bg-alt);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    footer .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+    }
+    footer a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-mark">KL</div>
+          <div class="brand-text">
+            <div class="brand-name">Know Leap Strategies</div>
+            <div class="brand-tagline">Design. Proof. Execution.</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#who-we-serve">Who We Serve</a>
+          <a href="#services">Services</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#shop">Products</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="hero-kicker">Strategic systems for serious decisions</div>
+          <h1>
+            Turn <span>complex moves</span> into clear, provable steps.
+          </h1>
+          <p>
+            Know Leap Strategies helps investors, operators, and founders design lean systems, de-risk decisions, and move from “hope it works” to
+            “here’s the proof.”
+          </p>
+          <div class="hero-badges">
+            <span class="badge">Real estate & rehab oversight</span>
+            <span class="badge">Operational strategy</span>
+            <span class="badge">Boots-on-the-ground frameworks</span>
+          </div>
+          <div class="cta-row">
+            <a href="#contact" class="btn btn-primary">Request a strategy call</a>
+            <a href="#services" class="btn btn-outline">Explore services</a>
+          </div>
+          <div class="cta-note">
+            One conversation. Clear next steps. No jargon, no fluff.
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Sample engagement snapshot">
+          <div class="hero-card-title">Sample Use Case: Remote Investor</div>
+          <p>
+            An out-of-state investor wants to fund a rehab but lacks trusted local oversight. We design the decision framework, the on-the-ground
+            proofing flow, and the reporting rhythm—so capital moves only when reality matches the plan.
+          </p>
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="metric-label">Focus</div>
+              <div class="metric-value">Proof-based draws</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Tools</div>
+              <div class="metric-value">Playbooks & checklists</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Mode</div>
+              <div class="metric-value">Advisory + systems</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Outcome</div>
+              <div class="metric-value">Lower risk, fewer surprises</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- WHO WE SERVE -->
+      <section id="who-we-serve">
+        <h2>Who We Serve</h2>
+        <p class="lead">
+          Know Leap Strategies is built for people who are already moving—investors, operators, and builders—who want cleaner systems, clearer proof,
+          and fewer “I wish we’d caught that sooner” moments.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="pill">Investors</div>
+            <h3>Remote & Out-of-State Investors</h3>
+            <p>
+              You fund deals in markets you can’t walk daily. You need more than pictures—you need structure, proof, and accountability.
+            </p>
+            <ul class="tight">
+              <li>Draw-proofing frameworks for rehabs</li>
+              <li>Boots-on-the-ground visit flows</li>
+              <li>Simple reporting that surfaces risk early</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="pill">Operators</div>
+            <h3>Service & Ops-Heavy Businesses</h3>
+            <p>
+              From guard services to pool cleaning to field teams, you need systems that scale beyond “I’ll just personally double-check everything.”
+            </p>
+            <ul class="tight">
+              <li>Intake and triage flows</li>
+              <li>Route, visit, and proof-of-work structures</li>
+              <li>Client-facing transparency without extra chaos</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="pill">Builders</div>
+            <h3>Founders & Product Creators</h3>
+            <p>
+              You’re building platforms—like oversight tools, marketplaces, or SaaS—and you want the strategy and flows to be sharp from day one.
+            </p>
+            <ul class="tight">
+              <li>Concept-to-system mapping</li>
+              <li>Role, permission, and workflow design</li>
+              <li>Roadmap guidance from MVP to “real thing”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <h2>Services</h2>
+        <p class="lead">
+          Every engagement is tailored, but most work falls into three lanes: clarity, systems, and proof. The tools might be whiteboards, documents,
+          or product architecture—but the outcome is always the same: decisions that age well.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Strategy & Systems Mapping</h3>
+            <p>
+              We turn messy realities into clean flows. Who does what, when, using which tools—and what proof exists at each step.
+            </p>
+            <ul class="tight">
+              <li>Current state audit</li>
+              <li>Future state blueprint</li>
+              <li>Prioritized implementation sequence</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Oversight & Proof Design</h3>
+            <p>
+              We design how “trust but verify” should actually look—for rehabs, service work, or operational processes.
+            </p>
+            <ul class="tight">
+              <li>Visit and inspection flows</li>
+              <li>Photo, video, and timestamp proofing</li>
+              <li>Exception and escalation logic</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Product & Platform Advisory</h3>
+            <p>
+              For founders building tools like ProveForMe-style platforms, we help align product flows with real-world constraints.
+            </p>
+            <ul class="tight">
+              <li>Role and permission design</li>
+              <li>Core user journeys and edge cases</li>
+              <li>Monetization and risk lenses</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works">
+        <h2>How It Works</h2>
+        <p class="lead">
+          No 80-page strategy decks. No vague “advice.” Just a clear walk from context to decisions to systems you can actually use.
+        </p>
+
+        <div class="two-col">
+          <div>
+            <ol class="tight" style="list-style: decimal; padding-left: 1.2rem; margin-top: 0.5rem;">
+              <li>
+                <strong>Discovery call (30–45 minutes)</strong>  
+                We map your current situation, where you want to go, and what feels fragile or unclear.
+              </li>
+              <li>
+                <strong>Design sprint</strong>  
+                We translate that into flows, decisions, and proof points—captured in plain language and simple visuals.
+              </li>
+              <li>
+                <strong>Implementation support</strong>  
+                We stay close as you roll changes out—tuning playbooks, templates, or product flows as reality gives feedback.
+              </li>
+            </ol>
+          </div>
+          <div class="note-box">
+            Future-facing note: Know Leap Strategies is designed to sit above tools. That means we can plug into
+            platforms like ProveForMe, CRMs, field tools, or custom stacks as they evolve—without locking you into any one vendor.
+          </div>
+        </div>
+      </section>
+
+      <!-- SHOP / PRODUCTS PLACEHOLDER -->
+      <section id="shop">
+        <h2>Products & Toolkits (Coming Soon)</h2>
+        <p class="lead">
+          Over time, Know Leap Strategies will offer focused digital products and templates so you can plug proven structures directly into your work.
+        </p>
+
+        <div class="shop-placeholder">
+          <p>
+            This is the future home of:
+          </p>
+          <ul class="tight">
+            <li><strong>Remote rehab oversight playbooks</strong> – visit flows, proof lists, and draw-release frameworks.</li>
+            <li><strong>Service business systems packs</strong> – from intake to completion proof.</li>
+            <li><strong>Investor-deal decision worksheets</strong> – structured clarity before you wire funds.</li>
+          </ul>
+          <p style="margin-top: 0.75rem;">
+            When the store is live, this section will connect directly to <strong>Shopify-powered landing pages</strong> and/or embedded buy buttons—
+            the underlying site structure is already set up for that.
+          </p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <p class="lead">
+          Ready to pressure-test a deal, a system, or a product idea? Reach out with a short description of what you’re working on and where you feel
+          the risk or fuzziness lives.
+        </p>
+
+        <p>Email: <a href="mailto:hello@knowleapstrategies.com">hello@knowleapstrategies.com</a></p>
+        <p>
+          You can also link a form here (Typeform, Tally, or a simple Google Form) for structured intake once you’re ready.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>&copy; <span id="year"></span> Know Leap Strategies. All rights reserved.</div>
+      <div>
+        <a href="#who-we-serve">Who we serve</a> ·
+        <a href="#services">Services</a> ·
+        <a href="#shop">Products</a> ·
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
