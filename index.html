@@ -11,18 +11,17 @@
 
   <style>
     :root {
-      --bg: #0b1120;
-      --bg-alt: #020617;
+      --bg: #ffffff;
+      --bg-alt: #f5f6f8;
 
-      /* Neutral accent palette for this variant */
-      --accent: #e5e7eb;
-      --accent-soft: #f3f4f6;
+      --text-main: #0f172a;
+      --text-muted: #475569;
 
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
+      --card-bg: rgba(255, 255, 255, 0.82);
+      --border-subtle: rgba(15, 23, 42, 0.12);
 
-      --card-bg: rgba(17, 24, 39, 0.92);
-      --border-subtle: rgba(148, 163, 184, 0.18);
+      --accent: #0f172a;
+      --accent-soft: #111827;
     }
 
     * { box-sizing: border-box; }
@@ -32,52 +31,67 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
       color: var(--text-main);
-      background: #000;
+      background: var(--bg);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Background ripple layer */
+    /* Visible grayscale ripple layer */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -2;
 
-      /* A grayscale pond ripple illusion using layered radial gradients */
       background:
-        radial-gradient(600px 420px at 18% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%),
-        radial-gradient(520px 380px at 74% 28%, rgba(255,255,255,0.10), rgba(255,255,255,0) 58%),
-        radial-gradient(720px 520px at 48% 70%, rgba(255,255,255,0.08), rgba(255,255,255,0) 62%),
+        /* soft highlights */
+        radial-gradient(800px 520px at 18% 22%, rgba(0,0,0,0.08), rgba(0,0,0,0) 62%),
+        radial-gradient(760px 540px at 82% 18%, rgba(0,0,0,0.07), rgba(0,0,0,0) 60%),
+        radial-gradient(880px 620px at 55% 78%, rgba(0,0,0,0.06), rgba(0,0,0,0) 64%),
 
-        /* ring ripples */
-        radial-gradient(circle at 22% 62%, rgba(255,255,255,0.10) 0 2px, rgba(255,255,255,0) 3px 70px),
-        radial-gradient(circle at 78% 62%, rgba(255,255,255,0.09) 0 2px, rgba(255,255,255,0) 3px 82px),
-        radial-gradient(circle at 52% 30%, rgba(255,255,255,0.08) 0 2px, rgba(255,255,255,0) 3px 96px),
+        /* ring ripples (stronger contrast so they show on white) */
+        radial-gradient(circle at 22% 58%,
+          rgba(0,0,0,0.22) 0 2px,
+          rgba(0,0,0,0) 3px 52px,
+          rgba(0,0,0,0.12) 53px 54px,
+          rgba(0,0,0,0) 55px 100px
+        ),
+        radial-gradient(circle at 78% 60%,
+          rgba(0,0,0,0.20) 0 2px,
+          rgba(0,0,0,0) 3px 60px,
+          rgba(0,0,0,0.11) 61px 62px,
+          rgba(0,0,0,0) 63px 110px
+        ),
+        radial-gradient(circle at 52% 30%,
+          rgba(0,0,0,0.18) 0 2px,
+          rgba(0,0,0,0) 3px 70px,
+          rgba(0,0,0,0.10) 71px 72px,
+          rgba(0,0,0,0) 73px 125px
+        ),
 
-        /* deep base */
-        radial-gradient(circle at top, #111 0%, #06070a 50%, #000 100%);
+        /* base */
+        radial-gradient(circle at top, #ffffff 0%, #f5f6f8 45%, #ffffff 100%);
 
-      filter: contrast(115%) saturate(0%);
+      filter: saturate(0%) contrast(115%);
       transform: translateZ(0);
-      animation: rippleDrift 18s ease-in-out infinite alternate;
+      animation: rippleDrift 16s ease-in-out infinite alternate;
     }
 
-    /* Soft vignette overlay so content stays readable */
+    /* Light vignette to give depth, but not kill visibility */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -1;
       background:
-        radial-gradient(circle at 50% 10%, rgba(0,0,0,0.30), rgba(0,0,0,0.70) 65%, rgba(0,0,0,0.88) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+        radial-gradient(circle at 50% 0%, rgba(0,0,0,0.03), rgba(0,0,0,0.08) 65%, rgba(0,0,0,0.10) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0.06));
       pointer-events: none;
     }
 
     @keyframes rippleDrift {
       0%   { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
-      100% { background-position: 6% 4%, -5% 3%, 3% -4%, 8% -6%, -8% 4%, 4% 7%, 0% 0%; }
+      100% { background-position: 5% 3%, -4% 2%, 3% -3%, 7% -5%, -7% 4%, 4% 6%, 0% 0%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -89,7 +103,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(12px);
-      background: rgba(2, 6, 23, 0.72);
+      background: rgba(255, 255, 255, 0.78);
       border-bottom: 1px solid var(--border-subtle);
     }
 
@@ -118,23 +132,24 @@
       width: 32px;
       height: 32px;
       border-radius: 999px;
-      border: 2px solid var(--accent);
+      border: 2px solid var(--text-main);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 0.85rem;
-      color: var(--accent);
-      background: rgba(255,255,255,0.02);
+      color: var(--text-main);
+      background: rgba(255,255,255,0.7);
     }
 
     .brand-text { display: flex; flex-direction: column; }
 
     .brand-name {
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.95rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: var(--text-main);
     }
 
     .brand-tagline {
@@ -151,7 +166,8 @@
       font-size: 0.9rem;
       white-space: nowrap;
     }
-    nav a:hover { color: var(--accent-soft); }
+
+    nav a:hover { color: var(--text-main); }
 
     main { padding: 2.5rem 0 3.5rem; }
 
@@ -172,7 +188,8 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-size: 0.75rem;
-      color: var(--accent-soft);
+      color: #111827;
+      opacity: 0.85;
       margin-bottom: 0.75rem;
     }
 
@@ -180,9 +197,10 @@
       font-size: clamp(2.1rem, 3vw + 1.2rem, 2.8rem);
       line-height: 1.1;
       margin: 0 0 1rem;
+      color: var(--text-main);
     }
 
-    .hero h1 span { color: var(--accent-soft); }
+    .hero h1 span { text-decoration: underline; text-underline-offset: 6px; }
 
     .hero p {
       margin: 0 0 1.5rem;
@@ -204,7 +222,8 @@
       padding: 0.3rem 0.75rem;
       font-size: 0.75rem;
       color: var(--text-muted);
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(8px);
     }
 
     .cta-row {
@@ -222,7 +241,7 @@
       border-radius: 999px;
       border: 1px solid transparent;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       font-size: 0.9rem;
       white-space: nowrap;
@@ -230,23 +249,24 @@
     }
 
     .btn-primary {
-      background: #e5e7eb;
-      color: #0b1120;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
     }
 
-    .btn-primary:hover { transform: translateY(-1px); background: #f3f4f6; }
+    .btn-primary:hover { transform: translateY(-1px); background: #111827; }
 
     .btn-outline {
-      border-color: rgba(255,255,255,0.35);
-      color: #e5e7eb;
-      background: rgba(255,255,255,0.02);
+      border-color: rgba(15, 23, 42, 0.28);
+      color: var(--text-main);
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(8px);
     }
 
     .btn-outline:hover {
       transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.06);
+      border-color: rgba(15, 23, 42, 0.4);
+      background: rgba(255,255,255,0.82);
     }
 
     .cta-note {
@@ -258,18 +278,18 @@
     .hero-card {
       border-radius: 1.25rem;
       border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.55);
+      background: var(--card-bg);
       padding: 1.5rem 1.4rem;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
       font-size: 0.85rem;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
 
     .hero-card-title {
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 800;
       margin-bottom: 0.75rem;
-      color: var(--accent-soft);
+      color: var(--text-main);
     }
 
     .hero-card p { color: var(--text-muted); margin: 0 0 1rem; }
@@ -285,7 +305,7 @@
       border-radius: 0.85rem;
       border: 1px solid var(--border-subtle);
       padding: 0.65rem 0.7rem;
-      background: rgba(2, 6, 23, 0.55);
+      background: rgba(255,255,255,0.7);
       backdrop-filter: blur(10px);
     }
 
@@ -297,11 +317,11 @@
       margin-bottom: 0.1rem;
     }
 
-    .metric-value { font-size: 0.9rem; font-weight: 600; }
+    .metric-value { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
 
     section { margin-bottom: 3.25rem; }
 
-    section h2 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    section h2 { font-size: 1.4rem; margin-bottom: 0.4rem; color: var(--text-main); }
 
     section p.lead {
       color: var(--text-muted);
@@ -316,20 +336,19 @@
       margin-top: 1.4rem;
     }
 
-    @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
 
     .card {
       border-radius: 1rem;
       border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.55);
+      background: rgba(255, 255, 255, 0.78);
       padding: 1.1rem 1rem;
       font-size: 0.88rem;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
     }
 
-    .card h3 { font-size: 1rem; margin: 0 0 0.35rem; }
+    .card h3 { font-size: 1rem; margin: 0 0 0.35rem; color: var(--text-main); }
 
     .card p { margin: 0; color: var(--text-muted); }
 
@@ -338,7 +357,8 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: var(--accent-soft);
+      color: var(--text-main);
+      opacity: 0.8;
       margin-bottom: 0.5rem;
     }
 
@@ -361,38 +381,37 @@
       margin-top: 1.4rem;
     }
 
-    @media (max-width: 860px) {
-      .two-col { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
 
     .note-box {
       border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px dashed rgba(15, 23, 42, 0.35);
       padding: 1rem 1.1rem;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(255,255,255,0.72);
       font-size: 0.85rem;
-      color: var(--accent-soft);
-      backdrop-filter: blur(10px);
+      color: var(--text-main);
+      backdrop-filter: blur(12px);
     }
 
     .shop-placeholder {
       border-radius: 1rem;
       border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.55);
+      background: rgba(255,255,255,0.78);
       padding: 1.1rem 1rem;
       font-size: 0.87rem;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
     }
 
-    .shop-placeholder strong { color: var(--accent-soft); }
+    .shop-placeholder strong { color: var(--text-main); }
 
     footer {
       border-top: 1px solid var(--border-subtle);
       padding: 1.6rem 0 1.8rem;
-      background: rgba(2, 6, 23, 0.55);
+      background: rgba(255,255,255,0.72);
       font-size: 0.78rem;
       color: var(--text-muted);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
 
     footer .footer-inner {
@@ -408,7 +427,8 @@
       text-decoration: none;
       font-size: 0.78rem;
     }
-    footer a:hover { color: var(--accent-soft); }
+
+    footer a:hover { color: var(--text-main); }
   </style>
 </head>
 
