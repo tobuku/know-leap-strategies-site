@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +25,11 @@
       --accent-soft: #111827;
 
       /* Ripple controls */
-      --ripple-opacity: 0.75;                 /* increase for stronger ripples */
-      --ripple-ink: rgba(15, 23, 42, 0.22);   /* dark ring color */
-      --ripple-ink-soft: rgba(15, 23, 42, 0.10);
-      --ripple-blue: rgba(37, 99, 235, 0.18); /* optional blue tint ring */
-      --ripple-blue-soft: rgba(37, 99, 235, 0.10);
+      --ripple-opacity: 0.90;               /* 0.0 to 1.0 */
+      --ripple-contrast: 145%;              /* higher = more visible */
+      --ripple-saturate: 125%;              /* higher = bluer */
+      --ripple-blur: 0.25px;                /* tiny blur removes harsh lines */
+      --ripple-speed: 6.5s;                 /* lower = faster */
     }
 
     * { box-sizing: border-box; }
@@ -44,64 +45,70 @@
       position: relative;
     }
 
-    /* ===== Animated Ripple Background ===== */
+    /* Animated ripple layer */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -25%;
+      z-index: -2;
+      pointer-events: none;
 
-:root {
-  --ripple-time: 0;
-}
+      opacity: var(--ripple-opacity);
+      filter: contrast(var(--ripple-contrast)) saturate(var(--ripple-saturate)) blur(var(--ripple-blur));
+      will-change: transform, opacity;
 
-body {
-  position: relative;
-  background: #ffffff;
-}
+      background:
+        /* Ripple source 1 (blue) */
+        repeating-radial-gradient(
+          circle at 22% 36%,
+          rgba(37, 99, 235, 0.42) 0px,
+          rgba(37, 99, 235, 0.42) 6px,
+          rgba(37, 99, 235, 0.00) 14px,
+          rgba(37, 99, 235, 0.00) 58px
+        ),
+        /* Ripple source 2 (navy) */
+        repeating-radial-gradient(
+          circle at 76% 42%,
+          rgba(15, 23, 42, 0.34) 0px,
+          rgba(15, 23, 42, 0.34) 6px,
+          rgba(15, 23, 42, 0.00) 14px,
+          rgba(15, 23, 42, 0.00) 64px
+        ),
+        /* Ripple source 3 (soft blue) */
+        repeating-radial-gradient(
+          circle at 52% 78%,
+          rgba(37, 99, 235, 0.22) 0px,
+          rgba(37, 99, 235, 0.22) 5px,
+          rgba(37, 99, 235, 0.00) 14px,
+          rgba(37, 99, 235, 0.00) 72px
+        ),
+        /* Subtle highlight blobs */
+        radial-gradient(980px 640px at 18% 22%, rgba(15, 23, 42, 0.06), rgba(15, 23, 42, 0) 62%),
+        radial-gradient(920px 680px at 82% 18%, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0) 60%),
+        radial-gradient(1040px 760px at 55% 78%, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0) 64%),
+        /* Base */
+        radial-gradient(circle at top, #ffffff 0%, #f5f6f8 45%, #ffffff 100%);
 
-/* Ripple layer */
-body::before {
-  content: "";
-  position: fixed;
-  inset: -20%;
-  z-index: -2;
-  pointer-events: none;
+      transform-origin: 50% 50%;
+      animation: rippleScale var(--ripple-speed) linear infinite;
+    }
 
-  background:
-    repeating-radial-gradient(
-      circle at 30% 40%,
-      rgba(37, 99, 235, 0.22) 0px,
-      rgba(37, 99, 235, 0.22) 2px,
-      rgba(37, 99, 235, 0.00) 6px,
-      rgba(37, 99, 235, 0.00) 40px
-    ),
-    repeating-radial-gradient(
-      circle at 70% 60%,
-      rgba(15, 23, 42, 0.20) 0px,
-      rgba(15, 23, 42, 0.20) 2px,
-      rgba(15, 23, 42, 0.00) 6px,
-      rgba(15, 23, 42, 0.00) 46px
-    ),
-    radial-gradient(circle at top, #ffffff 0%, #f5f6f8 45%, #ffffff 100%);
+    /* Depth vignette layer */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0,0,0,0.02), rgba(0,0,0,0.07) 70%, rgba(0,0,0,0.09) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.01), rgba(0,0,0,0.05));
+    }
 
-  background-size:
-    calc(100% + var(--ripple-time) * 1px)
-    calc(100% + var(--ripple-time) * 1px),
-    calc(100% + var(--ripple-time) * 1.4px)
-    calc(100% + var(--ripple-time) * 1.4px),
-    cover;
-
-  filter: contrast(120%) saturate(110%);
-  opacity: 0.65;
-}
-
-      100% {
-        background-position:
-          6% 5%,
-          -5% 4%,
-          4% -5%,
-          7% -4%,
-          -6% 5%,
-          3% 2%,
-          -3% 2%,
-          0% 0%;
-      }
+    @keyframes rippleScale {
+      0%   { transform: scale(1);    opacity: calc(var(--ripple-opacity) - 0.18); }
+      50%  { transform: scale(1.18); opacity: var(--ripple-opacity); }
+      100% { transform: scale(1.36); opacity: calc(var(--ripple-opacity) - 0.18); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -439,79 +446,6 @@ body::before {
     }
 
     footer a:hover { color: var(--text-main); }
-
-    /* ===== Animated Ripple Background (actually moves) ===== */
-
-body {
-  background: #ffffff;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* optional subtle depth so ripples read better */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0,0,0,0.02), rgba(0,0,0,0.06) 70%, rgba(0,0,0,0.08) 100%);
-}
-
-/* RIPPLE LAYER */
-body::before {
-  content: "";
-  position: fixed;
-  inset: -25%;
-  z-index: -2;
-  pointer-events: none;
-
-  /* Make it clearly visible */
-  opacity: 0.85;
-  filter: contrast(140%) saturate(120%) blur(0.2px);
-
-  /* Multiple ripple sources */
-  background:
-    repeating-radial-gradient(
-      circle at 22% 36%,
-      rgba(37, 99, 235, 0.35) 0px,
-      rgba(37, 99, 235, 0.35) 3px,
-      rgba(37, 99, 235, 0.00) 10px,
-      rgba(37, 99, 235, 0.00) 48px
-    ),
-    repeating-radial-gradient(
-      circle at 76% 42%,
-      rgba(15, 23, 42, 0.28) 0px,
-      rgba(15, 23, 42, 0.28) 3px,
-      rgba(15, 23, 42, 0.00) 10px,
-      rgba(15, 23, 42, 0.00) 56px
-    ),
-    repeating-radial-gradient(
-      circle at 52% 78%,
-      rgba(37, 99, 235, 0.22) 0px,
-      rgba(37, 99, 235, 0.22) 2px,
-      rgba(37, 99, 235, 0.00) 10px,
-      rgba(37, 99, 235, 0.00) 60px
-    ),
-    radial-gradient(circle at top, #ffffff 0%, #f5f6f8 45%, #ffffff 100%);
-
-  transform-origin: 50% 50%;
-  animation: rippleScale 6.5s linear infinite;
-  will-change: transform, opacity;
-}
-
-/* This is the actual ripple motion */
-@keyframes rippleScale {
-  0%   { transform: scale(1);   opacity: 0.70; }
-  50%  { transform: scale(1.18); opacity: 0.88; }
-  100% { transform: scale(1.36); opacity: 0.70; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body::before { animation: none; }
-}
-
   </style>
 </head>
 
@@ -732,18 +666,6 @@ body::before {
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-  <script>
-  let ripple = 0;
-
-  function animateRipple() {
-    ripple += 0.6;
-    document.documentElement.style.setProperty("--ripple-time", ripple);
-    requestAnimationFrame(animateRipple);
-  }
-
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    animateRipple();
-  }
-</script>
 </body>
 </html>
+```
