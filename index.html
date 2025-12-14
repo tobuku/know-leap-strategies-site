@@ -659,5 +659,18 @@ body::before {
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <script>
+  let ripple = 0;
+
+  function animateRipple() {
+    ripple += 0.6;
+    document.documentElement.style.setProperty("--ripple-time", ripple);
+    requestAnimationFrame(animateRipple);
+  }
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    animateRipple();
+  }
+</script>
 </body>
 </html>
