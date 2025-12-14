@@ -2,811 +2,352 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Know Leap Strategies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clean Sleek HTML5 Site Template</title>
-  <meta name="description" content="A clean, sleek HTML5 one-page layout with white background, black and gray highlights, and green buttons." />
+  <meta name="description" content="Clean, modern HTML5 layout with structured page folds and minimal styling." />
 
   <style>
-    :root{
-      --bg: #ffffff;
-      --panel: #f6f7f8;
-      --panel2: #fbfbfc;
+    :root {
+      --white: #ffffff;
+      --gray-50: #f7f8fa;
+      --gray-100: #eef0f3;
+      --gray-200: #e4e7ec;
 
-      --ink: #0b0f16;
-      --muted: #5b6472;
-      --line: rgba(11, 15, 22, 0.12);
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: rgba(15, 23, 42, 0.12);
 
       --green: #16a34a;
-      --green2:#15803d;
+      --green-dark: #15803d;
 
+      --max: 1100px;
       --radius: 18px;
-      --shadow: 0 18px 50px rgba(11, 15, 22, 0.10);
-      --shadow2: 0 10px 30px rgba(11, 15, 22, 0.08);
-
-      --max: 1120px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body{
+
+    body {
       margin: 0;
-      background: var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      line-height: 1.55;
-      letter-spacing: -0.01em;
-      overflow-x: hidden;
+      background: var(--white);
+      line-height: 1.6;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
 
-    .wrap{
+    .wrap {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 1.5rem;
     }
 
-    /* Subtle modern background texture */
-    .bgfx{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      background:
-        radial-gradient(900px 600px at 12% 8%, rgba(22, 163, 74, 0.10), rgba(22, 163, 74, 0) 60%),
-        radial-gradient(900px 600px at 88% 12%, rgba(11, 15, 22, 0.06), rgba(11, 15, 22, 0) 62%),
-        radial-gradient(1100px 760px at 55% 92%, rgba(11, 15, 22, 0.05), rgba(11, 15, 22, 0) 62%),
-        linear-gradient(to bottom, rgba(11,15,22,0.03), rgba(11,15,22,0.00) 40%, rgba(11,15,22,0.02));
-    }
-
-    /* Header */
-    header{
+    header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 20;
     }
 
-    .nav{
+    .nav {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 14px 0;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
     }
 
-    .brand{
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 220px;
-    }
-
-    .mark{
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      border: 1px solid rgba(11,15,22,0.22);
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,246,248,0.95));
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .brand {
       font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .brand .name{
-      font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      line-height: 1.1;
+      font-size: 0.85rem;
     }
 
-    .brand .tag{
-      font-size: 12px;
+    nav a {
+      margin-left: 1.25rem;
+      font-size: 0.9rem;
       color: var(--muted);
-      margin-top: 2px;
     }
 
-    .links{
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .links a{
-      font-size: 14px;
-      color: rgba(11,15,22,0.72);
-      padding: 8px 10px;
-      border-radius: 999px;
-      transition: background-color 160ms ease, color 160ms ease;
-    }
-    .links a:hover{
-      background: rgba(11,15,22,0.06);
+    nav a:hover {
       color: var(--ink);
     }
 
-    /* Mobile menu using details */
-    .menu{
-      display: none;
-      position: relative;
-    }
-    .menu summary{
-      list-style: none;
-      cursor: pointer;
-      border: 1px solid var(--line);
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
       border-radius: 999px;
-      padding: 10px 12px;
-      background: rgba(255,255,255,0.82);
-      user-select: none;
       font-weight: 700;
-      font-size: 13px;
-    }
-    .menu summary::-webkit-details-marker { display: none; }
-    .menu .panel{
-      position: absolute;
-      right: 0;
-      top: 52px;
-      width: min(320px, 90vw);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.96);
-      box-shadow: var(--shadow2);
-      padding: 10px;
-    }
-    .menu .panel a{
-      display: block;
-      padding: 12px 12px;
-      border-radius: 12px;
-      color: rgba(11,15,22,0.78);
-    }
-    .menu .panel a:hover{
-      background: rgba(11,15,22,0.06);
-      color: var(--ink);
-    }
-
-    @media (max-width: 860px){
-      .links{ display: none; }
-      .menu{ display: block; }
-      .brand{ min-width: 0; }
-    }
-
-    /* Buttons */
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 12px 18px;
+      font-size: 0.9rem;
       border: 1px solid transparent;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: -0.01em;
-      transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-      white-space: nowrap;
     }
 
-    .btn-primary{
-      background: linear-gradient(180deg, var(--green), var(--green2));
-      color: #ffffff;
-      box-shadow: 0 18px 50px rgba(22, 163, 74, 0.22);
-    }
-    .btn-primary:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 22px 60px rgba(22, 163, 74, 0.26);
-    }
-
-    .btn-ghost{
-      background: rgba(255,255,255,0.78);
-      color: var(--ink);
-      border-color: rgba(11,15,22,0.18);
-    }
-    .btn-ghost:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.92);
-      border-color: rgba(11,15,22,0.26);
-    }
-
-    /* Sections */
-    main{ padding: 36px 0 70px; }
-    section{ margin-top: 56px; }
-
-    .hero{
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      gap: 26px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; }
-    }
-
-    .kicker{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(11,15,22,0.12);
-      background: rgba(255,255,255,0.72);
-      color: rgba(11,15,22,0.70);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .dot{
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
+    .btn-primary {
       background: var(--green);
-      box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.14);
-    }
-
-    h1{
-      margin: 16px 0 12px;
-      font-size: clamp(36px, 4vw + 10px, 58px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-    }
-
-    .lede{
-      margin: 0 0 18px;
-      max-width: 60ch;
-      color: rgba(11,15,22,0.72);
-      font-size: 16px;
-    }
-
-    .cta{
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 18px;
-    }
-
-    .mini{
-      margin-top: 14px;
-      color: rgba(11,15,22,0.55);
-      font-size: 13px;
-    }
-
-    .glass{
-      border: 1px solid rgba(11,15,22,0.12);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.76);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-    }
-
-    .card{
-      padding: 18px;
-    }
-
-    .hero-side{
-      padding: 18px;
-    }
-
-    .hero-side h3{
-      margin: 0 0 8px;
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(11,15,22,0.72);
-    }
-
-    .hero-side .big{
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      margin: 0 0 10px;
-    }
-
-    .hero-side p{
-      margin: 0;
-      color: rgba(11,15,22,0.70);
-      font-size: 14px;
-    }
-
-    .stats{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .stat{
-      border-radius: 14px;
-      border: 1px solid rgba(11,15,22,0.12);
-      background: rgba(255,255,255,0.78);
-      padding: 12px;
-    }
-
-    .stat .label{
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(11,15,22,0.62);
-    }
-    .stat .value{
-      margin-top: 4px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      font-size: 14px;
-    }
-
-    .section-head{
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .section-head h2{
-      margin: 0;
-      font-size: clamp(22px, 1.6vw + 12px, 30px);
-      letter-spacing: -0.03em;
-    }
-
-    .section-head p{
-      margin: 0;
-      color: rgba(11,15,22,0.62);
-      max-width: 70ch;
-      font-size: 14px;
-    }
-
-    .grid3{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    @media (max-width: 980px){
-      .grid3{ grid-template-columns: 1fr; }
-    }
-
-    .tile{
-      border: 1px solid rgba(11,15,22,0.12);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.62));
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow2);
-      padding: 16px;
-      transition: transform 160ms ease, border-color 160ms ease;
-    }
-
-    .tile:hover{
-      transform: translateY(-2px);
-      border-color: rgba(11,15,22,0.18);
-    }
-
-    .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(11,15,22,0.06);
-      border: 1px solid rgba(11,15,22,0.10);
-      font-size: 12px;
-      color: rgba(11,15,22,0.70);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .tile h3{
-      margin: 12px 0 8px;
-      font-size: 18px;
-      letter-spacing: -0.02em;
-    }
-
-    .tile p{
-      margin: 0;
-      color: rgba(11,15,22,0.68);
-      font-size: 14px;
-    }
-
-    .list{
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: rgba(11,15,22,0.66);
-      font-size: 14px;
-    }
-    .list li{ margin: 6px 0; }
-
-    .split{
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      .split{ grid-template-columns: 1fr; }
-    }
-
-    .panel{
-      border-radius: var(--radius);
-      border: 1px solid rgba(11,15,22,0.12);
-      background: rgba(255,255,255,0.78);
-      box-shadow: var(--shadow2);
-      padding: 18px;
-    }
-
-    .panel h3{
-      margin: 0 0 8px;
-      font-size: 18px;
-      letter-spacing: -0.02em;
-    }
-
-    .panel p{
-      margin: 0;
-      color: rgba(11,15,22,0.68);
-      font-size: 14px;
-    }
-
-    .steps{
-      margin-top: 12px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .step{
-      border-radius: 14px;
-      border: 1px solid rgba(11,15,22,0.12);
-      background: rgba(255,255,255,0.76);
-      padding: 12px;
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 10px;
-      align-items: start;
-    }
-
-    .num{
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
       color: #ffffff;
-      background: linear-gradient(180deg, var(--green), var(--green2));
-      box-shadow: 0 14px 34px rgba(22, 163, 74, 0.18);
     }
 
-    .step strong{
-      display: block;
-      font-size: 14px;
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
+    .btn-primary:hover {
+      background: var(--green-dark);
     }
 
-    .step span{
-      display: block;
-      color: rgba(11,15,22,0.66);
-      font-size: 13px;
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--ink);
+      background: #ffffff;
     }
 
-    .callout{
-      border-radius: 22px;
-      border: 1px solid rgba(11,15,22,0.12);
-      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(245,246,248,0.78));
-      box-shadow: var(--shadow);
-      padding: 18px;
+    main section {
+      padding: 4rem 0;
+    }
+
+    section.white { background: var(--white); }
+    section.gray-light { background: var(--gray-50); }
+    section.gray { background: var(--gray-100); }
+    section.gray-dark { background: var(--gray-200); }
+
+    h1 {
+      font-size: clamp(2.2rem, 3vw + 1rem, 3rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin: 0 0 0.5rem;
+    }
+
+    p.lead {
+      max-width: 42rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-      align-items: center;
-    }
-    @media (max-width: 980px){
-      .callout{ grid-template-columns: 1fr; }
+      gap: 2.5rem;
+      align-items: start;
     }
 
-    footer{
-      margin-top: 70px;
-      padding: 26px 0;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.76);
-      backdrop-filter: blur(12px);
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
     }
 
-    .foot{
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 0;
+    }
+
+    ul li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      background: var(--gray-100);
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
       flex-wrap: wrap;
-      align-items: center;
-      color: rgba(11,15,22,0.60);
-      font-size: 13px;
-    }
-
-    .foot a{
-      color: rgba(11,15,22,0.62);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-    .foot a:hover{
-      background: rgba(11,15,22,0.06);
-      color: var(--ink);
+      gap: 1rem;
     }
   </style>
 </head>
 
 <body>
-  <div class="bgfx" aria-hidden="true"></div>
-
   <header>
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Home">
-          <div class="mark">KL</div>
-          <div>
-            <div class="name">Know Leap Strategies</div>
-            <div class="tag">Design. Proof. Execution.</div>
-          </div>
-        </a>
-
-        <nav class="links" aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#insights">Insights</a>
-          <a href="#contact">Contact</a>
-          <a class="btn btn-primary" href="#contact">Start Here</a>
-        </nav>
-
-        <details class="menu">
-          <summary>Menu</summary>
-          <div class="panel" role="menu">
-            <a href="#work" role="menuitem">Work</a>
-            <a href="#services" role="menuitem">Services</a>
-            <a href="#process" role="menuitem">Process</a>
-            <a href="#insights" role="menuitem">Insights</a>
-            <a href="#contact" role="menuitem">Contact</a>
-            <a class="btn btn-primary" href="#contact" style="margin-top:10px; width:100%;">Start Here</a>
-          </div>
-        </details>
-      </div>
+    <div class="wrap nav">
+      <div class="brand">Know Leap Strategies</div>
+      <nav>
+        <a href="#who">Who We Serve</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn btn-primary">Start Here</a>
+      </nav>
     </div>
   </header>
 
-  <main id="top">
-    <div class="wrap">
-      <section class="hero" aria-label="Hero">
-        <div class="card glass">
-          <div class="kicker"><span class="dot"></span> Clean systems, measurable proof</div>
-          <h1>Build sleek, modern websites with pure HTML5 and CSS.</h1>
-          <p class="lede">
-            A minimalist, high-contrast layout with subtle depth, crisp typography, and green calls to action.
-            Built to feel premium without frameworks.
+  <main>
+    <section class="white">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Clear systems for complex decisions.</h1>
+          <p class="lead">
+            A calm, structured approach to strategy, oversight, and execution.
+            Designed to replace guesswork with proof.
           </p>
-
-          <div class="cta">
-            <a class="btn btn-primary" href="#contact">Book a quick call</a>
-            <a class="btn btn-ghost" href="#services">See the system</a>
-          </div>
-
-          <div class="mini">
-            Fast load. Clean spacing. Micro-interactions that feel intentional.
+          <div style="margin-top:1.5rem;">
+            <a href="#contact" class="btn btn-primary">Request a call</a>
+            <a href="#services" class="btn btn-outline" style="margin-left:0.75rem;">Explore services</a>
           </div>
         </div>
 
-        <aside class="hero-side glass" aria-label="Snapshot">
-          <h3>Snapshot</h3>
-          <p class="big">A modern one-pager, ready to customize</p>
+        <div class="card">
+          <div class="pill">Snapshot</div>
           <p>
-            White background, black and gray highlights, and green buttons.
-            Subtle glass panels and soft gradients for a sleek finish.
-          </p>
-
-          <div class="stats" aria-label="Highlights">
-            <div class="stat">
-              <div class="label">Style</div>
-              <div class="value">Minimal, premium</div>
-            </div>
-            <div class="stat">
-              <div class="label">Stack</div>
-              <div class="value">HTML5 + CSS</div>
-            </div>
-            <div class="stat">
-              <div class="label">Motion</div>
-              <div class="value">Light hover cues</div>
-            </div>
-            <div class="stat">
-              <div class="label">Goal</div>
-              <div class="value">Clarity + trust</div>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <section id="work" aria-label="Work">
-        <div class="section-head">
-          <h2>Work that reads clean and feels modern</h2>
-          <p>
-            Structured layout, confident typography, deliberate whitespace. This is the vibe that makes sites feel expensive.
+            This layout uses simple color transitions instead of effects.
+            Each section breathes, reads clearly, and feels intentional.
           </p>
         </div>
+      </div>
+    </section>
 
-        <div class="grid3">
-          <article class="tile" aria-label="Project tile">
-            <div class="pill">Case Study</div>
-            <h3>High-trust landing page</h3>
-            <p>Hero clarity, crisp CTAs, and a premium glass panel system for key content.</p>
-            <ul class="list">
-              <li>Sticky header that stays elegant</li>
-              <li>CTA hierarchy with green primary</li>
-              <li>Subtle texture, not visual noise</li>
-            </ul>
-          </article>
-
-          <article class="tile" aria-label="Project tile">
-            <div class="pill">System</div>
-            <h3>Reusable section patterns</h3>
-            <p>Tiles, split panels, callouts, and steps you can remix into any site.</p>
-            <ul class="list">
-              <li>Grid for features and services</li>
-              <li>Split layout for process and proof</li>
-              <li>Footer that feels light</li>
-            </ul>
-          </article>
-
-          <article class="tile" aria-label="Project tile">
-            <div class="pill">Performance</div>
-            <h3>Simple, fast, readable</h3>
-            <p>Minimal HTML. No dependencies. Clean CSS variables for quick theming.</p>
-            <ul class="list">
-              <li>Modern defaults and sensible spacing</li>
-              <li>Mobile menu without JavaScript</li>
-              <li>Accessible, semantic structure</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="services" aria-label="Services">
-        <div class="section-head">
-          <h2>Services</h2>
-          <p>Swap this content for your brand. The layout stays sleek because the system is doing the work.</p>
-        </div>
-
-        <div class="grid3">
-          <article class="tile">
-            <div class="pill">Design</div>
-            <h3>UI and layout structure</h3>
-            <p>Simple section architecture that guides the eye and removes clutter.</p>
-          </article>
-          <article class="tile">
-            <div class="pill">Build</div>
-            <h3>HTML5 components</h3>
-            <p>Semantic sections, accessible navigation, and responsive grids.</p>
-          </article>
-          <article class="tile">
-            <div class="pill">Polish</div>
-            <h3>Micro-interactions</h3>
-            <p>Hover, focus, and depth cues that feel premium without being flashy.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="process" aria-label="Process" class="split">
-        <div class="panel">
-          <h3>Process</h3>
-          <p>
-            This is a clean pattern for explaining how you work. It keeps the page sleek because each step is contained and readable.
-          </p>
-
-          <div class="steps" aria-label="Steps">
-            <div class="step">
-              <div class="num">1</div>
-              <div>
-                <strong>Define the outcome</strong>
-                <span>What should the visitor do, believe, or understand in 10 seconds?</span>
-              </div>
-            </div>
-            <div class="step">
-              <div class="num">2</div>
-              <div>
-                <strong>Design the proof</strong>
-                <span>Use clean sections, clear hierarchy, and minimal friction to build trust.</span>
-              </div>
-            </div>
-            <div class="step">
-              <div class="num">3</div>
-              <div>
-                <strong>Ship and iterate</strong>
-                <span>Launch fast, measure, then refine copy and structure.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class="panel" aria-label="Notes">
-          <h3>Notes for the vibe</h3>
-          <p>
-            The look comes from typography and spacing, not heavy visuals.
-            The green button signals action and direction.
-          </p>
-          <ul class="list">
-            <li>Keep headlines short and specific</li>
-            <li>Use fewer sections with stronger copy</li>
-            <li>Let whitespace do the flexing</li>
-          </ul>
-          <div style="margin-top:14px;">
-            <a class="btn btn-primary" href="#contact" style="width:100%;">Get started</a>
-          </div>
-        </aside>
-      </section>
-
-      <section id="insights" aria-label="Insights">
-        <div class="section-head">
-          <h2>Insights</h2>
-          <p>Optional section for posts, notes, or updates. Keeps the page feeling alive without clutter.</p>
-        </div>
-
-        <div class="grid3">
-          <article class="tile">
-            <div class="pill">Note</div>
-            <h3>Why this feels “sleek”</h3>
-            <p>High contrast, tight type, and subtle depth. The design stays quiet so the message speaks.</p>
-          </article>
-          <article class="tile">
-            <div class="pill">Tip</div>
-            <h3>Green buttons</h3>
-            <p>One primary action. One clear color. Everything else supports it.</p>
-          </article>
-          <article class="tile">
-            <div class="pill">Build</div>
-            <h3>HTML5 first</h3>
-            <p>Semantic tags, accessible patterns, and a layout system you can reuse everywhere.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="contact" aria-label="Contact">
-        <div class="callout">
-          <div>
-            <div class="kicker"><span class="dot"></span> Ready to customize?</div>
-            <h2 style="margin:12px 0 10px; letter-spacing:-0.03em;">Make it yours in minutes</h2>
-            <p style="margin:0; color: rgba(11,15,22,0.70); font-size:14px;">
-              Replace the brand name, swap section copy, and link your contact method. The layout stays clean because the system is consistent.
-            </p>
-          </div>
-          <div style="display:grid; gap:12px;">
-            <a class="btn btn-primary" href="mailto:hello@example.com">Email: hello@example.com</a>
-            <a class="btn btn-ghost" href="#top">Back to top</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <footer>
+    <section id="who" class="gray-light">
       <div class="wrap">
-        <div class="foot">
-          <div>© <span id="year"></span> Know Leap Strategies. All rights reserved.</div>
-          <div>
-            <a href="#work">Work</a>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
+        <h2>Who We Serve</h2>
+        <p class="lead">
+          Built for people already in motion who want fewer surprises and cleaner execution.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="pill">Investors</div>
+            <p>Remote decision-makers who need proof before capital moves.</p>
+          </div>
+
+          <div class="card">
+            <div class="pill">Operators</div>
+            <p>Service-based businesses that rely on real-world execution.</p>
+          </div>
+
+          <div class="card">
+            <div class="pill">Founders</div>
+            <p>Builders creating platforms that must survive reality.</p>
           </div>
         </div>
       </div>
-    </footer>
+    </section>
+
+    <section id="services" class="gray">
+      <div class="wrap">
+        <h2>Services</h2>
+        <p class="lead">
+          Simple lanes, tailored engagements, practical outputs.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Strategy Mapping</h3>
+            <ul>
+              <li>Decision clarity</li>
+              <li>Risk identification</li>
+              <li>Execution paths</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Oversight Design</h3>
+            <ul>
+              <li>Proof frameworks</li>
+              <li>Field verification</li>
+              <li>Exception handling</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Platform Advisory</h3>
+            <ul>
+              <li>User flows</li>
+              <li>Permissions</li>
+              <li>Scalable structure</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="white">
+      <div class="wrap">
+        <h2>How It Works</h2>
+        <p class="lead">
+          Clear steps without fluff or theater.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <strong>1. Discovery</strong>
+            <p>Understand context and constraints.</p>
+          </div>
+          <div class="card">
+            <strong>2. Design</strong>
+            <p>Create systems that match reality.</p>
+          </div>
+          <div class="card">
+            <strong>3. Support</strong>
+            <p>Stay involved as execution unfolds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="gray-dark">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p class="lead">
+          Reach out with what you are building and where the risk lives.
+        </p>
+
+        <a href="mailto:hello@knowleapstrategies.com" class="btn btn-primary">
+          hello@knowleapstrategies.com
+        </a>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> Know Leap Strategies</div>
+      <div>
+        <a href="#who">Who</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-```
