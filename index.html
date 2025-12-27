@@ -436,18 +436,28 @@
       gsap.registerPlugin(ScrollTrigger);
       // Bounce-in headings (more obvious, but still controlled)
       function klsBounceIn(el) {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none reset"
-          },
-          y: -120,
-          opacity: 0,
-          ease: "bounce.out",
-          duration: 1.25
-        });
+  gsap.fromTo(
+    el,
+    {
+      y: -240,
+      scale: 0.92,
+      opacity: 0
+    },
+    {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 1.6,
+      ease: "bounce.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%",
+        toggleActions: "play none none reset"
       }
+    }
+  );
+}
+
 
       gsap.utils.toArray(".kls-bounce").forEach(klsBounceIn);
 
