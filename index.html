@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Know Leap Strategies</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Clean, modern HTML5 layout with structured page folds and minimal styling." />
-
-  <style>
+<meta charset="utf-8"/>
+<title>Know Leap Strategies</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Clean, modern HTML5 layout with structured page folds and minimal styling." name="description"/>
+<style>
     :root {
       --white: #ffffff;
       --gray-50: #f7f8fa;
@@ -209,666 +209,360 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-  
-    /* ------------------------------
-       KLS Motion Layer (GSAP driven)
-       ------------------------------ */
-    html { scroll-behavior: smooth; }
-    body { overflow-x: hidden; }
 
-    .kls-preloader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(1200px 600px at 20% 10%, rgba(19, 255, 128, 0.12), transparent 60%),
-                  radial-gradient(900px 500px at 80% 30%, rgba(19, 255, 128, 0.08), transparent 55%),
-                  linear-gradient(180deg, #0b1223, #0f172a);
-      color: #e6eefc;
+    /* ------------------------------
+       Premium motion-ready styling
+       ------------------------------ */
+    body { overflow-x: hidden; }
+    .logo {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      vertical-align: middle;
     }
-    .kls-preloader-inner {
-      display: grid;
-      gap: 1rem;
-      justify-items: center;
-      text-align: center;
-    }
-    .kls-preloader-mark {
+    .brand {
       display: flex;
-      gap: 0.6rem;
       align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
-    .kls-preloader-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 999px;
-      background: #13ff80;
-      box-shadow: 0 0 0 0 rgba(19, 255, 128, 0.5);
+    .brand-text { white-space: nowrap; }
+
+    .hero-media img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
     }
-    .kls-preloader-text {
+    .hero-media-caption {
+      margin-top: 0.9rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.85rem;
+      color: var(--ink);
       opacity: 0.9;
     }
 
-    /* Custom cursor */
-    @media (hover: hover) and (pointer: fine) {
-      body { cursor: none; }
-      .kls-cursor {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 9998;
-      }
-      .kls-cursor-ring {
-        position: absolute;
-        width: 42px;
-        height: 42px;
-        border-radius: 999px;
-        border: 2px solid rgba(19, 255, 128, 0.55);
-        transform: translate(-50%, -50%);
-        filter: blur(0px);
-        opacity: 0.9;
-      }
-      .kls-cursor-dot {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: rgba(19, 255, 128, 0.95);
-        transform: translate(-50%, -50%);
-        box-shadow: 0 10px 30px rgba(19, 255, 128, 0.28);
-      }
-      .kls-cursor.is-link .kls-cursor-ring {
-        width: 56px;
-        height: 56px;
-        border-color: rgba(19, 255, 128, 0.9);
-        opacity: 1;
-      }
+    .section-media {
+      margin-top: 1.25rem;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .section-media img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
     }
 
-    /* Glow line under header */
-    header::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(19, 255, 128, 0.8), transparent);
-      opacity: 0;
-      transform: scaleX(0.65);
-      transform-origin: 50% 50%;
-      pointer-events: none;
-    }
-
-    /* Animated background sheen for hero */
-    .hero-grid {
+    .card-visual {
       position: relative;
-      isolation: isolate;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 0.9rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
-    .hero-grid::before {
-      content: "";
+    .card-visual img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.03);
+    }
+    .card-icon {
       position: absolute;
-      inset: -80px -80px -80px -80px;
-      background: radial-gradient(900px 450px at 12% 20%, rgba(19, 255, 128, 0.12), transparent 60%),
-                  radial-gradient(800px 420px at 85% 30%, rgba(19, 255, 128, 0.08), transparent 60%);
-      z-index: -1;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
+      top: 12px;
+      left: 12px;
+      width: 34px;
+      height: 34px;
+      padding: 8px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.10);
     }
 
-    /* Reveal utility class used by JS */
-    .kls-reveal {
+    /* 3D flip readiness */
+    .flip-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
       will-change: transform, opacity, filter;
     }
 
-    /* Tilt cards on hover (fallback if JS disabled) */
-    .card { transform-style: preserve-3d; }
+    /* Progress bar */
+    .kls-progress {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 3px;
+      width: 100%;
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      background: linear-gradient(90deg, rgba(19,255,128,0.0), rgba(19,255,128,0.9), rgba(19,255,128,0.0));
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0.9;
+    }
 
-  </style>
+    /* Motion utility (JS sets initial) */
+    .kls-reveal { will-change: transform, opacity, filter; }
+
+</style>
 </head>
+<body><div aria-hidden="true" class="kls-progress"></div>
 
-<body>
 
-  <div class="kls-preloader" aria-hidden="true">
-    <div class="kls-preloader-inner">
-      <div class="kls-preloader-mark">
-        <div class="kls-preloader-dot"></div>
-        <div class="kls-preloader-dot"></div>
-        <div class="kls-preloader-dot"></div>
-      </div>
-      <div class="kls-preloader-text">Loading</div>
-    </div>
-  </div>
-
-  <div class="kls-cursor" aria-hidden="true">
-    <div class="kls-cursor-ring"></div>
-    <div class="kls-cursor-dot"></div>
-  </div>
-
-  <header>
-    <div class="wrap nav">
-      <div class="brand">Know Leap Strategies</div>
-      <nav>
-        <a href="#who">Who We Serve</a>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="btn btn-primary">Start Here</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="white">
-      <div class="wrap hero-grid">
-        <div>
-          <h1>Clear systems for complex decisions.</h1>
-          <p class="lead">
+<header>
+<div class="wrap nav">
+<div class="brand"><img alt="Know Leap Strategies logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/><span class="brand-text">Know Leap Strategies</span></div>
+<nav>
+<a href="#who">Who We Serve</a>
+<a href="#services">Services</a>
+<a href="#process">Process</a>
+<a class="btn btn-primary" href="#contact">Start Here</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="white">
+<div class="wrap hero-grid">
+<div>
+<h1>Clear systems for complex decisions.</h1>
+<p class="lead">
             A calm, structured approach to strategy, oversight, and execution.
             Designed to replace guesswork with proof.
           </p>
-          <div style="margin-top:1.5rem;">
-            <a href="#contact" class="btn btn-primary">Request a call</a>
-            <a href="#services" class="btn btn-outline" style="margin-left:0.75rem;">Explore services</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="pill">Snapshot</div>
-          <p>
-            This layout uses simple color transitions instead of effects.
-            Each section breathes, reads clearly, and feels intentional.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="who" class="gray-light">
-      <div class="wrap">
-        <h2>Who We Serve</h2>
-        <p class="lead">
+<div style="margin-top:1.5rem;">
+<a class="btn btn-primary" href="#contact">Request a call</a>
+<a class="btn btn-outline" href="#services" style="margin-left:0.75rem;">Explore services</a>
+</div>
+</div>
+<div class="card hero-media"><img alt="Abstract strategy planning visual" loading="eager" src="assets/images/sections/hero-strategy.jpeg"/><div class="hero-media-caption">Proof first. Calm execution. Clean outcomes.</div></div>
+</div>
+</section>
+<section class="gray-light" id="who">
+<div class="wrap">
+<h2>Who We Serve</h2>
+<p class="lead">
           Built for people already in motion who want fewer surprises and cleaner execution.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="pill">Investors</div>
-            <p>Remote decision-makers who need proof before capital moves.</p>
-          </div>
-
-          <div class="card">
-            <div class="pill">Operators</div>
-            <p>Service-based businesses that rely on real-world execution.</p>
-          </div>
-
-          <div class="card">
-            <div class="pill">Founders</div>
-            <p>Builders creating platforms that must survive reality.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="gray">
-      <div class="wrap">
-        <h2>Services</h2>
-        <p class="lead">
+        </p><div class="section-media"><img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/></div>
+<div class="grid-3">
+<div class="card">
+<div class="pill">Investors</div>
+<p>Remote decision-makers who need proof before capital moves.</p>
+</div>
+<div class="card">
+<div class="pill">Operators</div>
+<p>Service-based businesses that rely on real-world execution.</p>
+</div>
+<div class="card">
+<div class="pill">Founders</div>
+<p>Builders creating platforms that must survive reality.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="gray" id="services">
+<div class="wrap">
+<h2>Services</h2>
+<p class="lead">
           Simple lanes, tailored engagements, practical outputs.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>Strategy Mapping</h3>
-            <ul>
-              <li>Decision clarity</li>
-              <li>Risk identification</li>
-              <li>Execution paths</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Oversight Design</h3>
-            <ul>
-              <li>Proof frameworks</li>
-              <li>Field verification</li>
-              <li>Exception handling</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Platform Advisory</h3>
-            <ul>
-              <li>User flows</li>
-              <li>Permissions</li>
-              <li>Scalable structure</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="white">
-      <div class="wrap">
-        <h2>How It Works</h2>
-        <p class="lead">
+        </p><div class="section-media"><img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/></div>
+<div class="grid-3">
+<div class="card flip-card"><div class="card-visual"><img alt="Strategy mapping image" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/><img alt="" aria-hidden="true" class="card-icon" src="assets/images/icons/icon-structure.svg"/></div>
+<h3>Strategy Mapping</h3>
+<ul>
+<li>Decision clarity</li>
+<li>Risk identification</li>
+<li>Execution paths</li>
+</ul>
+</div>
+<div class="card flip-card"><div class="card-visual"><img alt="Oversight design image" loading="lazy" src="assets/images/cards/card-oversight-design.jpg"/><img alt="" aria-hidden="true" class="card-icon" src="assets/images/icons/icon-proof.svg"/></div>
+<h3>Oversight Design</h3>
+<ul>
+<li>Proof frameworks</li>
+<li>Field verification</li>
+<li>Exception handling</li>
+</ul>
+</div>
+<div class="card flip-card"><div class="card-visual"><img alt="Platform advisory image" loading="lazy" src="assets/images/cards/card-platform-advisory.jpg"/><img alt="" aria-hidden="true" class="card-icon" src="assets/images/icons/icon-verify.svg"/></div>
+<h3>Platform Advisory</h3>
+<ul>
+<li>User flows</li>
+<li>Permissions</li>
+<li>Scalable structure</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="white" id="process">
+<div class="wrap">
+<h2>How It Works</h2>
+<p class="lead">
           Clear steps without fluff or theater.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <strong>1. Discovery</strong>
-            <p>Understand context and constraints.</p>
-          </div>
-          <div class="card">
-            <strong>2. Design</strong>
-            <p>Create systems that match reality.</p>
-          </div>
-          <div class="card">
-            <strong>3. Support</strong>
-            <p>Stay involved as execution unfolds.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="gray-dark">
-      <div class="wrap">
-        <h2>Contact</h2>
-        <p class="lead">
+        </p><div class="section-media"><img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/></div>
+<div class="grid-3">
+<div class="card">
+<strong>1. Discovery</strong>
+<p>Understand context and constraints.</p>
+</div>
+<div class="card">
+<strong>2. Design</strong>
+<p>Create systems that match reality.</p>
+</div>
+<div class="card">
+<strong>3. Support</strong>
+<p>Stay involved as execution unfolds.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="gray-dark" id="contact">
+<div class="wrap">
+<h2>Contact</h2>
+<p class="lead">
           Reach out with what you are building and where the risk lives.
-        </p>
-
-        <a href="mailto:hello@knowleapstrategies.com" class="btn btn-primary">
+        </p><div class="section-media"><img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/></div>
+<a class="btn btn-primary" href="mailto:hello@knowleapstrategies.com">
           hello@knowleapstrategies.com
         </a>
-      </div>
-    </section>
-  </main>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap footer-inner">
+<div>© <span id="year"></span> Know Leap Strategies</div>
+<div>
+<a href="#who">Who</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</footer>
 
-  <footer>
-    <div class="wrap footer-inner">
-      <div>© <span id="year"></span> Know Leap Strategies</div>
-      <div>
-        <a href="#who">Who</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
 
-  
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
-  <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Motion layer
     (function () {
       const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduceMotion) {
-        // Respect reduced motion preferences, keep site usable.
-        return;
-      }
+      if (reduceMotion) return;
 
-      // Defensive: if GSAP does not load, do nothing.
-      if (!window.gsap) return;
+      if (!window.gsap || !window.ScrollTrigger) return;
 
       gsap.registerPlugin(ScrollTrigger);
-      if (window.TextPlugin) gsap.registerPlugin(TextPlugin);
 
-      // ----------
-      // Preloader
-      // ----------
-      const preloader = document.querySelector(".kls-preloader");
-      const dots = gsap.utils.toArray(".kls-preloader-dot");
-      const preText = document.querySelector(".kls-preloader-text");
+      // Premium defaults: smooth, confident, not gimmicky
+      gsap.defaults({ ease: "power3.out", duration: 0.9 });
 
-      const preTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      preTl.fromTo(dots, { scale: 0.7, opacity: 0.6 }, { scale: 1.0, opacity: 1, duration: 0.5, stagger: 0.12, repeat: 2, yoyo: true })
-           .fromTo(preText, { opacity: 0.55 }, { opacity: 1, duration: 0.35 }, "<");
-
-      // Allow a short minimum so it feels intentional, not glitchy.
-      const MIN_PRE_MS = 650;
-      const preStart = performance.now();
-
-      function endPreloader() {
-        if (!preloader) return;
-
-        const waited = performance.now() - preStart;
-        const delay = Math.max(0, MIN_PRE_MS - waited) / 1000;
-
-        gsap.timeline()
-          .to(".kls-preloader-dot", { boxShadow: "0 0 0 18px rgba(19,255,128,0)", duration: 0.35, stagger: 0.06 }, 0)
-          .to(preloader, { opacity: 0, duration: 0.45, delay })
-          .set(preloader, { display: "none" });
-      }
-
-      if (document.readyState === "complete") endPreloader();
-      else window.addEventListener("load", endPreloader);
-
-      // ----------------
-      // Custom cursor
-      // ----------------
-      const cursor = document.querySelector(".kls-cursor");
-      const ring = document.querySelector(".kls-cursor-ring");
-      const dot = document.querySelector(".kls-cursor-dot");
-
-      const hasFinePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-      if (cursor && ring && dot && hasFinePointer) {
-        let x = window.innerWidth / 2;
-        let y = window.innerHeight / 2;
-        let rx = x;
-        let ry = y;
-
-        const move = (e) => {
-          x = e.clientX;
-          y = e.clientY;
-          gsap.set(dot, { x, y });
-        };
-
-        const tick = () => {
-          rx += (x - rx) * 0.18;
-          ry += (y - ry) * 0.18;
-          gsap.set(ring, { x: rx, y: ry });
-          requestAnimationFrame(tick);
-        };
-
-        window.addEventListener("mousemove", move, { passive: true });
-        requestAnimationFrame(tick);
-
-        const setLinkState = (on) => cursor.classList.toggle("is-link", on);
-        document.addEventListener("mouseover", (e) => {
-          const a = e.target.closest("a, button, .btn");
-          setLinkState(!!a);
+      // Progress bar
+      const prog = document.querySelector(".kls-progress");
+      if (prog) {
+        gsap.to(prog, {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 0.25 }
         });
       }
 
-      // -------------
-      // Global defaults
-      // -------------
-      gsap.defaults({ ease: "power3.out", duration: 1.0 });
-
-      // Header entrance + glow line
+      // Header: clean slide-in + subtle underline glow
       const header = document.querySelector("header");
       if (header) {
-        gsap.fromTo(header, { y: -36, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9 });
-        gsap.to("header::after", {}); // no-op for safety (pseudo not targetable directly)
-        gsap.fromTo(header, { "--klsGlow": 0 }, { "--klsGlow": 1, duration: 0.8 });
-        gsap.to(header, { onUpdate: () => {}, duration: 0 }); // keep timeline stable
-        // Animate the underline by toggling opacity/scale using the real element (header) plus CSS after
-        gsap.to(header, { onComplete: () => { header.style.setProperty("--klsHeaderGlow", "1"); } });
-        gsap.fromTo(header, { }, { duration: 0.01, onComplete: () => {
-          // Kick a small glow animation by animating inline styles on the pseudo via class-like approach
-          header.style.setProperty("position", "sticky");
-        }});
-        // Actual animation on the pseudo is done by animating header and letting CSS use it
-        gsap.fromTo(header, { }, { duration: 0.01, onComplete: () => {
-          header.style.setProperty("--klsAfterOpacity", "1");
-        }});
-        // Since pseudo elements cannot be animated directly, we animate via CSS vars and a small helper style below.
+        gsap.fromTo(header, { y: -18, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8 });
       }
 
-      // Hero background sheen and headline kinetic type
-      const heroGrid = document.querySelector(".hero-grid");
-      if (heroGrid) {
-        gsap.to(".hero-grid::before", {}); // no-op
-        // Animate the ::before via CSS vars
-        heroGrid.style.setProperty("--klsHeroSheen", "0");
-      }
+      // Hero: headline clip reveal + buttons pop
+      const hero = document.querySelector(".hero-grid");
+      if (hero) {
+        const h1 = hero.querySelector("h1");
+        const lead = hero.querySelector(".lead");
+        const btns = hero.querySelectorAll(".btn");
+        const media = hero.querySelector(".hero-media img");
 
-      // Helper: wrap letters for a punchy headline effect
-      function splitLetters(el) {
-        const text = el.textContent.trim();
-        el.textContent = "";
-        const frag = document.createDocumentFragment();
-        [...text].forEach((ch) => {
-          const span = document.createElement("span");
-          span.className = "kls-char";
-          span.textContent = ch === " " ? "\u00A0" : ch;
-          frag.appendChild(span);
-        });
-        el.appendChild(frag);
-        el.classList.add("kls-split");
-      }
-
-      // Inject styles for split letters
-      const styleTag = document.createElement("style");
-      styleTag.textContent = `
-        header::after { opacity: var(--klsAfterOpacity, 0); transform: scaleX(var(--klsAfterScale, 0.65)); }
-        .hero-grid::before { opacity: var(--klsHeroBgOpacity, 0); transform: translateY(var(--klsHeroBgY, 10px)); }
-        .kls-split .kls-char { display: inline-block; will-change: transform, opacity, filter; }
-        .kls-shake { transform-origin: 50% 50%; }
-        .kls-marquee { overflow: hidden; white-space: nowrap; }
-        .kls-marquee-track { display: inline-flex; gap: 1.25rem; align-items: center; }
-        .kls-progress {
-          position: fixed;
-          left: 0;
-          top: 0;
-          height: 4px;
-          width: 100%;
-          transform-origin: 0 50%;
-          transform: scaleX(0);
-          background: linear-gradient(90deg, rgba(19,255,128,0.0), rgba(19,255,128,0.95), rgba(19,255,128,0.0));
-          z-index: 9997;
-          pointer-events: none;
+        const tl = gsap.timeline({ delay: 0.12 });
+        if (h1) {
+          gsap.set(h1, { overflow: "hidden" });
+          tl.fromTo(h1, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9 });
         }
-      `;
-      document.head.appendChild(styleTag);
+        if (lead) tl.fromTo(lead, { y: 18, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.75 }, "-=0.55");
+        if (btns && btns.length) {
+          tl.fromTo(btns, { y: 10, opacity: 0, scale: 0.98 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: "back.out(1.6)" }, "-=0.45");
+        }
+        if (media) {
+          tl.fromTo(media, { opacity: 0, scale: 1.06, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0 }, "-=0.65");
+        }
+      }
 
-      // Scroll progress bar
-      const prog = document.createElement("div");
-      prog.className = "kls-progress";
-      document.body.appendChild(prog);
-      gsap.to(prog, {
-        scaleX: 1,
-        ease: "none",
-        scrollTrigger: { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 0.25 }
+      // Section images: mask-like reveal + parallax
+      gsap.utils.toArray(".section-media img").forEach((img) => {
+        gsap.fromTo(img, { y: 22, opacity: 0, scale: 1.06, filter: "blur(10px)" }, {
+          y: 0, opacity: 1, scale: 1.02, filter: "blur(0px)",
+          scrollTrigger: { trigger: img, start: "top 80%", toggleActions: "play none none reverse" }
+        });
+
+        gsap.to(img, {
+          y: -18,
+          ease: "none",
+          scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: 0.35 }
+        });
       });
 
-      // Hero and fold animations
-      const heroH1 = document.querySelector(".hero-grid h1");
-      const heroLead = document.querySelector(".hero-grid .lead");
-      const navLinks = gsap.utils.toArray("header nav a");
-      const cards = gsap.utils.toArray(".grid-3 .card");
-
-      if (heroH1) {
-        splitLetters(heroH1);
-      }
-
-      const introTl = gsap.timeline({ delay: 0.1 });
-      introTl
-        .fromTo("header", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0)
-        .to("header", { "--klsAfterOpacity": 1, "--klsAfterScale": 1, duration: 0.8 }, 0.15)
-        .to(".hero-grid::before", {}, 0) // no-op
-        .to(document.querySelector(".hero-grid") || {}, { "--klsHeroBgOpacity": 1, "--klsHeroBgY": "0px", duration: 1.0 }, 0.2);
-
-      if (heroH1) {
-        const chars = gsap.utils.toArray(".kls-char", heroH1);
-        introTl.fromTo(chars, { y: 60, opacity: 0, rotateX: 80, filter: "blur(14px)" },
-          { y: 0, opacity: 1, rotateX: 0, filter: "blur(0px)", duration: 1.1, stagger: { each: 0.018, from: "random" } },
-          0.25
-        );
-        introTl.fromTo(heroH1, { transformPerspective: 800 }, { transformPerspective: 800, duration: 0.01 }, 0.25);
-        // Add a tiny punch at the end
-        introTl.to(heroH1, { scale: 1.01, duration: 0.14, ease: "power2.out" }, "-=0.15")
-               .to(heroH1, { scale: 1.0, duration: 0.22, ease: "power2.out" });
-      }
-
-      if (heroLead) {
-        introTl.fromTo(heroLead, { y: 24, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.85 }, "-=0.55");
-      }
-
-      if (navLinks.length) {
-        introTl.fromTo(navLinks, { y: -10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, stagger: 0.07 }, "-=0.7");
-      }
-
-      if (cards.length) {
-        introTl.fromTo(cards, { y: 70, opacity: 0, rotate: -2, filter: "blur(12px)" },
-          { y: 0, opacity: 1, rotate: 0, filter: "blur(0px)", duration: 0.95, stagger: 0.10, ease: "back.out(1.2)" },
-          "-=0.45"
-        );
-      }
-
-      // -------------
-      // Scroll theatrics
-      // -------------
-      const sections = gsap.utils.toArray("main section");
-
-      // Pin and animate each fold background and content
-      sections.forEach((sec, i) => {
-        const inner = sec.querySelector(".wrap") || sec;
-        const heading = sec.querySelector("h2, h1");
-        const items = gsap.utils.toArray("li, .card", sec);
-
-        gsap.set(sec, { willChange: "transform" });
-        gsap.set(inner, { willChange: "transform,opacity,filter" });
-
-        // Background pulse as you enter the section
-        gsap.fromTo(sec,
-          { filter: "saturate(0.95)" },
+      // Cards: premium flip-in (3D rotateY) + hover tilt
+      const cards = gsap.utils.toArray(".flip-card");
+      cards.forEach((card) => {
+        const visualImg = card.querySelector(".card-visual img");
+        gsap.fromTo(card,
+          { rotateY: 70, y: 26, opacity: 0, filter: "blur(12px)", transformPerspective: 1000 },
           {
-            filter: "saturate(1.15)",
-            scrollTrigger: { trigger: sec, start: "top 80%", end: "top 20%", scrub: 0.6 }
+            rotateY: 0, y: 0, opacity: 1, filter: "blur(0px)",
+            scrollTrigger: { trigger: card, start: "top 82%", toggleActions: "play none none reverse" }
           }
         );
-
-        // Content reveal
-        gsap.fromTo(inner, { y: 90, opacity: 0, rotateX: 12, filter: "blur(14px)" }, {
-          y: 0, opacity: 1, rotateX: 0, filter: "blur(0px)",
-          scrollTrigger: { trigger: sec, start: "top 85%", end: "top 45%", scrub: 0.6 }
-        });
-
-        // Heading glitchy shake on enter
-        if (heading) {
-          heading.classList.add("kls-shake");
-          ScrollTrigger.create({
-            trigger: sec,
-            start: "top 72%",
-            onEnter: () => {
-              gsap.fromTo(heading, { x: -10 }, { x: 0, duration: 0.28, ease: "elastic.out(1, 0.55)" });
-              gsap.fromTo(heading, { filter: "blur(10px)" }, { filter: "blur(0px)", duration: 0.35 });
-            }
+        if (visualImg) {
+          gsap.fromTo(visualImg, { scale: 1.10 }, {
+            scale: 1.03,
+            scrollTrigger: { trigger: card, start: "top 85%", end: "bottom 20%", scrub: 0.25 }
           });
         }
 
-        // Stagger list items for extra motion
-        if (items.length) {
-          gsap.fromTo(items,
-            { y: 26, opacity: 0, rotate: i % 2 ? 1.2 : -1.2, filter: "blur(10px)" },
-            {
-              y: 0, opacity: 1, rotate: 0, filter: "blur(0px)",
-              duration: 0.9,
-              stagger: 0.06,
-              scrollTrigger: { trigger: sec, start: "top 70%" }
-            }
-          );
-        }
+        // Hover tilt
+        const canHover = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+        if (!canHover) return;
+
+        card.addEventListener("mousemove", (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          gsap.to(card, { rotateX: (-py * 6), rotateY: (px * 7), duration: 0.25, ease: "power3.out" });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.5, ease: "power3.out" });
+        });
       });
 
-      // -------------
-      // Magnetic buttons
-      // -------------
-      function makeMagnetic(el) {
-        const strength = 18;
-        const inner = el;
-        el.addEventListener("mousemove", (e) => {
-          const r = el.getBoundingClientRect();
-          const relX = e.clientX - r.left - r.width / 2;
-          const relY = e.clientY - r.top - r.height / 2;
-          gsap.to(inner, { x: relX / (r.width / strength), y: relY / (r.height / strength), duration: 0.2, ease: "power3.out" });
-        });
-        el.addEventListener("mouseleave", () => {
-          gsap.to(inner, { x: 0, y: 0, duration: 0.35, ease: "elastic.out(1, 0.5)" });
-        });
+      // Clean section reveals for headings and text
+      gsap.utils.toArray("section").forEach((sec) => {
+        const h = sec.querySelector("h2");
+        const p = sec.querySelector("p.lead");
+        if (h) gsap.fromTo(h, { y: 18, opacity: 0 }, { y: 0, opacity: 1, scrollTrigger: { trigger: sec, start: "top 78%" }});
+        if (p) gsap.fromTo(p, { y: 14, opacity: 0 }, { y: 0, opacity: 1, scrollTrigger: { trigger: sec, start: "top 78%" }, delay: 0.05 });
+      });
+
+      // Subtle logo micro-motion on load
+      const logo = document.querySelector(".logo");
+      if (logo) {
+        gsap.fromTo(logo, { rotate: -8, scale: 0.92, opacity: 0 }, { rotate: 0, scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.7)" });
       }
-
-      gsap.utils.toArray(".btn").forEach((btn) => {
-        makeMagnetic(btn);
-        btn.addEventListener("mouseenter", () => gsap.to(btn, { scale: 1.06, duration: 0.16 }));
-        btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1.0, duration: 0.22 }));
-        btn.addEventListener("mousedown", () => gsap.to(btn, { scale: 0.96, duration: 0.08 }));
-        btn.addEventListener("mouseup", () => gsap.to(btn, { scale: 1.06, duration: 0.10 }));
-      });
-
-      // -------------
-      // Nav link highlight on scroll
-      // -------------
-      const navMap = new Map();
-      navLinks.forEach((a) => {
-        const href = a.getAttribute("href") || "";
-        if (!href.startsWith("#")) return;
-        const target = document.querySelector(href);
-        if (target) navMap.set(target, a);
-      });
-
-      navMap.forEach((a, target) => {
-        ScrollTrigger.create({
-          trigger: target,
-          start: "top 40%",
-          end: "bottom 40%",
-          onEnter: () => a.classList.add("active"),
-          onEnterBack: () => a.classList.add("active"),
-          onLeave: () => a.classList.remove("active"),
-          onLeaveBack: () => a.classList.remove("active"),
-        });
-      });
-
-      // Active link styling via injected CSS
-      const navStyle = document.createElement("style");
-      navStyle.textContent = `
-        header nav a.active { color: var(--accent); }
-        header nav a.active::after {
-          content: "";
-          display: block;
-          height: 2px;
-          margin-top: 6px;
-          background: linear-gradient(90deg, rgba(19,255,128,0.0), rgba(19,255,128,0.95), rgba(19,255,128,0.0));
-          transform: scaleX(1);
-          transform-origin: 50% 50%;
-        }
-      `;
-      document.head.appendChild(navStyle);
-
-      // -------------
-      // Contact section: animated "typing" line if TextPlugin is available
-      // -------------
-      const contactH2 = document.querySelector("#contact h2");
-      if (contactH2 && window.TextPlugin) {
-        const original = contactH2.textContent;
-        ScrollTrigger.create({
-          trigger: "#contact",
-          start: "top 75%",
-          once: true,
-          onEnter: () => {
-            gsap.fromTo(contactH2, { text: "" }, { text: original, duration: 1.2, ease: "none" });
-          }
-        });
-      }
-
-      // Smooth anchor scroll to account for sticky header
-      const headerH = document.querySelector("header")?.offsetHeight || 72;
-      document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener("click", (e) => {
-          const id = a.getAttribute("href");
-          if (!id || id === "#") return;
-          const target = document.querySelector(id);
-          if (!target) return;
-          e.preventDefault();
-          const y = target.getBoundingClientRect().top + window.scrollY - headerH + 10;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        });
-      });
     })();
   </script>
-
 </body>
 </html>
