@@ -300,6 +300,9 @@
 
 
     .kls-bounce { will-change: transform, opacity; }
+
+    .kls-split { display: inline-block; }
+    .kls-split .kls-char { display: inline-block; will-change: transform, opacity; }
 </style>
 </head>
 <body><div aria-hidden="true" class="kls-progress"></div>
@@ -318,7 +321,7 @@
 <section class="white">
 <div class="wrap hero-grid">
 <div>
-<h1 class="kls-bounce">Clear systems for complex decisions.</h1>
+<h1 class="kls-bounce kls-bounce-hero">Clear systems for complex decisions.</h1>
 <p class="lead">Strategy, oversight, and execution design. Built to replace guesswork with proof, and make progress predictable.</p>
 <div style="margin-top:1.5rem;">
 <a class="btn btn-primary" href="#contact">Request a call</a>
@@ -330,7 +333,7 @@
 </section>
 <section class="gray-light" id="who">
 <div class="wrap">
-<h2 class="kls-bounce">Who We Serve</h2>
+<h2 class="kls-bounce kls-bounce-section">Who We Serve</h2>
 <p class="lead">
           Built for people already in motion who want fewer surprises and cleaner execution.
         </p><div class="section-media"><img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/></div>
@@ -352,7 +355,7 @@
 </section>
 <section class="gray" id="services">
 <div class="wrap">
-<h2 class="kls-bounce">Services</h2>
+<h2 class="kls-bounce kls-bounce-section">Services</h2>
 <p class="lead">Three lanes. Clear deliverables. Built for speed, accountability, and real-world follow-through.</p><div class="section-media"><img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/></div>
 <div class="grid-3">
 <div class="card flip-card"><div class="card-visual"><img alt="Strategy mapping image" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/></div>
@@ -384,7 +387,7 @@
 </section>
 <section class="white" id="process">
 <div class="wrap">
-<h2 class="kls-bounce">How It Works</h2>
+<h2 class="kls-bounce kls-bounce-section">How It Works</h2>
 <p class="lead">A short engagement designed to produce a usable plan, a verification loop, and clear next actions.</p><div class="section-media"><img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/></div>
 <div class="grid-3">
 <div class="card">
@@ -404,7 +407,7 @@
 </section>
 <section class="gray-dark" id="contact">
 <div class="wrap">
-<h2 class="kls-bounce">Contact</h2>
+<h2 class="kls-bounce kls-bounce-section">Contact</h2>
 <p class="lead">Tell us what you’re building, where it’s stuck, and what proof you need next. We’ll map the fastest path forward.</p><div class="section-media"><img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/></div>
 <a class="btn btn-primary" href="mailto:hello@knowleapstrategies.com">
           hello@knowleapstrategies.com
@@ -434,35 +437,62 @@
       if (!window.gsap || !window.ScrollTrigger) return;
 
       gsap.registerPlugin(ScrollTrigger);
-      // Bounce-in headings (more obvious, but still controlled)
-      function klsBounceIn(el) {
-  gsap.fromTo(
-    el,
-    {
-      y: -240,
-      scale: 0.92,
-      opacity: 0
-    },
-    {
-      y: 0,
-      scale: 1,
-      opacity: 1,
-      duration: 1.6,
-      ease: "bounce.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        toggleActions: "play none none reset"
+      // Letter-splitting bounce for hero + section headers
+      function splitLetters(el) {
+        if (!el) return;
+        if (el.classList.contains("kls-split")) return;
+
+        const text = (el.textContent || "").trim();
+        el.textContent = "";
+        const frag = document.createDocumentFragment();
+        for (const ch of text) {
+          const span = document.createElement("span");
+          span.className = "kls-char";
+          span.textContent = ch === " " ? "\u00A0" : ch;
+          frag.appendChild(span);
+        }
+        el.appendChild(frag);
+        el.classList.add("kls-split");
       }
-    }
-  );
-}
 
+      function bounceChars(el, opts) {
+        splitLetters(el);
 
-      gsap.utils.toArray(".kls-bounce").forEach(klsBounceIn);
+        const chars = gsap.utils.toArray(".kls-char", el);
+        if (!chars.length) return;
 
+        gsap.fromTo(
+          chars,
+          { y: opts.yFrom, scale: opts.scaleFrom, opacity: 0 },
+          {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            duration: opts.duration,
+            ease: "bounce.out",
+            stagger: opts.stagger,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              end: "top 50%",
+              toggleActions: "play none none reset"
+            }
+          }
+        );
+      }
 
-      // Premium defaults: smooth, confident, not gimmicky
+      // Hero headline: 5x stronger than section headers (y: -1200 vs -240)
+      const heroEl = document.querySelector(".kls-bounce-hero");
+      if (heroEl) {
+        bounceChars(heroEl, { yFrom: -1200, scaleFrom: 0.85, duration: 2.1, stagger: 0.022 });
+      }
+
+      // Section headers: y: -240 and re-trigger on scroll up/down
+      gsap.utils.toArray(".kls-bounce-section").forEach((el) => {
+        bounceChars(el, { yFrom: -240, scaleFrom: 0.92, duration: 1.6, stagger: 0.018 });
+      });
+
+// Premium defaults: smooth, confident, not gimmicky
       gsap.defaults({ ease: "power3.out", duration: 0.9 });
 
       // Progress bar
