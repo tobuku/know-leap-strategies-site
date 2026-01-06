@@ -4,277 +4,332 @@
 <meta charset="utf-8"/>
 <title>Know Leap Strategies</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Clean, modern HTML5 layout with structured page folds and minimal styling." name="description"/>
+<meta content="Strategy, oversight, and execution design." name="description"/>
 <style>
     :root {
       --white: #ffffff;
-      --gray-50: #f7f8fa;
-      --gray-100: #eef0f3;
-      --gray-200: #e4e7ec;
-
+      --black: #000000;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
       --ink: #0f172a;
-      --muted: #475569;
-      --border: rgba(15, 23, 42, 0.12);
-
-      /* Rebranded to Black & White */
-      --primary-black: #000000;
-      --primary-hover: #333333;
-      --click-highlight: #555555;
-
-      --max: 1100px;
-      --radius: 18px;
+      --muted: #64748b;
+      --border: rgba(0, 0, 0, 0.1);
+      --max: 1200px;
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, sans-serif;
       color: var(--ink);
       background: var(--white);
-      line-height: 1.6;
+      line-height: 1.5;
       overflow-x: hidden;
     }
 
-    /* --- GSAP STICKY-06 STYLES --- */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+
+    /* --- NAVIGATION --- */
+    header {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .brand { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+    
+    /* --- BUTTONS (Black & White Rebrand) --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--black);
+    }
+
+    .btn-primary:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:active {
+      background: #555; /* Gray hue highlight on click */
+      transform: scale(0.95);
+    }
+
+    /* --- HERO --- */
+    .hero { padding: 12rem 0 6rem; }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+    .hero p { font-size: 1.25rem; color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; }
+
+    /* --- STICKY SECTION (Sticky-06 Logic) --- */
     .sticky-container {
       position: relative;
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
+      gap: 4rem;
     }
 
     .sticky-text-col {
-      width: 50%;
-      z-index: 2;
+      width: 45%;
+    }
+
+    .text-block {
+      min-height: 80vh; /* Ensures enough scroll space for the eye to track images */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10vh 0;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 1rem;
     }
 
     .sticky-visual-col {
       position: sticky;
       top: 0;
-      width: 50%;
+      width: 55%;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
 
-    .sticky-image-wrapper {
+    .image-main-wrapper {
       position: relative;
-      width: 80%;
-      height: 60%;
+      width: 100%;
+      height: 70vh;
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      background: var(--gray-100);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.15);
     }
 
-    .sticky-image-wrapper img {
+    .sticky-img {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transform: scale(1.1);
+      will-change: transform, opacity, filter;
     }
 
-    .sticky-image-wrapper img.active {
-      opacity: 1;
-      transform: scale(1);
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-top: 1.5rem;
     }
+
+    /* --- FOOTER --- */
+    footer { padding: 6rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
+    .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+    .address { color: var(--muted); margin-top: 1rem; font-style: normal; line-height: 1.8; }
 
     @media (max-width: 900px) {
       .sticky-container { flex-direction: column; }
       .sticky-text-col, .sticky-visual-col { width: 100%; }
-      .sticky-visual-col { height: 400px; position: relative; top: 0; }
-    }
-
-    /* --- ORIGINAL STYLING UPDATES --- */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid transparent;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--primary-black);
-      color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-
-    .btn-primary:active {
-      background: var(--click-highlight);
-      transform: scale(0.97);
-    }
-
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 50;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-
-    footer {
-      background: var(--gray-100);
-      border-top: 1px solid var(--border);
-      padding: 4rem 0;
-      font-size: 0.85rem;
-      color: var(--muted);
+      .sticky-visual-col { height: 50vh; position: relative; }
+      .text-block { min-height: auto; padding: 4rem 0; }
     }
 </style>
 </head>
 <body>
 
 <header>
-<div class="wrap nav">
-<div class="brand">
-    <img alt="Know Leap Strategies logo" class="logo" src="assets/images/brand/kls-logo-primary.svg" style="width:24px; margin-right:8px;"/>
-    <span class="brand-text">Know Leap Strategies</span>
-</div>
-<nav>
-<a class="btn btn-primary" href="#contact">Start Here</a>
-</nav>
-</div>
+  <div class="wrap nav">
+    <div class="brand">
+        <img alt="KLS Logo" src="assets/images/brand/kls-logo-primary.svg" width="24"/>
+        <span>Know Leap Strategies</span>
+    </div>
+    <nav>
+        <a class="btn btn-primary" href="#contact">Get Started</a>
+    </nav>
+  </div>
 </header>
 
 <main>
-<section class="white" style="padding: 8rem 0 4rem;">
-<div class="wrap">
-<h1 class="kls-bounce-hero">Clear systems for complex decisions.</h1>
-<p class="lead">Strategy, oversight, and execution design. Built to replace guesswork with proof, and make progress predictable.</p>
-<div style="margin-top:1.5rem;">
-<a class="btn btn-primary" href="#contact">Request a call</a>
-</div>
-</div>
-</section>
+  <section class="hero wrap">
+    <h1>Clear systems for<br>complex decisions.</h1>
+    <p>Strategy, oversight, and execution design built to replace guesswork with proof and make progress predictable.</p>
+    <a class="btn btn-primary" href="#contact">Request a Call</a>
+  </section>
 
-<div class="sticky-container wrap">
+  <div class="wrap sticky-container">
     <div class="sticky-text-col">
-        <section id="who" style="padding: 15vh 0;">
-            <div class="pill">Who We Serve</div>
-            <h2>Leaders & Operators</h2>
-            <p>Built for people already in motion who want fewer surprises and cleaner execution.</p>
-            <div class="grid-3" style="grid-template-columns: 1fr; margin-top:2rem;">
-                <div class="card"><strong>Leaders:</strong> Decision-makers wanting clarity.</div>
-                <div class="card"><strong>Operators:</strong> Teams executing in the real world.</div>
+        <div class="text-block" id="who">
+            <div class="pill">01 / Who We Serve</div>
+            <h2>Built for leaders in motion.</h2>
+            <p>We serve decision-makers who want fewer surprises and cleaner execution. Whether you're a founder or an operator, we provide the systems to hold pressure.</p>
+            <div class="card">
+                <strong>Founders & Operators</strong>
+                <p>Turning ideas into products and accountability loops that actually work.</p>
             </div>
-        </section>
+        </div>
 
-        <section id="services" style="padding: 15vh 0;">
-            <div class="pill">Services</div>
-            <h2>Three lanes. Clear deliverables.</h2>
-            <p>Built for speed, accountability, and real-world follow-through.</p>
-            <div class="card" style="margin-top:1rem;">
+        <div class="text-block" id="services">
+            <div class="pill">02 / Services</div>
+            <h2>Three lanes. Clear outcomes.</h2>
+            <p>Our frameworks are built for speed and real-world follow-through.</p>
+            <div class="card">
                 <h3>Strategy Mapping</h3>
-                <ul><li>Decision clarity</li><li>Execution paths</li></ul>
+                <p>Clarity on risks and execution paths before you commit capital.</p>
             </div>
-        </section>
+            <div class="card">
+                <h3>Oversight Design</h3>
+                <p>Field verification and proof frameworks to ensure work is done right.</p>
+            </div>
+        </div>
 
-        <section id="process" style="padding: 15vh 0;">
-            <div class="pill">Process</div>
+        <div class="text-block" id="process">
+            <div class="pill">03 / Process</div>
             <h2>How It Works</h2>
-            <p>A short engagement designed to produce a usable plan and a verification loop.</p>
-            <div class="card" style="margin-top:1rem;">
-                <strong>1. Discovery</strong>
-                <p>Understand context and constraints.</p>
+            <p>A structured, short-term engagement designed to produce immediate clarity.</p>
+            <div class="card">
+                <strong>1. Discovery:</strong> Understand context.
             </div>
-        </section>
+            <div class="card">
+                <strong>2. Design:</strong> Create systems that match reality.
+            </div>
+            <div class="card">
+                <strong>3. Support:</strong> Involved execution unfolding.
+            </div>
+        </div>
     </div>
 
     <div class="sticky-visual-col">
-        <div class="sticky-image-wrapper">
-            <img class="sticky-img active" src="assets/images/sections/section-who-clients.jpg" alt="Who We Serve">
+        <div class="image-main-wrapper">
+            <img class="sticky-img" src="assets/images/sections/section-who-clients.jpg" alt="Clients">
             <img class="sticky-img" src="assets/images/sections/section-services-framework.jpg" alt="Services">
             <img class="sticky-img" src="assets/images/sections/section-process-flow.jpg" alt="Process">
         </div>
     </div>
-</div>
+  </div>
 
-<section class="gray-dark" id="contact" style="padding: 10rem 0; text-align: center;">
-<div class="wrap">
-<h2>Contact</h2>
-<p class="lead">Tell us what you’re building. We’ll map the fastest path forward.</p>
-<div style="margin-top: 2rem;">
-    <a class="btn btn-primary" href="mailto:info@knowleapstrategies.com">
-        info@knowleapstrategies.com
-    </a>
-</div>
-</div>
-</section>
+  <section id="contact" style="padding: 10rem 0; text-align: center; background: #fafafa;">
+    <div class="wrap">
+        <div class="pill">Contact</div>
+        <h2 style="font-size: 3rem;">Ready to begin?</h2>
+        <p style="margin-bottom: 2rem;">We'll map the fastest path forward.</p>
+        <a class="btn btn-primary" href="mailto:info@knowleapstrategies.com">info@knowleapstrategies.com</a>
+    </div>
+  </section>
 </main>
 
 <footer>
-<div class="wrap footer-inner" style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <div class="wrap footer-grid">
     <div>
-        <div>© <span id="year"></span> Know Leap Strategies</div>
-        <div style="margin-top: 10px; color: #666;">
-            1785 S King St Suite 3, Honolulu, HI 96826, USA
+        <div class="brand">Know Leap Strategies</div>
+        <address class="address">
+            1785 S King St Suite 3<br>
+            Honolulu, HI 96826, USA
+        </address>
+    </div>
+    <div style="display: flex; gap: 3rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <strong>Navigation</strong>
+            <a href="#who">Who</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <strong>Copyright</strong>
+            <span>© <span id="year"></span> KLS</span>
         </div>
     </div>
-    <nav>
-        <a href="#who" style="margin-left:15px;">Who</a>
-        <a href="#services" style="margin-left:15px;">Services</a>
-        <a href="#contact" style="margin-left:15px;">Contact</a>
-    </nav>
-</div>
+  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 <script>
+    // Set Year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Register Plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    // STICKY-06 IMAGE TRANSITION LOGIC
-    const textSections = gsap.utils.toArray(".sticky-text-col section");
+    // GSAP Sticky-06 Animation Logic
+    const sections = gsap.utils.toArray(".text-block");
     const images = gsap.utils.toArray(".sticky-img");
 
-    textSections.forEach((section, i) => {
+    // 1. Initial State: Hide all images except the first one
+    gsap.set(images, { opacity: 0, scale: 1.15, filter: "blur(10px)", zIndex: 1 });
+    gsap.set(images[0], { opacity: 1, scale: 1, filter: "blur(0px)", zIndex: 2 });
+
+    // 2. Loop through sections to create transitions
+    sections.forEach((section, i) => {
+        
+        // Trigger for bringing image IN
         ScrollTrigger.create({
             trigger: section,
-            start: "top center",
+            start: "top center", 
             end: "bottom center",
             onToggle: self => {
                 if (self.isActive) {
-                    // Fade in current image
-                    gsap.to(images[i], { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" });
+                    // Animate current image to focus
+                    gsap.to(images[i], {
+                        opacity: 1,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        zIndex: 10,
+                        duration: 1,
+                        ease: "expo.out",
+                        overwrite: true
+                    });
                 } else {
-                    // Fade out
-                    gsap.to(images[i], { opacity: 0, scale: 1.1, duration: 0.8, ease: "power2.out" });
+                    // Push current image away
+                    gsap.to(images[i], {
+                        opacity: 0,
+                        scale: 0.9,
+                        filter: "blur(10px)",
+                        zIndex: 1,
+                        duration: 1,
+                        ease: "expo.out",
+                        overwrite: true
+                    });
                 }
             }
         });
     });
 
-    // Initial load animations
-    gsap.from(".kls-bounce-hero", { y: 30, opacity: 0, duration: 1, ease: "power3.out" });
+    // 3. Optional Parallax for the Text Cards
+    gsap.utils.toArray(".card").forEach(card => {
+        gsap.from(card, {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
 </script>
 </body>
 </html>
