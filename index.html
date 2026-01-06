@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Know Leap Strategies | Digital Product & Strategy Consulting</title>
+<title>Know Leap Strategies | Digital Product & Identity Consulting</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="KLS specializes in digital products, web presence, and social media identity for startups and mid-cap businesses." name="description"/>
+<meta content="KLS specializes in digital products, web presence enhancement, and social media identity for startups and mid-cap businesses." name="description"/>
 <style>
     :root {
       --white: #ffffff;
@@ -14,12 +14,8 @@
       --ink: #0f172a;
       --muted: #475569;
       --border: rgba(15, 23, 42, 0.12);
-      
-      /* Branding: Black, White, & Gray Highlights */
-      --black: #000000;
-      --gray-highlight: #333333;
-      --click-active: #555555;
-
+      --green: #16a34a;
+      --green-dark: #15803d;
       --max: 1100px;
       --radius: 18px;
     }
@@ -27,16 +23,16 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 
+    /* Header & Nav */
     header {
       position: sticky;
       top: 0;
@@ -45,75 +41,74 @@
       border-bottom: 1px solid var(--border);
       z-index: 100;
     }
-
     .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; gap: 1rem; }
-    .brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; font-size: 0.85rem; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; letter-spacing: -0.02em; }
     .logo { width: 24px; height: 24px; }
-
     nav a { margin-left: 1.25rem; font-size: 0.9rem; color: var(--muted); transition: color 0.3s; }
-    nav a:hover { color: var(--black); }
+    nav a:hover { color: var(--ink); }
 
-    /* Button Styling: Black & White */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.75rem 1.75rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 999px;
       font-weight: 700;
       font-size: 0.9rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.1s;
-      border: none;
+      border: 1px solid transparent;
+      transition: background 0.3s;
     }
-    .btn-primary { background: var(--black); color: var(--white); }
-    .btn-primary:hover { background: var(--gray-highlight); }
-    .btn-primary:active { background: var(--click-active); transform: scale(0.96); }
-    .btn-outline { border: 1px solid var(--border); background: var(--white); color: var(--ink); }
+    .btn-primary { background: var(--green); color: #ffffff; }
+    .btn-primary:hover { background: var(--green-dark); }
+    .btn-outline { border-color: var(--border); color: var(--ink); background: #ffffff; }
 
-    main section { padding: 8rem 0; }
+    /* Layout Sections */
+    main section { padding: 6rem 0; }
     section.white { background: var(--white); }
     section.gray-light { background: var(--gray-50); }
     section.gray { background: var(--gray-100); }
+    section.gray-dark { background: var(--gray-200); }
 
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1.5rem; letter-spacing: -0.03em; }
-    h2 { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    p.lead { max-width: 48rem; color: var(--muted); font-size: 1.2rem; }
+    h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.05; margin: 0 0 1.5rem; }
+    h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    p.lead { max-width: 46rem; color: var(--muted); font-size: 1.15rem; margin-bottom: 2rem; }
 
     .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
 
     @media (max-width: 900px) {
       .hero-grid, .grid-3 { grid-template-columns: 1fr; }
       nav { display: none; }
     }
 
-    .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; height: 100%; transition: box-shadow 0.3s; }
-    .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .card { background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; height: 100%; }
+    .pill { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); font-weight: 800; margin-bottom: 1rem; display: block; }
+    
+    /* Media Containers */
+    .img-reveal { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); position: relative; }
+    .img-reveal img { width: 100%; height: 100%; object-fit: cover; display: block; scale: 1.1; }
+    .hero-media img { height: 400px; }
+    .section-media { margin: 2.5rem 0; height: 350px; }
 
-    .img-box { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.08); margin-top: 2.5rem; }
-    .img-box img { width: 100%; height: 450px; object-fit: cover; display: block; }
+    /* Motion Utilities */
+    .kls-char { display: inline-block; will-change: transform, opacity; }
+    .magnetic-wrap { display: inline-block; }
 
-    /* Animation Utilities */
-    .char { display: inline-block; will-change: transform, opacity; }
-    .reveal-frame { overflow: hidden; }
-
-    footer { background: var(--gray-100); padding: 5rem 0; font-size: 0.95rem; border-top: 1px solid var(--border); }
-    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; }
-    .address-line { margin-top: 1rem; color: var(--muted); line-height: 1.8; }
-
+    footer { background: var(--gray-100); border-top: 1px solid var(--border); padding: 4rem 0; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; }
 </style>
 </head>
 <body>
 
 <header>
 <div class="wrap nav">
-<div class="brand magnetic"><img alt="KLS logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/><span class="brand-text">Know Leap Strategies</span></div>
+<div class="brand"><img alt="KLS logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/><span class="brand-text">Know Leap Strategies</span></div>
 <nav>
-<a class="magnetic" href="#who">Who We Serve</a>
+<a class="magnetic" href="#who">The Mission</a>
 <a class="magnetic" href="#services">Services</a>
-<a class="magnetic" href="#process">Process</a>
-<a class="magnetic btn btn-primary" href="#contact" style="margin-left: 1.5rem;">Start Here</a>
+<a class="magnetic" href="#process">The Method</a>
+<a class="btn btn-primary magnetic" href="#contact">Start Here</a>
 </nav>
 </div>
 </header>
@@ -122,38 +117,38 @@
 <section class="white">
 <div class="wrap hero-grid">
 <div>
-<h1 class="anim-bounce">Digital products that enlighten.</h1>
-<p class="lead">Know Leap Strategies (KLS) shines a light on business opportunities for startups and mid-cap enterprises through bespoke digital engineering and strategic web presence enhancement.</p>
-<div style="margin-top:2.5rem;">
-<a class="magnetic btn btn-primary" href="#contact">Request a consultation</a>
-<a class="magnetic btn btn-outline" href="#services" style="margin-left:1rem;">Our Services</a>
+<h1 class="scroll-anim-text">Digital products that enlighten.</h1>
+<p class="lead">Know Leap Strategies (KLS) specializes in shining a light on business opportunities for startups and mid-cap businesses by engineering digital solutions that transform user intent into customer loyalty.</p>
+<div style="margin-top:2rem;">
+<a class="btn btn-primary magnetic" href="#contact">Request a strategy call</a>
+<a class="btn btn-outline magnetic" href="#services" style="margin-left:0.75rem;">See our work</a>
 </div>
 </div>
-<div class="img-box anim-img-reveal">
-    <img alt="KLS Strategy" src="assets/images/sections/hero-strategy.jpeg"/>
+<div class="img-reveal hero-media scroll-anim-img">
+    <img alt="Strategic digital engineering" src="assets/images/sections/hero-strategy.jpeg"/>
 </div>
 </div>
 </section>
 
 <section class="gray-light" id="who">
 <div class="wrap">
-<h2 class="anim-bounce">Specialized for Growth</h2>
-<p class="lead">We empower startups and small to mid-cap businesses to transcend market noise. By creating digital products that enlighten your customers, we convert passive interest into active loyalty.</p>
-<div class="img-box anim-img-reveal">
-    <img alt="KLS Clients" src="assets/images/sections/section-who-clients.jpg"/>
+<h2 class="scroll-anim-text">Illuminating Opportunity</h2>
+<p class="lead">For small to mid-cap businesses, the digital landscape is often crowded with noise. We provide the clarity and specialized web presence enhancement services needed to stand out and scale with authority.</p>
+<div class="img-reveal section-media scroll-anim-img">
+    <img alt="Start up consulting" src="assets/images/sections/section-who-clients.jpg"/>
 </div>
 <div class="grid-3">
 <div class="card">
-    <h3>Startups</h3>
-    <p>We provide the technical foundation and social identity consulting needed to launch with authority and scale rapidly.</p>
+    <div class="pill">Startups</div>
+    <p>From social media identity consulting to initial product architecture, we help new ventures launch with a clear, enlightened customer path.</p>
 </div>
 <div class="card">
-    <h3>Mid-Cap Leaders</h3>
-    <p>Enhancing established web presence with modern digital products that streamline customer enlightenment and sales.</p>
+    <div class="pill">Mid-Cap Growth</div>
+    <p>We audit and enhance existing web presence, injecting high-performance content creation and structural engineering to unlock hidden revenue.</p>
 </div>
 <div class="card">
-    <h3>Social Identity</h3>
-    <p>Consulting for brands that need a cohesive, professional voice across all digital and social media touchpoints.</p>
+    <div class="pill">Digital Identity</div>
+    <p>We consult on the total brand experience—ensuring your social media presence, website, and digital products speak with a unified, professional voice.</p>
 </div>
 </div>
 </div>
@@ -161,23 +156,23 @@
 
 <section class="gray" id="services">
 <div class="wrap">
-<h2 class="anim-bounce">Comprehensive Services</h2>
-<p class="lead">KLS is more than an agency; we are your strategic partners in content creation, digital product design, and web enhancement.</p>
-<div class="img-box anim-img-reveal">
-    <img alt="KLS Services" src="assets/images/sections/section-services-framework.jpg"/>
+<h2 class="scroll-anim-text">Core Services</h2>
+<p class="lead">Our services are designed to be continuous accountability loops, moving from high-level strategy to granular execution in content and product development.</p>
+<div class="img-reveal section-media scroll-anim-img">
+    <img alt="Our services framework" src="assets/images/sections/section-services-framework.jpg"/>
 </div>
 <div class="grid-3">
 <div class="card">
-    <h3>Product Creation</h3>
-    <p>Development of digital products designed to educate and enlighten your user base, creating a friction-less path to conversion.</p>
+<h3>Product Creation</h3>
+<p>We build digital products that serve as enlightenment tools, educating your customers while solving their most complex operational pain points.</p>
 </div>
 <div class="card">
-    <h3>Web Enhancement</h3>
-    <p>Sophisticated web presence enhancement that optimizes user flows, aesthetic appeal, and technical performance.</p>
+<h3>Presence Enhancement</h3>
+<p>Complete web presence optimization, ensuring your technical infrastructure supports the growth of your startup or mid-cap business.</p>
 </div>
 <div class="card">
-    <h3>Content Strategy</h3>
-    <p>High-tier content creation and social media identity consulting to ensure your brand's story is heard and felt.</p>
+<h3>Identity Consulting</h3>
+<p>Strategic social media identity and content creation designed to reflect the caliber of the work you do in the physical world.</p>
 </div>
 </div>
 </div>
@@ -185,33 +180,22 @@
 
 <section class="gray-dark" id="contact" style="text-align: center;">
 <div class="wrap">
-<h2 class="anim-bounce">Ready to enlighten your customers?</h2>
-<p class="lead">From initial social media consulting to full-scale digital product deployment, KLS maps the fastest path to your opportunity.</p>
-<div style="margin-top: 3rem;">
-<a class="magnetic btn btn-primary" href="mailto:info@knowleapstrategies.com" style="padding: 1rem 3.5rem; font-size: 1.1rem;">
-    info@knowleapstrategies.com
+<h2 class="scroll-anim-text">Begin Your Leap</h2>
+<p class="lead">Tell us about your business goals. We’ll map out a custom strategy for digital product development and web presence enhancement.</p>
+<a class="btn btn-primary magnetic" href="mailto:info@knowleapstrategies.com" style="padding: 1rem 3rem; font-size: 1.1rem;">
+    Connect with KLS
 </a>
-</div>
 </div>
 </section>
 </main>
 
 <footer>
 <div class="wrap footer-inner">
+<div>© <span id="year"></span> Know Leap Strategies</div>
 <div>
-    <div class="brand">Know Leap Strategies</div>
-    <div class="address-line">
-        1785 S King St Suite 3<br>
-        Honolulu, HI 96826, USA
-    </div>
-</div>
-<div>
-    <div style="font-weight: 700; margin-bottom: 1rem;">© <span id="year"></span> KLS</div>
-    <nav style="display: flex; flex-direction: column; gap: 0.5rem; opacity: 0.7;">
-        <a href="#who">Who</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <a class="magnetic" href="#who" style="margin-right: 1.5rem;">Who</a>
+    <a class="magnetic" href="#services" style="margin-right: 1.5rem;">Services</a>
+    <a class="magnetic" href="#contact">Contact</a>
 </div>
 </div>
 </footer>
@@ -223,74 +207,65 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     gsap.registerPlugin(ScrollTrigger);
 
-    // 1. STAGGERED CHARACTER BOUNCE (For H1 and H2)
-    function initBounceAnimations() {
-        gsap.utils.toArray(".anim-bounce").forEach(el => {
-            const text = el.textContent;
-            el.innerHTML = "";
-            [...text].forEach(char => {
-                const span = document.createElement("span");
-                span.className = "char";
-                span.textContent = char === " " ? "\u00A0" : char;
-                el.appendChild(span);
-            });
-
-            gsap.from(el.querySelectorAll(".char"), {
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%",
-                },
-                y: -150,
-                opacity: 0,
-                stagger: 0.03,
-                duration: 1.5,
-                ease: "bounce.out"
-            });
-        });
-    }
-
-    // 2. MAGNETIC MOUSE INTERACTION
+    // 1. MAGNETIC BUTTONS & LINKS
     function initMagnetic() {
-        document.querySelectorAll(".magnetic").forEach(el => {
-            el.addEventListener("mousemove", (e) => {
+        const magnets = document.querySelectorAll('.magnetic');
+        magnets.forEach((el) => {
+            el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                gsap.to(el, { x: x * 0.4, y: y * 0.4, duration: 0.3, ease: "power2.out" });
+                gsap.to(el, { x: x * 0.35, y: y * 0.35, duration: 0.4, ease: "power2.out" });
             });
-            el.addEventListener("mouseleave", () => {
+            el.addEventListener('mouseleave', () => {
                 gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
             });
         });
     }
 
-    // 3. IMAGE SCALE & BLUR REVEAL
-    function initImageReveals() {
-        gsap.utils.toArray(".anim-img-reveal img").forEach(img => {
-            gsap.fromTo(img, 
-                { opacity: 0, scale: 1.2, filter: "blur(20px)", y: 80 },
-                {
-                    opacity: 1, scale: 1, filter: "blur(0px)", y: 0,
-                    duration: 1.8,
-                    ease: "expo.out",
+    // 2. CONTINUOUS SCROLL TEXT (H1 & H2)
+    function initScrollText() {
+        gsap.utils.toArray(".scroll-anim-text").forEach(text => {
+            gsap.fromTo(text, 
+                { y: 50, opacity: 0, scale: 0.95 }, 
+                { 
+                    y: 0, opacity: 1, scale: 1,
                     scrollTrigger: {
-                        trigger: img,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
+                        trigger: text,
+                        start: "top 90%",
+                        end: "top 40%",
+                        scrub: 1, // High scrub value makes it feel continuous and smooth
                     }
                 }
             );
         });
     }
 
-    // Run on Load
+    // 3. PARALLAX IMAGE REVEALS
+    function initImageReveals() {
+        gsap.utils.toArray(".scroll-anim-img img").forEach(img => {
+            gsap.fromTo(img, 
+                { y: "15%", scale: 1.2 }, 
+                { 
+                    y: "-15%", scale: 1,
+                    scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true // Matches scroll speed for a physical feel
+                    }
+                }
+            );
+        });
+    }
+
     window.onload = () => {
-        initBounceAnimations();
         initMagnetic();
+        initScrollText();
         initImageReveals();
         
-        // Hero Content Fade
-        gsap.from(".lead", { opacity: 0, y: 30, duration: 1, delay: 0.5 });
+        // Initial Page Load Reveal
+        gsap.from("header", { y: -50, opacity: 0, duration: 1, ease: "power4.out" });
     };
 </script>
 </body>
