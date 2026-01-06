@@ -6,6 +6,8 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Digital products, web presence enhancement, content systems, and social identity consulting for startups and small to mid-cap teams." name="description"/>
 <style>
+    /* ORIGINAL STYLES PRESERVED 
+    */
     :root {
       --white: #ffffff;
       --gray-50: #f7f8fa;
@@ -16,67 +18,83 @@
       --border: rgba(11, 18, 32, 0.12);
       --shadow: 0 10px 30px rgba(11, 18, 32, 0.08);
       --black-pearl: #0b0f14;
+      --black-pearl-2: #111820;
       --enlightenment-gray: #a6afb9;
+      --glow: rgba(166, 175, 185, 0.55);
+      --click: #343a40;
       --max: 1100px;
+      --radius: 18px;
     }
 
-    * { box-sizing: border-box; cursor: none !important; } /* Custom cursor requirement */
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Custom Cursor Element */
-    #kls-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: var(--black-pearl);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
     header {
       position: sticky;
       top: 0;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(12px);
-      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
+      z-index: 20;
     }
 
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
 
+    .logo { width: 24px; height: 24px; display: inline-block; vertical-align: middle; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    /* 4.) GRADIENT UNDERLINE ANIMATION FOR NAV */
     nav a {
       position: relative;
-      margin-left: 1.5rem;
+      margin-left: 1.25rem;
       font-size: 0.9rem;
       color: var(--muted);
-      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
       padding-bottom: 4px;
     }
-
-    /* Gradient Underline Pseudo-element */
     nav a::after {
       content: "";
       position: absolute;
+      left: 0;
+      bottom: 0;
       width: 100%;
       height: 2px;
-      bottom: 0;
-      left: 0;
-      background: linear-gradient(90deg, #0b0f14, #a6afb9, #0b0f14);
+      background: linear-gradient(90deg, var(--black-pearl), var(--enlightenment-gray), var(--black-pearl));
       transform: scaleX(0);
       transform-origin: bottom right;
-      transition: transform 0.4s ease-out;
+      transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
     }
     nav a:hover::after {
       transform: scaleX(1);
@@ -85,105 +103,143 @@
 
     .btn {
       display: inline-flex;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
       font-weight: 700;
-      transition: transform 0.2s;
-      background: var(--black-pearl);
-      color: white;
-      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      user-select: none;
     }
 
-    main section { padding: 6rem 0; position: relative; z-index: 2; }
-    .gray-bg { background: var(--gray-50); }
+    .btn-primary { background: var(--black-pearl); color: #ffffff; }
+    .btn-outline { border-color: var(--border); color: var(--ink); background: #ffffff; }
 
-    /* Noodle Canvas */
-    #noodle-canvas {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
+    main section { padding: 4rem 0; position: relative; z-index: 2; }
+    section.white { background: var(--white); }
+    section.gray-light { background: var(--gray-50); }
+    section.gray { background: var(--gray-100); }
+    section.gray-dark { background: var(--gray-200); }
+
+    h1 { font-size: clamp(2.2rem, 3vw + 1rem, 3rem); line-height: 1.1; margin: 0 0 1rem; }
+    h2 { font-size: 1.6rem; margin: 0 0 0.5rem; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 12px 24px rgba(11, 18, 32, 0.04);
+    }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+
+    /* 5.) NOODLE STYLES */
+    #noodle-svg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 1; /* Behind headers */
+      z-index: 1; /* Passes behind chapters */
     }
     .noodle-path {
       fill: none;
       stroke: var(--enlightenment-gray);
-      stroke-width: 3;
-      stroke-dasharray: 10, 10;
+      stroke-width: 2.5;
+      stroke-dasharray: 8 8;
       opacity: 0.4;
     }
 
-    .kls-char { display: inline-block; will-change: transform; }
+    /* GSAP CHAR WRAPPER */
+    .kls-char { display: inline-block; will-change: transform, opacity; }
 
-    img { 
-        max-width: 100%; 
-        border-radius: 12px; 
-        transition: filter 0.5s ease;
-    }
-
-    footer { padding: 4rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
-    .footer-nav { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    footer { background: var(--gray-100); border-top: 1px solid var(--border); padding: 3rem 0; }
+    .footer-links { display: flex; gap: 1.5rem; margin-top: 1rem; }
 </style>
 </head>
 
 <body>
-<div id="kls-cursor"></div>
-<div class="kls-progress" style="position:fixed; top:0; left:0; height:4px; background:var(--black-pearl); width:0%; z-index:1000;"></div>
+<svg id="noodle-svg"><path class="noodle-path" d=""></path></svg>
+<div aria-hidden="true" class="kls-progress" style="position:fixed; top:0; left:0; height:3px; background:var(--black-pearl); width:0%; z-index:1000;"></div>
 
 <header>
   <div class="wrap nav">
-    <div class="brand"><strong>KNOW LEAP</strong></div>
+    <div class="brand">
+      <img alt="Logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/>
+      <span class="brand-text">Know Leap Strategies</span>
+    </div>
     <nav>
-      <a class="kls-magnet" href="#who">Who</a>
+      <a class="kls-magnet" href="#who">Who We Serve</a>
       <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#process">How It Works</a>
-      <a class="btn kls-magnet" href="#contact">Start Here</a>
+      <a class="kls-magnet" href="#process">Process</a>
+      <a class="btn btn-primary kls-magnet" href="#contact">Start Here</a>
     </nav>
   </div>
 </header>
 
-<main style="position: relative;">
-  <svg id="noodle-canvas"><path class="noodle-path" d=""></path></svg>
-
+<main>
   <section class="white">
-    <div class="wrap">
-      <h1 class="kls-bounce-text">Clear Systems for Complex Decisions</h1>
-      <p>Strategic clarity for modern teams.</p>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="kls-bounce">Clear Systems for Complex Decisions</h1>
+        <p class="lead">Know Leap Strategies shines a light on business opportunity for startups and small to mid-cap teams...</p>
+        <div style="margin-top:1.5rem;">
+          <a class="btn btn-primary kls-magnet" href="#contact">Request a call</a>
+          <a class="btn btn-outline kls-magnet" href="#services" style="margin-left:0.75rem;">Explore services</a>
+        </div>
+      </div>
+      <div class="card hero-media">
+        <img alt="Hero Image" class="gsap-img" src="assets/images/sections/hero-strategy.jpeg" style="width:100%; border-radius:12px;">
+      </div>
     </div>
   </section>
 
-  <section id="who" class="gray-bg">
+  <section class="gray-light" id="who">
     <div class="wrap">
-      <h2 class="kls-bounce-text">Who We Serve</h2>
-      <img src="assets/images/sections/who.jpg" alt="Team" class="gsap-img">
+      <h2 class="kls-bounce">Who We Serve</h2>
+      <img alt="Who" class="gsap-img" src="assets/images/sections/section-who-clients.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
+      <div class="grid-3">
+          <div class="card"><strong>Founders</strong><p>Turn opportunity into a productized offer...</p></div>
+          <div class="card"><strong>Operators</strong><p>Reduce rework and stabilize delivery...</p></div>
+          <div class="card"><strong>Teams</strong><p>Build a public presence that aligns sales...</p></div>
+      </div>
     </div>
   </section>
 
-  <section id="services">
+  <section class="gray" id="services">
     <div class="wrap">
-      <h2 class="kls-bounce-text">Services</h2>
-      <img src="assets/images/sections/services.jpg" alt="Services" class="gsap-img">
+      <h2 class="kls-bounce">Services</h2>
+      <img alt="Services" class="gsap-img" src="assets/images/sections/section-services-framework.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
     </div>
   </section>
 
-  <section id="process" class="gray-bg">
+  <section class="white" id="process">
     <div class="wrap">
-      <h2 class="kls-bounce-text">How It Works</h2>
-      <img src="assets/images/sections/process.jpg" alt="Process" class="gsap-img">
+      <h2 class="kls-bounce">How It Works</h2>
+      <img alt="Process" class="gsap-img" src="assets/images/sections/section-process-flow.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
     </div>
   </section>
 
-  <section id="contact">
+  <section class="gray-dark" id="contact">
     <div class="wrap">
-      <h2 class="kls-bounce-text">Contact</h2>
-      <p>Let's build something together.</p>
-      <a href="mailto:hello@knowleap.com" class="btn kls-magnet">Send Message</a>
+      <h2 class="kls-bounce">Contact</h2>
+      <a class="btn btn-primary kls-magnet" href="mailto:info@knowleapstrategies.com">info@knowleapstrategies.com</a>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="footer-nav">
+    <div>© <span id="year"></span> Know Leap Strategies</div>
+    <div class="footer-links">
       <a class="kls-magnet" href="#who">Who</a>
       <a class="kls-magnet" href="#services">Services</a>
       <a class="kls-magnet" href="#contact">Contact</a>
@@ -198,99 +254,84 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
   gsap.registerPlugin(ScrollTrigger);
 
-  // 1. Weighty Falling Ball Bounce
-  const bounceElements = document.querySelectorAll('.kls-bounce-text');
-  bounceElements.forEach(el => {
-    const text = el.innerText;
-    el.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-    
-    const chars = el.querySelectorAll('.kls-char');
-    
-    gsap.from(chars, {
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        toggleActions: "play none none reverse"
-      },
-      y: -150,
-      opacity: 0,
-      stagger: 0.03,
-      duration: 1.2,
-      ease: "bounce.out" // Weighty falling effect
-    });
-  });
-
-  // 2. Magnetic Cursor with Elastic Pull
-  const cursor = document.querySelector('#kls-cursor');
-  window.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-  });
-
-  document.querySelectorAll('.kls-magnet').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width/2;
-      const y = e.clientY - rect.top - rect.height/2;
+  // 2.) WEIGHTY BOUNCE ANIMATION
+  function initBounce() {
+    document.querySelectorAll(".kls-bounce").forEach(h => {
+      const text = h.innerText;
+      h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
       
-      gsap.to(btn, {
-        x: x * 0.4,
-        y: y * 0.4,
-        duration: 0.6,
-        ease: "elastic.out(1, 0.3)"
-      });
-      gsap.to(cursor, { scale: 3, opacity: 0.2 });
-    });
-    
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-      gsap.to(cursor, { scale: 1, opacity: 1 });
-    });
-  });
-
-  // 3. Image Fade In/Out
-  gsap.utils.toArray(".gsap-img").forEach(img => {
-    gsap.fromTo(img, 
-      { opacity: 0, filter: "blur(10px)" },
-      { 
-        opacity: 1, 
-        filter: "blur(0px)",
+      const chars = h.querySelectorAll(".kls-char");
+      gsap.from(chars, {
         scrollTrigger: {
-          trigger: img,
+          trigger: h,
           start: "top 90%",
-          end: "bottom 10%",
-          toggleActions: "play reverse play reverse"
-        }
-      }
-    );
-  });
+          toggleActions: "play none none reverse"
+        },
+        y: -150,
+        opacity: 0,
+        stagger: 0.04,
+        duration: 1.4,
+        ease: "bounce.out" // Weighty falling ball effect
+      });
+    });
+  }
 
-  // 4. Snaking Noodle Logic
+  // 3.) MAGNETIC ELASTIC BUTTONS
+  function initMagnets() {
+    document.querySelectorAll(".kls-magnet").forEach(m => {
+      m.addEventListener("mousemove", (e) => {
+        const r = m.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        gsap.to(m, { x: x * 0.4, y: y * 0.4, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+      });
+      m.addEventListener("mouseleave", () => {
+        gsap.to(m, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
+      });
+    });
+  }
+
+  // 5.) ANIMATED SNAKING NOODLE
   const noodlePath = document.querySelector('.noodle-path');
-  const main = document.querySelector('main');
-  
-  function drawNoodle() {
+  function updateNoodle() {
     const sections = document.querySelectorAll('section');
-    let pathData = `M ${window.innerWidth/2} 0`;
+    let d = `M ${window.innerWidth / 2} 0`;
     
     sections.forEach((sec, i) => {
       const rect = sec.getBoundingClientRect();
-      const relativeTop = sec.offsetTop;
-      const x = (i % 2 === 0) ? window.innerWidth * 0.2 : window.innerWidth * 0.8;
-      pathData += ` Q ${window.innerWidth/2} ${relativeTop}, ${x} ${relativeTop + rect.height/2}`;
+      const y = sec.offsetTop + rect.height / 2;
+      const x = (i % 2 === 0) ? window.innerWidth * 0.15 : window.innerWidth * 0.85;
+      d += ` Q ${window.innerWidth / 2} ${sec.offsetTop}, ${x} ${y}`;
     });
     
-    noodlePath.setAttribute('d', pathData);
+    noodlePath.setAttribute('d', d);
   }
 
-  window.addEventListener('resize', drawNoodle);
-  drawNoodle();
+  // 6.) IMAGE FADE IN/OUT
+  gsap.utils.toArray(".gsap-img").forEach(img => {
+    gsap.fromTo(img, { opacity: 0, filter: "blur(8px)" }, {
+      opacity: 1, filter: "blur(0px)",
+      scrollTrigger: {
+        trigger: img,
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      }
+    });
+  });
+
+  // INITIALIZE
+  initBounce();
+  initMagnets();
+  window.addEventListener('scroll', updateNoodle);
+  window.addEventListener('resize', updateNoodle);
+  updateNoodle();
 
   // Progress Bar
   gsap.to(".kls-progress", {
-    width: "100%",
-    ease: "none",
+    width: "100%", ease: "none",
     scrollTrigger: { scrub: 0.3 }
   });
 </script>
