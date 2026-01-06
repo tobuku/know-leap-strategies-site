@@ -4,17 +4,20 @@
 <meta charset="utf-8"/>
 <title>Know Leap Strategies | Systems Defining Clarity</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Digital products, web presence enhancement, and strategic clarity for startups and small to mid-cap teams." name="description"/>
 <style>
     :root {
       --white: #ffffff;
       --gray-50: #f7f8fa;
       --gray-100: #eef0f3;
+      --gray-200: #e4e7ec;
       --ink: #0b1220;
       --muted: #475569;
       --border: rgba(11, 18, 32, 0.12);
       --black-pearl: #0b0f14;
       --enlightenment-gray: #a6afb9;
       --max: 1100px;
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
@@ -47,12 +50,23 @@
     .brand-text { font-weight: 800; letter-spacing: 1px; color: var(--black-pearl); }
 
     nav a {
+      position: relative;
       margin-left: 1.5rem;
       font-size: 0.9rem;
       color: var(--muted);
       text-decoration: none;
-      position: relative;
+      padding-bottom: 4px;
     }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 100%; height: 2px; bottom: 0; left: 0;
+      background: linear-gradient(90deg, var(--black-pearl), var(--enlightenment-gray), var(--black-pearl));
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.4s ease;
+    }
+    nav a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
     .btn {
       display: inline-flex;
@@ -66,19 +80,24 @@
 
     main section { padding: 6rem 0; position: relative; z-index: 2; }
     .gray-bg { background: var(--gray-50); }
-    
+    .white-bg { background: var(--white); }
+
     h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
     h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem; }
+
+    p.lead { font-size: 1.2rem; color: var(--muted); max-width: 800px; margin-bottom: 2rem; }
+    .content-block { margin-bottom: 3rem; }
 
     .img-wrap {
       position: relative;
+      overflow: hidden;
       border-radius: 12px;
       border: 2px solid var(--black-pearl);
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
       margin: 2rem 0;
-      overflow: hidden;
     }
-    .img-wrap img { width: 100%; display: block; }
+    .img-wrap img { width: 100%; display: block; will-change: transform; }
 
     #noodle-svg {
       position: absolute;
@@ -88,6 +107,9 @@
     .noodle-path { fill: none; stroke: var(--enlightenment-gray); stroke-width: 2; opacity: 0.3; }
 
     .kls-char { display: inline-block; will-change: transform; }
+
+    footer { padding: 4rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
+    .footer-links { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
 </style>
 </head>
 
@@ -103,6 +125,7 @@
     <nav>
       <a class="kls-magnet" href="#who">Who</a>
       <a class="kls-magnet" href="#services">Services</a>
+      <a class="kls-magnet" href="#case-study">Case Study</a>
       <a class="btn kls-magnet" href="#contact">Start Here</a>
     </nav>
   </div>
@@ -114,11 +137,14 @@
   <section class="white-bg">
     <div class="wrap">
       <h1 class="kls-bounce">Systems Defining Clarity</h1>
-      <p style="font-size: 1.2rem; color: var(--muted);">
-        Know Leap Strategies operates at the intersection of clarity and execution. We turn high-stakes ideas into high-trust assets.
+      <p class="lead">
+        Know Leap Strategies operates at the intersection of clarity and execution. For startups and mid-cap teams, the greatest risk isn't a lack of ideas—it’s the friction of communicating them.
       </p>
-      <div class="img-wrap kls-magnet">
-        <img src="assets/images/sections/hero-strategy.jpeg" alt="Strategy" class="gsap-img">
+      <p>
+        We specialize in eliminating that friction by building the digital infrastructure and educational products that do the heavy lifting for your sales team. We turn high-stakes ideas into high-trust assets.
+      </p>
+      <div class="img-wrap kls-parallax">
+        <img src="assets/images/sections/hero-strategy.jpeg" alt="Strategic Planning" class="gsap-img">
       </div>
     </div>
   </section>
@@ -126,60 +152,114 @@
   <section id="who" class="gray-bg">
     <div class="wrap">
       <h2 class="kls-bounce">Who We Serve</h2>
-      <p>We partner with teams that are already in motion but feel the weight of their own complexity holding them back. Typically, our clients fall into three categories: Founders navigating Product-Market Fit, Operators scaling under pressure, and Mid-Cap Leadership teams.</p>
-      <div class="img-wrap kls-magnet">
+      <div class="content-block">
+        <h3>Founders in Pursuit of Product-Market Fit</h3>
+        <p>You have the vision, but your market is confused. We help you "productize" your expertise into tangible guides and toolkits that prove your value before a contract is ever signed.</p>
+        
+        <h3>Operators Scaling Under Pressure</h3>
+        <p>Growth creates chaos. We step in to map your decision rules and build the content workflows that ensure your brand voice doesn't break as your team expands.</p>
+        
+        <h3>Mid-Cap Teams Optimizing for Trust</h3>
+        <p>When the stakes are high, buyers look for credibility signals. We audit your web presence to ensure every page, navigation path, and case study reinforces a single, stable narrative.</p>
+      </div>
+      <div class="img-wrap">
         <img src="assets/images/sections/section-who-clients.jpg" alt="Clients" class="gsap-img">
       </div>
     </div>
   </section>
+
+  <section id="services" class="white-bg">
+    <div class="wrap">
+      <h2 class="kls-bounce">Services & Digital Products</h2>
+      <p class="lead">We build "Trust Artifacts"—the checklists, playbooks, and resource libraries that make your complex service feel simple and "buyable."</p>
+      
+      <div class="content-block">
+        <h3>Digital Product Creation</h3>
+        <p>Topic mapping, outlines, asset production, and landing page copy. We build products that answer buyer questions before the sales call, reducing objections and providing structure.</p>
+        
+        <h3>Web Presence Enhancement</h3>
+        <p>Clarity pass, navigation hierarchy, offer framing, and conversion improvements. We remove friction where decisions happen, clarifying exactly what you do and who it is for.</p>
+      </div>
+      <div class="img-wrap">
+        <img src="assets/images/sections/section-services-framework.jpg" alt="Framework" class="gsap-img">
+      </div>
+    </div>
+  </section>
+
+  <section id="case-study" class="gray-bg">
+    <div class="wrap">
+      <h2 class="kls-bounce">Case Study: The Clarity Overhaul</h2>
+      <p class="lead">How a mid-cap SaaS team reduced their sales cycle by 30% through strategic asset architecture.</p>
+      <p>
+        <strong>The Problem:</strong> The client had a world-class product but a high-friction sales process. Potential buyers were overwhelmed by technical complexity.
+      </p>
+      <p>
+        <strong>The KLS Solution:</strong> We audited their buyer journey and identified three "Dark Zones." We produced a suite of Digital Products—a Buyer's Guide, a Deployment Roadmap, and a Readiness Checklist—that educated the market in the founder's voice.
+      </p>
+      <p>
+        <strong>The Outcome:</strong> By providing these high-trust assets early in the funnel, the team saw a 40% increase in lead quality and a significant reduction in repeat questions during discovery calls.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact" class="white-bg">
+    <div class="wrap">
+      <h2 class="kls-bounce">Contact</h2>
+      <p class="lead">Share what you sell, who you serve, and what feels stuck. We respond with a clear next-step plan.</p>
+      <a class="btn kls-magnet" href="mailto:info@knowleapstrategies.com">Request a Call</a>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Know Leap Strategies</div>
+    <div class="footer-links">
+      <a class="kls-magnet" href="#who">Who</a>
+      <a class="kls-magnet" href="#services">Services</a>
+      <a class="kls-magnet" href="#case-study">Case Study</a>
+      <a class="kls-magnet" href="privacy.html">Privacy</a>
+      <a class="kls-magnet" href="terms.html">Terms</a>
+      <a class="kls-magnet" href="support.html">Support</a>
+    </div>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
   gsap.registerPlugin(ScrollTrigger);
 
-  // LOGIC: Infinite/Continuous Header Bounce
-  // This ensures h1 and h2 animate EVERY time they come into view
-  function initHeaderAnimations() {
-    document.querySelectorAll(".kls-bounce").forEach(h => {
-      const text = h.innerText;
-      h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-      
-      gsap.from(h.querySelectorAll(".kls-char"), {
-        scrollTrigger: {
-          trigger: h,
-          start: "top 85%",
-          // This toggleAction ensures it plays/reverses on scroll up and down
-          toggleActions: "play none none reverse" 
-        },
-        y: -140,
-        opacity: 0,
-        stagger: 0.03,
-        duration: 1.2,
-        ease: "bounce.out"
-      });
+  // 1. Weighty Header Bounce (H1 + H2)
+  document.querySelectorAll(".kls-bounce").forEach(h => {
+    const text = h.innerText;
+    h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    gsap.from(h.querySelectorAll(".kls-char"), {
+      scrollTrigger: { trigger: h, start: "top 85%", toggleActions: "play none none reverse" },
+      y: -150, opacity: 0, stagger: 0.04, duration: 1.2, ease: "bounce.out"
     });
-  }
+  });
 
-  // LOGIC: Magnetic Effects for Buttons and Images
-  function initMagnets() {
-    const items = document.querySelectorAll(".kls-magnet");
-    items.forEach(el => {
+  // 2. Magnetic Pull for Buttons & Images
+  function applyMagnet(targets, strength) {
+    targets.forEach(el => {
       el.addEventListener("mousemove", (e) => {
         const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.3;
-        const y = (e.clientY - r.top - r.height / 2) * 0.3;
-        gsap.to(el, { x, y, duration: 0.4, ease: "power2.out" });
+        const x = (e.clientX - r.left - r.width / 2) * strength;
+        const y = (e.clientY - r.top - r.height / 2) * strength;
+        gsap.to(el, { x, y, duration: 0.6, ease: "power2.out" });
       });
       el.addEventListener("mouseleave", () => {
-        gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+        gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
       });
     });
   }
+  applyMagnet(document.querySelectorAll(".kls-magnet"), 0.4);
+  applyMagnet(document.querySelectorAll(".img-wrap"), 0.15);
 
-  // LOGIC: Noodle Path (Matches your Best Version)
+  // 3. Noodle Path Logic
   const noodlePath = document.querySelector('.noodle-path');
   function updateNoodle() {
     const sections = document.querySelectorAll('section');
@@ -191,20 +271,20 @@
     });
     noodlePath.setAttribute('d', d);
   }
-
-  // INIT
-  initHeaderAnimations();
-  initMagnets();
-  updateNoodle();
   window.addEventListener('scroll', updateNoodle);
   window.addEventListener('resize', updateNoodle);
+  updateNoodle();
 
-  // Progress Bar
-  gsap.to(".kls-progress", {
-    width: "100%",
-    ease: "none",
-    scrollTrigger: { scrub: 0.3 }
+  // 4. Image Scroll Fade
+  gsap.utils.toArray(".gsap-img").forEach(img => {
+    gsap.fromTo(img, { opacity: 0, filter: "blur(8px)" }, {
+      opacity: 1, filter: "blur(0px)",
+      scrollTrigger: { trigger: img, start: "top 90%", toggleActions: "play none none reverse" }
+    });
   });
+
+  // 5. Progress Bar
+  gsap.to(".kls-progress", { width: "100%", ease: "none", scrollTrigger: { scrub: 0.3 } });
 </script>
 </body>
 </html>
