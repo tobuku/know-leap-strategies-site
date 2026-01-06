@@ -6,8 +6,6 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Digital products, web presence enhancement, content systems, and social identity consulting for startups and small to mid-cap teams." name="description"/>
 <style>
-    /* ORIGINAL STYLES PRESERVED 
-    */
     :root {
       --white: #ffffff;
       --gray-50: #f7f8fa;
@@ -62,8 +60,6 @@
       gap: 1rem;
     }
 
-    .logo { width: 24px; height: 24px; display: inline-block; vertical-align: middle; }
-
     .brand {
       display: flex;
       align-items: center;
@@ -74,7 +70,7 @@
       font-size: 0.85rem;
     }
 
-    /* 4.) GRADIENT UNDERLINE ANIMATION FOR NAV */
+    /* 4.) Gradient Underline Animation */
     nav a {
       position: relative;
       margin-left: 1.25rem;
@@ -142,39 +138,37 @@
 
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
 
-    /* 5.) NOODLE STYLES */
+    /* 5.) Animated Noodle Styles */
     #noodle-svg {
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 1; /* Passes behind chapters */
+      z-index: 1;
     }
     .noodle-path {
       fill: none;
       stroke: var(--enlightenment-gray);
       stroke-width: 2.5;
       stroke-dasharray: 8 8;
-      opacity: 0.4;
+      opacity: 0.35;
     }
 
-    /* GSAP CHAR WRAPPER */
     .kls-char { display: inline-block; will-change: transform, opacity; }
 
     footer { background: var(--gray-100); border-top: 1px solid var(--border); padding: 3rem 0; }
-    .footer-links { display: flex; gap: 1.5rem; margin-top: 1rem; }
+    .footer-links { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
 </style>
 </head>
 
 <body>
-<svg id="noodle-svg"><path class="noodle-path" d=""></path></svg>
 <div aria-hidden="true" class="kls-progress" style="position:fixed; top:0; left:0; height:3px; background:var(--black-pearl); width:0%; z-index:1000;"></div>
 
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <img alt="Logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/>
-      <span class="brand-text">Know Leap Strategies</span>
+      <img alt="Logo" src="assets/images/brand/kls-logo-primary.svg" style="width:24px;"/>
+      <span>Know Leap Strategies</span>
     </div>
     <nav>
       <a class="kls-magnet" href="#who">Who We Serve</a>
@@ -185,19 +179,29 @@
   </div>
 </header>
 
-<main>
+<main style="position: relative;">
+  <svg id="noodle-svg"><path class="noodle-path" d=""></path></svg>
+
   <section class="white">
     <div class="wrap hero-grid">
       <div>
         <h1 class="kls-bounce">Clear Systems for Complex Decisions</h1>
-        <p class="lead">Know Leap Strategies shines a light on business opportunity for startups and small to mid-cap teams...</p>
+        
+        <p class="lead" style="max-width: 44rem; color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem;">
+          Know Leap Strategies shines a light on business opportunity for startups and small to mid-cap teams. 
+          We turn raw ideas into clear offers, then build the assets that help buyers understand and trust what you sell.
+        </p>
+        <p class="lead" style="max-width: 44rem; color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem;">
+          KLS specializes in digital products that teach your market. These products create clarity, reduce friction, and support your sales process with tangible proof.
+        </p>
+
         <div style="margin-top:1.5rem;">
           <a class="btn btn-primary kls-magnet" href="#contact">Request a call</a>
           <a class="btn btn-outline kls-magnet" href="#services" style="margin-left:0.75rem;">Explore services</a>
         </div>
       </div>
       <div class="card hero-media">
-        <img alt="Hero Image" class="gsap-img" src="assets/images/sections/hero-strategy.jpeg" style="width:100%; border-radius:12px;">
+        <img alt="Strategy Planning" class="gsap-img" src="assets/images/sections/hero-strategy.jpeg" style="width:100%; border-radius:12px;">
       </div>
     </div>
   </section>
@@ -205,18 +209,19 @@
   <section class="gray-light" id="who">
     <div class="wrap">
       <h2 class="kls-bounce">Who We Serve</h2>
+      <p class="lead" style="max-width: 44rem; color: var(--muted);">
+        Built for teams already in motion who want less guesswork and more signal. You need a message that stays consistent, assets that educate, and a plan that survives real execution.
+      </p>
       <img alt="Who" class="gsap-img" src="assets/images/sections/section-who-clients.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
-      <div class="grid-3">
-          <div class="card"><strong>Founders</strong><p>Turn opportunity into a productized offer...</p></div>
-          <div class="card"><strong>Operators</strong><p>Reduce rework and stabilize delivery...</p></div>
-          <div class="card"><strong>Teams</strong><p>Build a public presence that aligns sales...</p></div>
-      </div>
     </div>
   </section>
 
   <section class="gray" id="services">
     <div class="wrap">
       <h2 class="kls-bounce">Services</h2>
+      <p class="lead" style="max-width: 44rem; color: var(--muted);">
+        Clear deliverables, clean structure, and strong execution. KLS builds digital assets that teach your market and strengthens the web surface where buyers decide.
+      </p>
       <img alt="Services" class="gsap-img" src="assets/images/sections/section-services-framework.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
     </div>
   </section>
@@ -224,6 +229,9 @@
   <section class="white" id="process">
     <div class="wrap">
       <h2 class="kls-bounce">How It Works</h2>
+      <p class="lead" style="max-width: 44rem; color: var(--muted);">
+        A short engagement designed to produce usable assets and a clear operating loop. The goal is clarity, then production, then consistency.
+      </p>
       <img alt="Process" class="gsap-img" src="assets/images/sections/section-process-flow.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
     </div>
   </section>
@@ -257,7 +265,7 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   gsap.registerPlugin(ScrollTrigger);
 
-  // 2.) WEIGHTY BOUNCE ANIMATION
+  // 2.) Weighty Bounce Animation
   function initBounce() {
     document.querySelectorAll(".kls-bounce").forEach(h => {
       const text = h.innerText;
@@ -274,12 +282,12 @@
         opacity: 0,
         stagger: 0.04,
         duration: 1.4,
-        ease: "bounce.out" // Weighty falling ball effect
+        ease: "bounce.out"
       });
     });
   }
 
-  // 3.) MAGNETIC ELASTIC BUTTONS
+  // 3.) Magnetic Cursor Pull
   function initMagnets() {
     document.querySelectorAll(".kls-magnet").forEach(m => {
       m.addEventListener("mousemove", (e) => {
@@ -294,23 +302,33 @@
     });
   }
 
-  // 5.) ANIMATED SNAKING NOODLE
+  // 5.) Animated Snaking Noodle
   const noodlePath = document.querySelector('.noodle-path');
-  function updateNoodle() {
+  function animateNoodle() {
     const sections = document.querySelectorAll('section');
     let d = `M ${window.innerWidth / 2} 0`;
     
     sections.forEach((sec, i) => {
       const rect = sec.getBoundingClientRect();
       const y = sec.offsetTop + rect.height / 2;
-      const x = (i % 2 === 0) ? window.innerWidth * 0.15 : window.innerWidth * 0.85;
+      const x = (i % 2 === 0) ? window.innerWidth * 0.1 : window.innerWidth * 0.9;
       d += ` Q ${window.innerWidth / 2} ${sec.offsetTop}, ${x} ${y}`;
     });
     
-    noodlePath.setAttribute('d', d);
+    // Animate the path drawing on scroll
+    gsap.to(noodlePath, {
+      attr: { d: d },
+      ease: "none",
+      scrollTrigger: {
+        trigger: "main",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.5
+      }
+    });
   }
 
-  // 6.) IMAGE FADE IN/OUT
+  // 6.) Image Fade
   gsap.utils.toArray(".gsap-img").forEach(img => {
     gsap.fromTo(img, { opacity: 0, filter: "blur(8px)" }, {
       opacity: 1, filter: "blur(0px)",
@@ -322,14 +340,11 @@
     });
   });
 
-  // INITIALIZE
   initBounce();
   initMagnets();
-  window.addEventListener('scroll', updateNoodle);
-  window.addEventListener('resize', updateNoodle);
-  updateNoodle();
+  animateNoodle();
+  window.addEventListener('resize', animateNoodle);
 
-  // Progress Bar
   gsap.to(".kls-progress", {
     width: "100%", ease: "none",
     scrollTrigger: { scrub: 0.3 }
