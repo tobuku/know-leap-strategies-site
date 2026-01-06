@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Know Leap Strategies, Support</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Know Leap Strategies support page." name="description"/>
+<style>
+  :root {
+    --white: #ffffff;
+    --gray-50: #f7f8fa;
+    --gray-100: #eef0f3;
+
+    --ink: #0b1220;
+    --muted: #475569;
+    --border: rgba(11, 18, 32, 0.12);
+
+    --shadow: 0 10px 30px rgba(11, 18, 32, 0.08);
+
+    --black-pearl: #0b0f14;
+    --black-pearl-2: #111820;
+    --click: #343a40;
+
+    --max: 1100px;
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 20;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .logo {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .brand-text { white-space: nowrap; }
+
+  nav a {
+    position: relative;
+    margin-left: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  nav a:hover { color: var(--ink); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    user-select: none;
+  }
+
+  .btn-primary {
+    background: var(--black-pearl);
+    color: #ffffff;
+  }
+  .btn-primary:hover { background: var(--black-pearl-2); }
+  .btn-primary:active { background: var(--click); }
+
+  main { padding: 3.5rem 0 4rem; }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: 0 12px 24px rgba(11, 18, 32, 0.04);
+  }
+
+  h1 {
+    font-size: clamp(2.0rem, 3vw + 1rem, 2.6rem);
+    line-height: 1.15;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin: 1.6rem 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin: 0.5rem 0; color: rgba(11, 18, 32, 0.84); }
+
+  ul { padding-left: 1.2rem; margin: 0.6rem 0; }
+  li { margin: 0.35rem 0; color: rgba(11, 18, 32, 0.84); }
+
+  .meta {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .box {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem;
+    background: rgba(247,248,250,0.8);
+  }
+
+  .box strong { display: block; margin-bottom: 0.35rem; }
+
+  footer {
+    background: var(--gray-100);
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-address {
+    margin-top: 8px;
+    color: rgba(11, 18, 32, 0.7);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <img alt="Know Leap Strategies logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/>
+      <span class="brand-text">Know Leap Strategies</span>
+    </div>
+    <nav>
+      <a href="index.html#who">Who We Serve</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">Process</a>
+      <a class="btn btn-primary" href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="card">
+      <h1>Support</h1>
+      <div class="meta">Email based support for questions about services, deliverables, and site issues.</div>
+
+      <div class="grid-2">
+        <div class="box">
+          <strong>Support email</strong>
+          <p><a href="mailto:info@knowleapstrategies.com">info@knowleapstrategies.com</a></p>
+          <p>Include your name, company, and a short description of the request.</p>
+        </div>
+
+        <div class="box">
+          <strong>Mailing address</strong>
+          <p>1785 S King St Suite 3, Honolulu, HI 96826, USA</p>
+        </div>
+      </div>
+
+      <h2>What to include</h2>
+      <ul>
+        <li>The page or deliverable name.</li>
+        <li>The goal and the current blocker.</li>
+        <li>Screenshots or links when relevant.</li>
+        <li>Target deadline and priority.</li>
+      </ul>
+
+      <h2>Project support</h2>
+      <p>For active engagements, support covers clarifications, minor edits, and implementation guidance related to agreed scope. Larger changes go through a scope update.</p>
+
+      <h2>Website issues</h2>
+      <p>If you are reporting a site problem, include the browser name, device type, and the steps that reproduce the issue.</p>
+
+      <h2>Response targets</h2>
+      <ul>
+        <li>Initial response within two business days.</li>
+        <li>Time to resolution depends on scope, access, and vendor dependencies.</li>
+      </ul>
+
+      <h2>Business hours</h2>
+      <p>Monday through Friday, 9:00 AM to 5:00 PM Hawaii time.</p>
+
+      <p style="margin-top:1.25rem;">
+        <a class="btn btn-primary" href="index.html">Back to home</a>
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      © <span id="year"></span> Know Leap Strategies
+      <div class="footer-address">1785 S King St Suite 3, Honolulu, HI 96826, USA</div>
+    </div>
+    <div>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="support.html">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
