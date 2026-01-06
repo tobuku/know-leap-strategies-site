@@ -1,513 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>Know Leap Strategies</title>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Digital products, web presence enhancement, content systems, and social identity consulting for startups and small to mid-cap teams." name="description"/>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Know Leap Strategies</title>
+  <meta name="description" content="Know Leap Strategies — Clear systems for complex decisions. Digital products, web presence, content systems, and social identity." />
+  <style>
     :root {
-      --white: #ffffff;
-      --gray-50: #f7f8fa;
-      --gray-100: #eef0f3;
-      --gray-200: #e4e7ec;
-      --ink: #0b1220;
-      --muted: #475569;
-      --border: rgba(11, 18, 32, 0.12);
-      --shadow: 0 10px 30px rgba(11, 18, 32, 0.08);
-      --black-pearl: #0b0f14;
-      --black-pearl-2: #111820;
-      --enlightenment-gray: #a6afb9;
-      --glow: rgba(166, 175, 185, 0.55);
-      --click: #343a40;
-      --max: 1100px;
-      --radius: 18px;
+      --bg: #ffffff;
+      --text: #1f2937; /* gray-800 */
+      --muted: #6b7280; /* gray-500 */
+      --brand: #0ea5e9; /* sky-500 */
+      --brand-dark: #0369a1; /* sky-700 */
+      --border: #e5e7eb; /* gray-200 */
+      --card: #f9fafb; /* gray-50 */
     }
-
     * { box-sizing: border-box; }
-
+    html, body { height: 100%; }
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text); background: var(--bg); line-height: 1.6; scroll-behavior: smooth;
+    }
+    a { color: var(--brand-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--border); transition: transform .3s ease; }
+    .site-header.hide { transform: translateY(-100%); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+    .brand { display: flex; align-items: baseline; gap: .5rem; font-weight: 700; }
+    .brand span.logo { display:inline-block; width: 12px; height: 12px; background: var(--brand); border-radius: 2px; }
+    .nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+    .nav a { font-weight: 600; color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 4.5rem 0 3rem; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 .75rem; }
+    .hero p { color: var(--muted); max-width: 70ch; }
+    .cta { margin-top: 1rem; display: flex; gap: .75rem; }
+    .btn { display: inline-block; padding: .6rem 1rem; border-radius: .5rem; border: 1px solid var(--border); font-weight: 600; }
+    .btn.primary { background: var(--brand); color: white; border-color: var(--brand); }
+    .btn.primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+
+    /* Sections */
+    section { padding: 2.5rem 0; }
+    section h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 1rem; }
+    section h3 { margin: 1.5rem 0 .5rem; font-size: 1.2rem; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .col-3 { grid-column: span 3; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    @media (max-width: 800px) {
+      .col-3, .col-4, .col-6 { grid-column: span 12; }
     }
 
-    a { color: inherit; text-decoration: none; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: 1rem; }
+    .list { margin: .25rem 0 0; padding-left: 1rem; }
+    .list li { margin: .25rem 0; }
 
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 20;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      gap: 1rem;
-    }
-
-    .logo {
-      width: 24px;
-      height: 24px;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-    }
-
-    .brand-text { white-space: nowrap; }
-
-    nav a {
-      position: relative;
-      margin-left: 1.25rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      transform: translate3d(0,0,0);
-      will-change: transform;
-      overflow: hidden;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -8px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(11, 15, 20, 0.55), transparent);
-      transform: scaleX(0);
-      transform-origin: 50% 50%;
-      transition: transform 200ms ease;
-      opacity: 0.9;
-    }
-    nav a:hover::after { transform: scaleX(1); }
-    nav a:hover { color: var(--ink); }
-
-    .btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid transparent;
-      transform: translate3d(0,0,0);
-      will-change: transform;
-      user-select: none;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--black-pearl);
-      color: #ffffff;
-    }
-    .btn-primary:hover { background: var(--black-pearl-2); }
-    .btn-primary:active { background: var(--click); }
-
-    .btn-outline {
-      border-color: var(--border);
-      color: var(--ink);
-      background: #ffffff;
-    }
-    .btn-outline:active { background: rgba(11, 15, 20, 0.05); }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22), rgba(255,255,255,0.0) 55%);
-      opacity: 0;
-      transition: opacity 160ms ease;
-      pointer-events: none;
-    }
-
-    .btn:hover::before {
-      opacity: 1;
-    }
-
-    .btn:active {
-      box-shadow: 0 0 0 2px rgba(166, 175, 185, 0.35) inset;
-    }
-
-    .btn.btn-primary:active {
-      background: var(--click);
-    }
-
-    .btn.btn-outline:active {
-      background: rgba(11, 15, 20, 0.06);
-    }
-
-    main section { 
-      padding: 4rem 0;
-      position: relative;
-    }
-
-    section.white { background: var(--white); }
-    section.gray-light { background: var(--gray-50); }
-    section.gray { background: var(--gray-100); }
-    section.gray-dark { background: var(--gray-200); }
-
-    h1 {
-      font-size: clamp(2.2rem, 3vw + 1rem, 3rem);
-      line-height: 1.1;
-      margin: 0 0 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin: 0 0 0.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    h3 { margin: 0.2rem 0 0.6rem; }
-
-    p.lead {
-      max-width: 44rem;
-      color: var(--muted);
-      font-size: 1rem;
-      margin: 0 0 0.75rem;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2.5rem;
-      align-items: start;
-      position: relative;
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      nav { display: none; }
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: 0 12px 24px rgba(11, 18, 32, 0.04);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: 1fr; }
-    }
-
-    .pill {
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      display: inline-block;
-    }
-
-    ul {
-      padding-left: 1.2rem;
-      margin: 0.75rem 0 0;
-    }
-
-    ul li {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    footer {
-      background: var(--gray-100);
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-links a {
-      margin-left: 1rem;
-    }
-
-    .footer-links a:first-child {
-      margin-left: 0;
-    }
-
-    .footer-address {
-      margin-top: 8px;
-      color: rgba(11, 18, 32, 0.7);
-      font-size: 0.85rem;
-    }
-
-    .kls-progress {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 3px;
-      width: 100%;
-      transform-origin: 0 50%;
-      transform: scaleX(0);
-      background: linear-gradient(90deg, rgba(166,175,185,0.0), rgba(11,15,20,0.85), rgba(166,175,185,0.0));
-      z-index: 50;
-      pointer-events: none;
-      opacity: 0.9;
-    }
-
-    .kls-reveal { will-change: transform, opacity, filter; }
-
-    .kls-split { display: inline-block; }
-    .kls-split .kls-char {
-      display: inline-block;
-      will-change: transform, opacity, filter;
-      transform: translate3d(0,0,0);
-    }
-
-    .kls-reactive {
-      display: inline-block;
-      transform: translate3d(0,0,0);
-      will-change: transform;
-    }
-
-    .kls-parallax {
-      position: relative;
-      overflow: hidden;
-      border-radius: 14px;
-      transform: translate3d(0,0,0);
-    }
-
-    .kls-parallax img {
-      width: 100%;
-      height: 120%;
-      object-fit: cover;
-      display: block;
-      position: relative;
-      top: -10%;
-      transform: translate3d(0,0,0) scale(1.02);
-      will-change: transform, filter;
-    }
-
-    .hero-media-caption {
-      margin-top: 0.9rem;
-      font-weight: 700;
-      color: var(--ink);
-      opacity: 0.9;
-    }
-
-    .section-media {
-      margin-top: 1.25rem;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .card-visual {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 0.9rem;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .flip-card {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      will-change: transform, opacity, filter;
-    }
-
-    .micro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    @media (max-width: 900px) {
-      .micro-grid { grid-template-columns: 1fr; }
-    }
-
-    .micro {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1rem;
-      background: rgba(255,255,255,0.8);
-    }
-
-    .micro strong { display: block; margin-bottom: 0.35rem; }
-    .micro p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-
-    /* Snaking noodles canvas */
-    #noodle-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    main {
-      position: relative;
-      z-index: 2;
-    }
-</style>
+    /* Footer */
+    footer { border-top: 1px solid var(--border); margin-top: 2rem; }
+    .footer-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.75rem; padding:1rem 0; }
+    .footer-nav { display:flex; gap:.75rem; }
+    small { color: var(--muted); }
+  </style>
 </head>
-
 <body>
-<canvas id="noodle-canvas"></canvas>
-<div aria-hidden="true" class="kls-progress"></div>
-
-<header>
-  <div class="wrap nav">
-    <div class="brand">
-      <img alt="Know Leap Strategies logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/>
-      <span class="brand-text">Know Leap Strategies</span>
-    </div>
-    <nav>
-      <a class="kls-magnet" href="#who">Who We Serve</a>
-      <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#process">How It Works</a>
-      <a class="btn btn-primary kls-magnet" href="#contact">Start Here</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="white">
-    <div class="wrap hero-grid">
-      <div>
-        <h1 class="kls-reactive kls-bounce-hero">Clear Systems for Complex Decisions</h1>
-
-        <p class="lead">
-          Know Leap Strategies shines a light on business opportunity for startups and small to mid-cap teams.
-          We turn raw ideas into clear offers, then build the assets that help buyers understand and trust what you sell.
-        </p>
-        <p class="lead">
-          KLS specializes in digital products that teach your market.
-          These products create clarity, reduce friction, and support your sales process with tangible proof.
-          Think guides, toolkits, checklists, playbooks, training assets, and resource libraries built around buyer questions.
-        </p>
-        <p class="lead">
-          We also strengthen your web presence and your public narrative.
-          That includes page structure, service positioning, conversion flows, and content systems that keep publishing consistent.
-          We align your social identity so your voice stays stable across platforms.
-        </p>
-
-        <div class="micro-grid">
-          <div class="micro kls-reveal">
-            <strong>Digital products</strong>
-            <p>Topic mapping, outlines, asset production, landing page copy, and distribution structure tied to search and social.</p>
-          </div>
-          <div class="micro kls-reveal">
-            <strong>Web presence</strong>
-            <p>Clarity pass, navigation hierarchy, offer framing, credibility signals, and conversion improvements.</p>
-          </div>
-          <div class="micro kls-reveal">
-            <strong>Content systems</strong>
-            <p>Content pillars, templates, production workflow, and repurpose rules across formats and channels.</p>
-          </div>
-          <div class="micro kls-reveal">
-            <strong>Social identity</strong>
-            <p>Positioning, voice rules, profile structure, and a repeatable posting framework tied to intent.</p>
-          </div>
-        </div>
-
-        <div style="margin-top:1.5rem;">
-          <a class="btn btn-primary kls-magnet" href="#contact">Request a call</a>
-          <a class="btn btn-outline kls-magnet" href="#services" style="margin-left:0.75rem;">Explore services</a>
-        </div>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand" data-animate>
+        <span class="logo" aria-hidden="true"></span>
+        <span>Know Leap Strategies</span>
       </div>
-
-      <div class="card hero-media kls-reveal kls-fade-img">
-        <div class="kls-parallax">
-          <img alt="Abstract strategy planning visual" loading="eager" src="assets/images/sections/hero-strategy.jpeg"/>
-        </div>
-        <div class="hero-media-caption">Proof first. Calm execution. Clean outcomes.</div>
-      </div>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#who">Who We Serve</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#contact" class="btn">Start Here</a></li>
+        </ul>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section class="gray-light" id="who">
-    <div class="wrap">
-      <h2 class="kls-reactive kls-bounce-section">Who We Serve</h2>
-      <p class="lead">
-        Built for teams already in motion who want less guesswork and more signal.
-        You need a message that stays consistent, assets that educate, and a plan that survives real execution.
+  <main>
+    <!-- HERO -->
+    <section class="hero container">
+      <h1>Clear Systems for Complex Decisions</h1>
+      <p>
+        Know Leap Strategies shines a light on business opportunity for startups and small to mid-cap teams. We turn raw ideas into clear offers, then build the assets that help buyers understand and trust what you sell.
       </p>
+      <p>
+        KLS specializes in digital products that teach your market. These products create clarity, reduce friction, and support your sales process with tangible proof. Think guides, toolkits, checklists, playbooks, training assets, and resource libraries built around buyer questions.
+      </p>
+      <p>
+        We also strengthen your web presence and your public narrative. That includes page structure, service positioning, conversion flows, and content systems that keep publishing consistent. We align your social identity so your voice stays stable across platforms.
+      </p>
+      <div class="cta">
+        <a href="#contact" class="btn primary">Request a call</a>
+        <a href="#services" class="btn">Explore services</a>
+      </div>
+    </section>
 
-      <div class="section-media kls-reveal kls-fade-img">
-        <div class="kls-parallax">
-          <img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/>
+    <!-- VALUE BLOCKS -->
+    <section class="container" aria-labelledby="value-heading">
+      <h2 id="value-heading">What We Focus On</h2>
+      <div class="grid">
+        <div class="col-3 col-12 card" data-animate>
+          <h3>Digital products</h3>
+          <p>Topic mapping, outlines, asset production, landing page copy, and distribution structure tied to search and social.</p>
+        </div>
+        <div class="col-3 col-12 card" data-animate>
+          <h3>Web presence</h3>
+          <p>Clarity pass, navigation hierarchy, offer framing, credibility signals, and conversion improvements.</p>
+        </div>
+        <div class="col-3 col-12 card" data-animate>
+          <h3>Content systems</h3>
+          <p>Content pillars, templates, production workflow, and repurpose rules across formats and channels.</p>
+        </div>
+        <div class="col-3 col-12 card" data-animate>
+          <h3>Social identity</h3>
+          <p>Positioning, voice rules, profile structure, and a repeatable posting framework tied to intent.</p>
         </div>
       </div>
+    </section>
 
-      <div class="grid-3">
-        <div class="card kls-reveal">
-          <div class="pill">Founders</div>
+    <!-- WHO WE SERVE -->
+    <section id="who" class="container" aria-labelledby="who-heading">
+      <h2 id="who-heading">Who We Serve</h2>
+      <p>Built for teams already in motion who want less guesswork and more signal. You need a message that stays consistent, assets that educate, and a plan that survives real execution.</p>
+      <div class="grid">
+        <div class="col-4 card" data-animate>
+          <h3>Founders</h3>
           <p>Turn opportunity into a productized offer with a clear path to first buyers.</p>
-          <ul>
+          <ul class="list">
             <li>Offer framing and product scope</li>
             <li>Digital product plan tied to buyer questions</li>
             <li>Landing page narrative and credibility signals</li>
             <li>Content topics built from demand signals</li>
           </ul>
         </div>
-
-        <div class="card kls-reveal">
-          <div class="pill">Operators</div>
+        <div class="col-4 card" data-animate>
+          <h3>Operators</h3>
           <p>Reduce rework, improve handoffs, and stabilize delivery under pressure.</p>
-          <ul>
+          <ul class="list">
             <li>Process mapping and decision rules</li>
             <li>Proof points and verification checkpoints</li>
             <li>Content workflow and weekly cadence</li>
             <li>Visibility into what is working and why</li>
           </ul>
         </div>
-
-        <div class="card kls-reveal">
-          <div class="pill">Small to mid-cap teams</div>
+        <div class="col-4 card" data-animate>
+          <h3>Small to mid-cap teams</h3>
           <p>Build a public presence that aligns sales, service delivery, and brand trust.</p>
-          <ul>
+          <ul class="list">
             <li>Website clarity pass and conversion fixes</li>
             <li>Service pages that match buyer intent</li>
             <li>Voice, tone, and identity rules for social</li>
@@ -515,32 +163,16 @@
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="gray" id="services">
-    <div class="wrap">
-      <h2 class="kls-reactive kls-bounce-section">Services</h2>
-      <p class="lead">
-        Clear deliverables, clean structure, and strong execution.
-        KLS builds digital assets that teach your market, strengthens the web surface where buyers decide, and sets up content systems that keep output consistent.
-      </p>
-
-      <div class="section-media kls-reveal kls-fade-img">
-        <div class="kls-parallax">
-          <img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card flip-card kls-reveal">
-          <div class="card-visual kls-fade-img">
-            <div class="kls-parallax">
-              <img alt="Strategy mapping image" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/>
-            </div>
-          </div>
+    <!-- SERVICES -->
+    <section id="services" class="container" aria-labelledby="services-heading">
+      <h2 id="services-heading">Services</h2>
+      <p>Clear deliverables, clean structure, and strong execution. KLS builds digital assets that teach your market, strengthens the web surface where buyers decide, and sets up content systems that keep output consistent.</p>
+      <div class="grid">
+        <div class="col-4 card" data-animate>
           <h3>Digital Product Creation</h3>
-          <ul>
+          <ul class="list">
             <li>Opportunity scan and topic selection</li>
             <li>Outline, structure, and delivery format</li>
             <li>Asset production plan and milestones</li>
@@ -548,15 +180,9 @@
             <li>Distribution structure for search and social</li>
           </ul>
         </div>
-
-        <div class="card flip-card kls-reveal">
-          <div class="card-visual kls-fade-img">
-            <div class="kls-parallax">
-              <img alt="Oversight design image" loading="lazy" src="assets/images/cards/card-oversight-design.jpg"/>
-            </div>
-          </div>
+        <div class="col-4 card" data-animate>
           <h3>Web Presence Enhancement</h3>
-          <ul>
+          <ul class="list">
             <li>Homepage clarity and section hierarchy</li>
             <li>Service positioning and buyer language</li>
             <li>Conversion flow fixes and CTA structure</li>
@@ -564,15 +190,9 @@
             <li>Mobile structure review and cleanup</li>
           </ul>
         </div>
-
-        <div class="card flip-card kls-reveal">
-          <div class="card-visual kls-fade-img">
-            <div class="kls-parallax">
-              <img alt="Platform advisory image" loading="lazy" src="assets/images/cards/card-platform-advisory.jpg"/>
-            </div>
-          </div>
+        <div class="col-4 card" data-animate>
           <h3>Content and Social Identity</h3>
-          <ul>
+          <ul class="list">
             <li>Voice rules and brand positioning</li>
             <li>Content pillars tied to intent</li>
             <li>Post templates and short form scripting</li>
@@ -582,420 +202,161 @@
         </div>
       </div>
 
-      <div class="grid-3">
-        <div class="card kls-reveal">
-          <div class="pill">What digital products do for you</div>
+      <div class="grid" style="margin-top:1rem;">
+        <div class="col-4 card" data-animate>
+          <h3>What digital products do for you</h3>
           <p>They answer buyer questions before the sales call. They reduce objections. They give your audience proof and structure.</p>
-          <ul>
+          <ul class="list">
             <li>Teach the market in your voice</li>
             <li>Turn knowledge into a sellable asset</li>
             <li>Support sales with a clear artifact</li>
           </ul>
         </div>
-
-        <div class="card kls-reveal">
-          <div class="pill">What web presence fixes do for you</div>
+        <div class="col-4 card" data-animate>
+          <h3>What web presence fixes do for you</h3>
           <p>They remove friction where decisions happen. They clarify what you do and who it is for.</p>
-          <ul>
+          <ul class="list">
             <li>Sharper message hierarchy</li>
             <li>Cleaner navigation paths</li>
             <li>Stronger trust and conversion signals</li>
           </ul>
         </div>
-
-        <div class="card kls-reveal">
-          <div class="pill">What identity consulting does for you</div>
+        <div class="col-4 card" data-animate>
+          <h3>What identity consulting does for you</h3>
           <p>It creates consistency across platforms so your content and your site reinforce the same story.</p>
-          <ul>
+          <ul class="list">
             <li>Stable voice and tone rules</li>
             <li>Repeatable posting system</li>
             <li>Positioning that holds under growth</li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="white" id="process">
-    <div class="wrap">
-      <h2 class="kls-reactive kls-bounce-section">How It Works</h2>
-      <p class="lead">
-        A short engagement designed to produce usable assets and a clear operating loop.
-        The goal is clarity, then production, then consistency.
-      </p>
-
-      <div class="section-media kls-reveal kls-fade-img">
-        <div class="kls-parallax">
-          <img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card kls-reveal">
-          <strong>1. Discovery</strong>
+    <!-- PROCESS -->
+    <section id="process" class="container" aria-labelledby="process-heading">
+      <h2 id="process-heading">How It Works</h2>
+      <p>A short engagement designed to produce usable assets and a clear operating loop. The goal is clarity, then production, then consistency.</p>
+      <div class="grid">
+        <div class="col-4 card" data-animate>
+          <h3>1. Discovery</h3>
           <p>Inventory your offer, audience, and existing assets. Identify gaps. Select the highest leverage path.</p>
-          <ul>
+          <ul class="list">
             <li>Offer and message review</li>
             <li>Buyer questions and topic map</li>
             <li>Priority list for the next build</li>
           </ul>
         </div>
-
-        <div class="card kls-reveal">
-          <strong>2. Build</strong>
+        <div class="col-4 card" data-animate>
+          <h3>2. Build</h3>
           <p>Produce the digital product structure and improve the web path where buyers decide.</p>
-          <ul>
+          <ul class="list">
             <li>Outline and asset plan</li>
             <li>Landing and site structure edits</li>
             <li>Templates for consistent publishing</li>
           </ul>
         </div>
-
-        <div class="card kls-reveal">
-          <strong>3. Operate</strong>
+        <div class="col-4 card" data-animate>
+          <h3>3. Operate</h3>
           <p>Set cadence, track signal, and iterate based on outcomes.</p>
-          <ul>
+          <ul class="list">
             <li>Publishing schedule and workflow</li>
             <li>Simple metrics and review loop</li>
             <li>Iteration rules tied to performance</li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="gray-dark" id="contact">
-    <div class="wrap">
-      <h2 class="kls-reactive kls-bounce-section">Contact</h2>
-      <p class="lead">
-        Share what you sell, who you serve, and what feels stuck.
-        KLS responds with a clear next-step plan, scoped deliverables, and a production path.
-      </p>
-
-      <div class="section-media kls-reveal kls-fade-img">
-        <div class="kls-parallax">
-          <img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/>
-        </div>
+    <!-- CONTACT -->
+    <section id="contact" class="container" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>Share what you sell, who you serve, and what feels stuck. KLS responds with a clear next-step plan, scoped deliverables, and a production path.</p>
+      <div class="card" data-animate>
+        <p><a href="mailto:info@knowleapstrategies.com">info@knowleapstrategies.com</a></p>
+        <p>1785 S King St Suite 3, Honolulu, HI 96826, USA</p>
       </div>
+    </section>
+  </main>
 
-      <a class="btn btn-primary kls-magnet" href="mailto:info@knowleapstrategies.com">
-        info@knowleapstrategies.com
-      </a>
-
-      <div class="footer-address">1785 S King St Suite 3, Honolulu, HI 96826, USA</div>
+  <footer>
+    <div class="container footer-inner">
+      <small>© Know Leap Strategies — 1785 S King St Suite 3, Honolulu, HI 96826, USA</small>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#who">Who</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+      </nav>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer>
-  <div class="wrap footer-inner">
-    <div>
-      © <span id="year"></span> Know Leap Strategies
-      <div class="footer-address">1785 S King St Suite 3, Honolulu, HI 96826, USA</div>
-    </div>
-    <div class="footer-links">
-      <a class="kls-magnet" href="#who">Who</a>
-      <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#contact">Contact</a>
-      <a class="kls-magnet" href="privacy.html">Privacy</a>
-      <a class="kls-magnet" href="terms.html">Terms</a>
-      <a class="kls-magnet" href="support.html">Support</a>
-    </div>
-  </div>
-</footer>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-4Jd8m0Sh8KJw7qzJ3Q3mJZcHj8pNwS2k7oP3uP4eNfTnYH9kQZ3l1YFvRk3kqJQm8qvYJvZb7kYq0wT0kB3P2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-tfQfRvQ5Gk1uY6n0WcVwOiuqG8nN7Q1b0Gv7r7bVDyS6oQYgB3bq7j9q4QFzYxQvYQnqvXwG3M1VYJtL2NnqQ3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Ensure GSAP loaded
+      if (!window.gsap) { console.warn('GSAP library failed to load.'); return; }
+      gsap.registerPlugin(ScrollTrigger);
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  (function () {
-    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
-
-    if (!window.gsap || !window.ScrollTrigger) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.defaults({ ease: "power3.out", duration: 0.9 });
-
-    const hoverOk = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    // Snaking noodles
-    const canvas = document.getElementById('noodle-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = document.documentElement.scrollHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const sections = ['h1', 'h2[class*="kls-bounce"]'];
-    let sectionPositions = [];
-
-    function updateSectionPositions() {
-      sectionPositions = [];
-      sections.forEach(sel => {
-        document.querySelectorAll(sel).forEach(el => {
-          const rect = el.getBoundingClientRect();
-          sectionPositions.push({
-            y: rect.top + window.scrollY + rect.height / 2,
-            x: window.innerWidth / 2
-          });
-        });
-      });
-    }
-
-    updateSectionPositions();
-    window.addEventListener('resize', updateSectionPositions);
-
-    let noodleOffset = 0;
-    
-    function drawNoodles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      if (sectionPositions.length < 2) return;
-
-      for (let i = 0; i < sectionPositions.length - 1; i++) {
-        const start = sectionPositions[i];
-        const end = sectionPositions[i + 1];
-        
-        const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
-        gradient.addColorStop(0, 'rgba(11, 18, 32, 0.15)');
-        gradient.addColorStop(0.5, 'rgba(71, 85, 105, 0.25)');
-        gradient.addColorStop(1, 'rgba(11, 18, 32, 0.15)');
-        
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 3;
-        ctx.lineCap = 'round';
-        
-        ctx.beginPath();
-        ctx.moveTo(start.x, start.y);
-        
-        const segments = 30;
-        for (let j = 0; j <= segments; j++) {
-          const t = j / segments;
-          const x = start.x + (end.x - start.x) * t;
-          const y = start.y + (end.y - start.y) * t;
-          
-          const waveOffset = Math.sin(t * Math.PI * 4 + noodleOffset) * 40;
-          const waveY = y + waveOffset;
-          
-          if (j === 0) {
-            ctx.moveTo(x, waveY);
-          } else {
-            ctx.lineTo(x, waveY);
-          }
-        }
-        
-        ctx.stroke();
-      }
-      
-      noodleOffset += 0.02;
-      requestAnimationFrame(drawNoodles);
-    }
-
-    drawNoodles();
-
-    function splitLetters(el) {
-      if (!el) return;
-      if (el.dataset.klsSplit === "1") return;
-
-      const text = (el.textContent || "").trimEnd();
-      el.textContent = "";
-
-      const frag = document.createDocumentFragment();
-      for (let i = 0; i < text.length; i++) {
-        const ch = text[i];
-        const span = document.createElement("span");
-        span.className = "kls-char";
-        span.textContent = ch === " " ? "\u00A0" : ch;
-        frag.appendChild(span);
-      }
-      el.appendChild(frag);
-      el.dataset.klsSplit = "1";
-      el.classList.add("kls-split");
-    }
-
-    function continuousBounceHeading(el, opts) {
-      splitLetters(el);
-      const chars = gsap.utils.toArray(".kls-char", el);
-      if (!chars.length) return;
-
-      const mid = (chars.length - 1) / 2;
-
-      // Bounce in on initial load and every scroll past
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 85%",
-        end: "bottom 15%",
-        onEnter: () => animateBounce(),
-        onEnterBack: () => animateBounce(),
-        onLeave: () => animateBounce(),
-        onLeaveBack: () => animateBounce()
+      // Intro animation for hero
+      gsap.from('.hero h1, .hero p, .hero .cta', {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.15
       });
 
-      function animateBounce() {
-        gsap.fromTo(
-          chars,
-          { opacity: 0, y: -100, filter: "blur(10px)" },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 1.2,
-            ease: "bounce.out",
-            stagger: 0.02,
-            overwrite: true
-          }
-        );
-      }
-
-      // Continuous wave and spread effect
-      gsap.to(chars, {
-        x: (i) => (i - mid) * 1.2,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-          end: "bottom 10%",
-          scrub: 0.6
-        }
-      });
-    }
-
-    const prog = document.querySelector(".kls-progress");
-    if (prog) {
-      gsap.to(prog, {
-        scaleX: 1,
-        ease: "none",
-        scrollTrigger: { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 0.25 }
-      });
-    }
-
-    const header = document.querySelector("header");
-    if (header) {
-      gsap.fromTo(
-        header,
-        { y: -18, opacity: 0, filter: "blur(8px)" },
-        { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8 }
-      );
-    }
-
-    const heroH1 = document.querySelector("h1");
-    if (heroH1) continuousBounceHeading(heroH1, { enterFrom: -140, enterDur: 1.4, stagger: 0.018, spread: 1.6 });
-
-    gsap.utils.toArray("h2.kls-bounce-section").forEach((el) => {
-      continuousBounceHeading(el, { enterFrom: -120, enterDur: 1.2, stagger: 0.016, spread: 1.1 });
-    });
-
-    const hero = document.querySelector(".hero-grid");
-    if (hero) {
-      const leadBlocks = hero.querySelectorAll(".lead");
-      const btns = hero.querySelectorAll(".btn");
-      const mediaWrap = hero.querySelector(".hero-media");
-
-      const tl = gsap.timeline({ delay: 0.12 });
-      tl.fromTo(leadBlocks, { y: 16, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.08, duration: 0.7 }, 0.0);
-      tl.fromTo(btns, { y: 10, opacity: 0, scale: 0.98 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: "back.out(1.6)" }, 0.2);
-      if (mediaWrap) tl.fromTo(mediaWrap, { y: 16, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8 }, 0.05);
-    }
-
-    gsap.utils.toArray(".kls-reveal").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { y: 22, opacity: 0, filter: "blur(12px)" },
-        {
-          y: 0,
-          opacity: 1,
-          filter: "blur(0px)",
-          scrollTrigger: { trigger: el, start: "top 84%", toggleActions: "play none none reverse" }
-        }
-      );
-    });
-
-    // Fade images in and out on scroll
-    gsap.utils.toArray(".kls-fade-img img").forEach((img) => {
-      gsap.fromTo(
-        img,
-        { opacity: 0 },
-        {
-          opacity: 1,
+      // Animate elements that have the data-animate attribute as they scroll into view
+      gsap.utils.toArray('[data-animate]').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          ease: 'power2.out',
           scrollTrigger: {
-            trigger: img,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play reverse play reverse"
+            trigger: el,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
           }
-        }
-      );
-    });
-
-    gsap.utils.toArray(".flip-card").forEach((card) => {
-      gsap.fromTo(
-        card,
-        { rotateY: 70, y: 26, opacity: 0, filter: "blur(12px)", transformPerspective: 1000 },
-        { rotateY: 0, y: 0, opacity: 1, filter: "blur(0px)", scrollTrigger: { trigger: card, start: "top 82%", toggleActions: "play none none reverse" } }
-      );
-
-      if (hoverOk) {
-        card.addEventListener("mousemove", (e) => {
-          const r = card.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - 0.5;
-          const py = (e.clientY - r.top) / r.height - 0.5;
-          gsap.to(card, { rotateX: (-py * 6), rotateY: (px * 7), duration: 0.25, ease: "power3.out" });
-        });
-        card.addEventListener("mouseleave", () => {
-          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.5, ease: "power3.out" });
-        });
-      }
-    });
-
-    function setPointerGlow(el, e) {
-      const r = el.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width) * 100;
-      const y = ((e.clientY - r.top) / r.height) * 100;
-      el.style.setProperty("--mx", x + "%");
-      el.style.setProperty("--my", y + "%");
-    }
-
-    // Magnetic buttons with elastic pull
-    function initMagnet() {
-      if (!hoverOk) return;
-
-      const items = document.querySelectorAll(".btn, .footer-links .kls-magnet");
-      if (!items.length) return;
-
-      items.forEach((el) => {
-        const strength = 0.35;
-
-        el.addEventListener("mousemove", (e) => {
-          setPointerGlow(el, e);
-
-          const r = el.getBoundingClientRect();
-          const x = e.clientX - r.left - r.width / 2;
-          const y = e.clientY - r.top - r.height / 2;
-          gsap.to(el, { x: x * strength, y: y * strength, duration: 0.3, ease: "power2.out" });
-        });
-
-        el.addEventListener("mouseleave", () => {
-          gsap.to(el, { x: 0, y: 0, duration: 0.65, ease: "elastic.out(1, 0.4)" });
-        });
-
-        el.addEventListener("pointerdown", () => {
-          gsap.to(el, { scale: 0.95, duration: 0.12, ease: "power2.out" });
-        });
-
-        el.addEventListener("pointerup", () => {
-          gsap.to(el, { scale: 1, duration: 0.25, ease: "elastic.out(1, 0.6)" });
         });
       });
-    }
 
-    initMagnet();
-  })();
-</script>
+      // Soft fade for whole sections
+      gsap.utils.toArray('section').forEach((sec) => {
+        gsap.from(sec, {
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: sec,
+            start: 'top 85%'
+          }
+        });
+      });
+
+      // Hide header on downward scroll, show on up
+      const header = document.querySelector('.site-header');
+      let lastY = 0;
+      ScrollTrigger.create({
+        start: 0,
+        end: 999999,
+        onUpdate: (self) => {
+          const y = self.scroll();
+          if (y > lastY && y > 120) {
+            header.classList.add('hide');
+          } else {
+            header.classList.remove('hide');
+          }
+          lastY = y;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
