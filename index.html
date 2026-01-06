@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Know Leap Strategies</title>
+<title>Know Leap Strategies | Clear Systems for Complex Decisions</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Digital products, web presence enhancement, content systems, and social identity consulting for startups and small to mid-cap teams." name="description"/>
+<meta content="Digital products, web presence enhancement, and strategic clarity for startups and small to mid-cap teams." name="description"/>
 <style>
     :root {
       --white: #ffffff;
@@ -14,12 +14,8 @@
       --ink: #0b1220;
       --muted: #475569;
       --border: rgba(11, 18, 32, 0.12);
-      --shadow: 0 10px 30px rgba(11, 18, 32, 0.08);
       --black-pearl: #0b0f14;
-      --black-pearl-2: #111820;
       --enlightenment-gray: #a6afb9;
-      --glow: rgba(166, 175, 185, 0.55);
-      --click: #343a40;
       --max: 1100px;
       --radius: 18px;
     }
@@ -28,20 +24,14 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, sans-serif;
       color: var(--ink);
       background: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 
     header {
       position: sticky;
@@ -49,132 +39,92 @@
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      z-index: 20;
+      z-index: 100;
     }
 
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      gap: 1rem;
-    }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-    }
-
-    /* 4.) Gradient Underline Animation */
+    /* 4.) Navigation Gradient Underlines */
     nav a {
       position: relative;
-      margin-left: 1.25rem;
+      margin-left: 1.5rem;
       font-size: 0.9rem;
       color: var(--muted);
-      display: inline-flex;
-      align-items: center;
+      text-decoration: none;
       padding-bottom: 4px;
     }
     nav a::after {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
       width: 100%;
       height: 2px;
+      bottom: 0;
+      left: 0;
       background: linear-gradient(90deg, var(--black-pearl), var(--enlightenment-gray), var(--black-pearl));
       transform: scaleX(0);
       transform-origin: bottom right;
-      transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+      transition: transform 0.4s ease;
     }
-    nav a:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
+    nav a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
     .btn {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
       font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid transparent;
-      user-select: none;
+      background: var(--black-pearl);
+      color: white;
+      text-decoration: none;
     }
 
-    .btn-primary { background: var(--black-pearl); color: #ffffff; }
-    .btn-outline { border-color: var(--border); color: var(--ink); background: #ffffff; }
+    main section { padding: 6rem 0; position: relative; z-index: 2; }
+    .gray-bg { background: var(--gray-50); }
+    .white-bg { background: var(--white); }
 
-    main section { padding: 4rem 0; position: relative; z-index: 2; }
-    section.white { background: var(--white); }
-    section.gray-light { background: var(--gray-50); }
-    section.gray { background: var(--gray-100); }
-    section.gray-dark { background: var(--gray-200); }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem; }
 
-    h1 { font-size: clamp(2.2rem, 3vw + 1rem, 3rem); line-height: 1.1; margin: 0 0 1rem; }
-    h2 { font-size: 1.6rem; margin: 0 0 0.5rem; }
+    p.lead { font-size: 1.2rem; color: var(--muted); max-width: 800px; margin-bottom: 2rem; }
+    .content-block { margin-bottom: 3rem; }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2.5rem;
-      align-items: start;
+    /* Image Styling with requested Black Border */
+    .img-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid var(--black-pearl); /* Requested black border */
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin: 2rem 0;
     }
+    .img-wrap img { width: 100%; display: block; will-change: transform; }
 
-    .card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: 0 12px 24px rgba(11, 18, 32, 0.04);
-    }
-
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
-
-    /* 5.) Animated Noodle Styles */
+    /* 5.) Noodle Canvas */
     #noodle-svg {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 1;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1;
     }
-    .noodle-path {
-      fill: none;
-      stroke: var(--enlightenment-gray);
-      stroke-width: 2.5;
-      stroke-dasharray: 8 8;
-      opacity: 0.35;
-    }
+    .noodle-path { fill: none; stroke: var(--enlightenment-gray); stroke-width: 2; opacity: 0.3; }
 
-    .kls-char { display: inline-block; will-change: transform, opacity; }
+    .kls-char { display: inline-block; will-change: transform; }
 
-    footer { background: var(--gray-100); border-top: 1px solid var(--border); padding: 3rem 0; }
-    .footer-links { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+    footer { padding: 4rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
+    .footer-links { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
 </style>
 </head>
 
 <body>
-<div aria-hidden="true" class="kls-progress" style="position:fixed; top:0; left:0; height:3px; background:var(--black-pearl); width:0%; z-index:1000;"></div>
+<div class="kls-progress" style="position:fixed; top:0; left:0; height:4px; background:var(--black-pearl); width:0%; z-index:1000;"></div>
 
 <header>
   <div class="wrap nav">
-    <div class="brand">
-      <img alt="Logo" src="assets/images/brand/kls-logo-primary.svg" style="width:24px;"/>
-      <span>Know Leap Strategies</span>
-    </div>
+    <div class="brand"><strong>KNOW LEAP</strong></div>
     <nav>
-      <a class="kls-magnet" href="#who">Who We Serve</a>
+      <a class="kls-magnet" href="#who">Who</a>
       <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#process">Process</a>
-      <a class="btn btn-primary kls-magnet" href="#contact">Start Here</a>
+      <a class="kls-magnet" href="#case-study">Case Study</a>
+      <a class="btn kls-magnet" href="#contact">Start Here</a>
     </nav>
   </div>
 </header>
@@ -182,64 +132,79 @@
 <main style="position: relative;">
   <svg id="noodle-svg"><path class="noodle-path" d=""></path></svg>
 
-  <section class="white">
-    <div class="wrap hero-grid">
-      <div>
-        <h1 class="kls-bounce">Clear Systems for Complex Decisions</h1>
-        
-        <p class="lead" style="max-width: 44rem; color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem;">
-          Know Leap Strategies shines a light on business opportunity for startups and small to mid-cap teams. 
-          We turn raw ideas into clear offers, then build the assets that help buyers understand and trust what you sell.
-        </p>
-        <p class="lead" style="max-width: 44rem; color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem;">
-          KLS specializes in digital products that teach your market. These products create clarity, reduce friction, and support your sales process with tangible proof.
-        </p>
-
-        <div style="margin-top:1.5rem;">
-          <a class="btn btn-primary kls-magnet" href="#contact">Request a call</a>
-          <a class="btn btn-outline kls-magnet" href="#services" style="margin-left:0.75rem;">Explore services</a>
-        </div>
-      </div>
-      <div class="card hero-media">
-        <img alt="Strategy Planning" class="gsap-img" src="assets/images/sections/hero-strategy.jpeg" style="width:100%; border-radius:12px;">
+  <section class="white-bg">
+    <div class="wrap">
+      <h1 class="kls-bounce">Clear Systems for Complex Decisions</h1>
+      <p class="lead">
+        Know Leap Strategies operates at the intersection of clarity and execution. For startups and mid-cap teams, the greatest risk isn't a lack of ideas—it’s the friction of communicating them.
+      </p>
+      <p>
+        We specialize in eliminating that friction by building the digital infrastructure and educational products that do the heavy lifting for your sales team. We turn high-stakes ideas into high-trust assets.
+      </p>
+      <div class="img-wrap kls-parallax">
+        <img src="assets/images/sections/hero-strategy.jpeg" alt="Strategic Planning" class="gsap-img">
       </div>
     </div>
   </section>
 
-  <section class="gray-light" id="who">
+  <section id="who" class="gray-bg">
     <div class="wrap">
       <h2 class="kls-bounce">Who We Serve</h2>
-      <p class="lead" style="max-width: 44rem; color: var(--muted);">
-        Built for teams already in motion who want less guesswork and more signal. You need a message that stays consistent, assets that educate, and a plan that survives real execution.
-      </p>
-      <img alt="Who" class="gsap-img" src="assets/images/sections/section-who-clients.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
+      <div class="content-block">
+        <h3>Founders in Pursuit of Product-Market Fit</h3>
+        <p>You have the vision, but your market is confused. We help you "productize" your expertise into tangible guides and toolkits that prove your value before a contract is ever signed.</p>
+        
+        <h3>Operators Scaling Under Pressure</h3>
+        <p>Growth creates chaos. We step in to map your decision rules and build the content workflows that ensure your brand voice doesn't break as your team expands.</p>
+        
+        <h3>Mid-Cap Teams Optimizing for Trust</h3>
+        <p>When the stakes are high, buyers look for credibility signals. We audit your web presence to ensure every page, navigation path, and case study reinforces a single, stable narrative.</p>
+      </div>
+      <div class="img-wrap">
+        <img src="assets/images/sections/section-who-clients.jpg" alt="Clients" class="gsap-img">
+      </div>
     </div>
   </section>
 
-  <section class="gray" id="services">
+  <section id="services" class="white-bg">
     <div class="wrap">
-      <h2 class="kls-bounce">Services</h2>
-      <p class="lead" style="max-width: 44rem; color: var(--muted);">
-        Clear deliverables, clean structure, and strong execution. KLS builds digital assets that teach your market and strengthens the web surface where buyers decide.
-      </p>
-      <img alt="Services" class="gsap-img" src="assets/images/sections/section-services-framework.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
+      <h2 class="kls-bounce">Services & Digital Products</h2>
+      <p class="lead">We build "Trust Artifacts"—the checklists, playbooks, and resource libraries that make your complex service feel simple and "buyable."</p>
+      
+      <div class="content-block">
+        <h3>Digital Product Creation</h3>
+        <p>Topic mapping, outlines, asset production, and landing page copy. We build products that answer buyer questions before the sales call, reducing objections and providing structure.</p>
+        
+        <h3>Web Presence Enhancement</h3>
+        <p>Clarity pass, navigation hierarchy, offer framing, and conversion improvements. We remove friction where decisions happen, clarifying exactly what you do and who it is for.</p>
+      </div>
+      <div class="img-wrap">
+        <img src="assets/images/sections/section-services-framework.jpg" alt="Framework" class="gsap-img">
+      </div>
     </div>
   </section>
 
-  <section class="white" id="process">
+  <section id="case-study" class="gray-bg">
     <div class="wrap">
-      <h2 class="kls-bounce">How It Works</h2>
-      <p class="lead" style="max-width: 44rem; color: var(--muted);">
-        A short engagement designed to produce usable assets and a clear operating loop. The goal is clarity, then production, then consistency.
+      <h2 class="kls-bounce">Case Study: The Clarity Overhaul</h2>
+      <p class="lead">How a mid-cap SaaS team reduced their sales cycle by 30% through strategic asset architecture.</p>
+      <p>
+        <strong>The Problem:</strong> The client had a world-class product but a high-friction sales process. Potential buyers were overwhelmed by technical complexity.
       </p>
-      <img alt="Process" class="gsap-img" src="assets/images/sections/section-process-flow.jpg" style="width:100%; margin: 2rem 0; border-radius:12px;">
+      <p>
+        <strong>The KLS Solution:</strong> We audited their buyer journey and identified three "Dark Zones." We produced a suite of Digital Products—a Buyer's Guide, a Deployment Roadmap, and a Readiness Checklist—that educated the market in the founder's voice.
+      </p>
+      <p>
+        <strong>The Outcome:</strong> By providing these high-trust assets early in the funnel, the team saw a 40% increase in lead quality and a significant reduction in repeat questions during discovery calls.
+      </p>
     </div>
   </section>
 
-  <section class="gray-dark" id="contact">
+  <section id="contact" class="white-bg">
     <div class="wrap">
       <h2 class="kls-bounce">Contact</h2>
-      <a class="btn btn-primary kls-magnet" href="mailto:info@knowleapstrategies.com">info@knowleapstrategies.com</a>
+      <p class="lead">Share what you sell, who you serve, and what feels stuck. We respond with a clear next-step plan.</p>
+      <a class="btn kls-magnet" href="mailto:info@knowleapstrategies.com">Request a Call</a>
     </div>
   </section>
 </main>
@@ -250,7 +215,7 @@
     <div class="footer-links">
       <a class="kls-magnet" href="#who">Who</a>
       <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#contact">Contact</a>
+      <a class="kls-magnet" href="#case-study">Case Study</a>
       <a class="kls-magnet" href="privacy.html">Privacy</a>
       <a class="kls-magnet" href="terms.html">Terms</a>
       <a class="kls-magnet" href="support.html">Support</a>
@@ -265,90 +230,58 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   gsap.registerPlugin(ScrollTrigger);
 
-  // 2.) Weighty Bounce Animation
-  function initBounce() {
-    document.querySelectorAll(".kls-bounce").forEach(h => {
-      const text = h.innerText;
-      h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-      
-      const chars = h.querySelectorAll(".kls-char");
-      gsap.from(chars, {
-        scrollTrigger: {
-          trigger: h,
-          start: "top 90%",
-          toggleActions: "play none none reverse"
-        },
-        y: -150,
-        opacity: 0,
-        stagger: 0.04,
-        duration: 1.4,
-        ease: "bounce.out"
+  // 1. Weighty Header Bounce
+  document.querySelectorAll(".kls-bounce").forEach(h => {
+    const text = h.innerText;
+    h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    gsap.from(h.querySelectorAll(".kls-char"), {
+      scrollTrigger: { trigger: h, start: "top 85%", toggleActions: "play none none reverse" },
+      y: -150, opacity: 0, stagger: 0.04, duration: 1.2, ease: "bounce.out"
+    });
+  });
+
+  // 2. Magnetic Pull for Buttons & IMAGES
+  function applyMagnet(targets, strength) {
+    targets.forEach(el => {
+      el.addEventListener("mousemove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * strength;
+        const y = (e.clientY - r.top - r.height / 2) * strength;
+        gsap.to(el, { x, y, duration: 0.6, ease: "power2.out" });
+      });
+      el.addEventListener("mouseleave", () => {
+        gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
       });
     });
   }
+  applyMagnet(document.querySelectorAll(".kls-magnet"), 0.4);
+  applyMagnet(document.querySelectorAll(".img-wrap"), 0.15); // Slight shift on image hover
 
-  // 3.) Magnetic Cursor Pull
-  function initMagnets() {
-    document.querySelectorAll(".kls-magnet").forEach(m => {
-      m.addEventListener("mousemove", (e) => {
-        const r = m.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width / 2;
-        const y = e.clientY - r.top - r.height / 2;
-        gsap.to(m, { x: x * 0.4, y: y * 0.4, duration: 0.6, ease: "elastic.out(1, 0.3)" });
-      });
-      m.addEventListener("mouseleave", () => {
-        gsap.to(m, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-      });
-    });
-  }
-
-  // 5.) Animated Snaking Noodle
+  // 3. Noodle Path Logic
   const noodlePath = document.querySelector('.noodle-path');
-  function animateNoodle() {
+  function updateNoodle() {
     const sections = document.querySelectorAll('section');
-    let d = `M ${window.innerWidth / 2} 0`;
-    
-    sections.forEach((sec, i) => {
-      const rect = sec.getBoundingClientRect();
-      const y = sec.offsetTop + rect.height / 2;
+    let d = `M ${window.innerWidth/2} 0`;
+    sections.forEach((s, i) => {
+      const y = s.offsetTop + s.offsetHeight/2;
       const x = (i % 2 === 0) ? window.innerWidth * 0.1 : window.innerWidth * 0.9;
-      d += ` Q ${window.innerWidth / 2} ${sec.offsetTop}, ${x} ${y}`;
+      d += ` Q ${window.innerWidth/2} ${s.offsetTop}, ${x} ${y}`;
     });
-    
-    // Animate the path drawing on scroll
-    gsap.to(noodlePath, {
-      attr: { d: d },
-      ease: "none",
-      scrollTrigger: {
-        trigger: "main",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.5
-      }
-    });
+    noodlePath.setAttribute('d', d);
   }
+  window.addEventListener('scroll', updateNoodle);
+  updateNoodle();
 
-  // 6.) Image Fade
+  // 4. Image Scroll Fade
   gsap.utils.toArray(".gsap-img").forEach(img => {
     gsap.fromTo(img, { opacity: 0, filter: "blur(8px)" }, {
       opacity: 1, filter: "blur(0px)",
-      scrollTrigger: {
-        trigger: img,
-        start: "top 85%",
-        toggleActions: "play none none reverse"
-      }
+      scrollTrigger: { trigger: img, start: "top 90%", toggleActions: "play none none reverse" }
     });
   });
 
-  initBounce();
-  initMagnets();
-  animateNoodle();
-  window.addEventListener('resize', animateNoodle);
-
-  gsap.to(".kls-progress", {
-    width: "100%", ease: "none",
-    scrollTrigger: { scrub: 0.3 }
-  });
+  // 5. Progress Bar
+  gsap.to(".kls-progress", { width: "100%", ease: "none", scrollTrigger: { scrub: 0.3 } });
 </script>
 </body>
 </html>
