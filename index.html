@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Know Leap Strategies | Clear Systems for Complex Decisions</title>
+<title>Know Leap Strategies | Systems Defining Clarity</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Digital products, web presence enhancement, and strategic clarity for startups and small to mid-cap teams." name="description"/>
 <style>
@@ -44,7 +44,9 @@
 
     .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
 
-    /* 4.) Navigation Gradient Underlines */
+    /* Logo restoration */
+    .brand { font-weight: 800; letter-spacing: 1px; color: var(--black-pearl); text-decoration: none; }
+
     nav a {
       position: relative;
       margin-left: 1.5rem;
@@ -88,18 +90,16 @@
     p.lead { font-size: 1.2rem; color: var(--muted); max-width: 800px; margin-bottom: 2rem; }
     .content-block { margin-bottom: 3rem; }
 
-    /* Image Styling with requested Black Border */
     .img-wrap {
       position: relative;
       overflow: hidden;
       border-radius: 12px;
-      border: 2px solid var(--black-pearl); /* Requested black border */
+      border: 2px solid var(--black-pearl);
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
       margin: 2rem 0;
     }
     .img-wrap img { width: 100%; display: block; will-change: transform; }
 
-    /* 5.) Noodle Canvas */
     #noodle-svg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -119,7 +119,7 @@
 
 <header>
   <div class="wrap nav">
-    <div class="brand"><strong>KNOW LEAP</strong></div>
+    <div class="brand">KNOW LEAP STRATEGIES</div>
     <nav>
       <a class="kls-magnet" href="#who">Who</a>
       <a class="kls-magnet" href="#services">Services</a>
@@ -134,7 +134,7 @@
 
   <section class="white-bg">
     <div class="wrap">
-      <h1 class="kls-bounce">Clear Systems for Complex Decisions</h1>
+      <h1 class="kls-bounce">Systems Defining Clarity</h1>
       <p class="lead">
         Know Leap Strategies operates at the intersection of clarity and execution. For startups and mid-cap teams, the greatest risk isn't a lack of ideas—it’s the friction of communicating them.
       </p>
@@ -255,7 +255,7 @@
     });
   }
   applyMagnet(document.querySelectorAll(".kls-magnet"), 0.4);
-  applyMagnet(document.querySelectorAll(".img-wrap"), 0.15); // Slight shift on image hover
+  applyMagnet(document.querySelectorAll(".img-wrap"), 0.15);
 
   // 3. Noodle Path Logic
   const noodlePath = document.querySelector('.noodle-path');
