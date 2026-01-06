@@ -8,328 +8,279 @@
 <style>
     :root {
       --white: #ffffff;
-      --black: #000000;
-      --gray-100: #f1f5f9;
-      --gray-200: #e2e8f0;
+      --gray-50: #f7f8fa;
+      --gray-100: #eef0f3;
+      --gray-200: #e4e7ec;
       --ink: #0f172a;
-      --muted: #64748b;
-      --border: rgba(0, 0, 0, 0.1);
-      --max: 1200px;
-      --radius: 24px;
+      --muted: #475569;
+      --border: rgba(15, 23, 42, 0.12);
+      
+      /* Rebranded Colors */
+      --black: #000000;
+      --gray-hover: #333333;
+      --click-highlight: #555555;
+
+      --max: 1100px;
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background: var(--white);
-      line-height: 1.5;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 
-    /* --- NAVIGATION --- */
     header {
-      position: fixed;
-      top: 0; width: 100%;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      z-index: 1000;
+      z-index: 100;
     }
 
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-    .brand { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-    
-    /* --- BUTTONS (Black & White Rebrand) --- */
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; font-size: 0.85rem; }
+    .logo { width: 24px; height: 24px; }
+
+    nav a { margin-left: 1.25rem; font-size: 0.9rem; color: var(--muted); transition: color 0.3s; }
+    nav a:hover { color: var(--black); }
+
+    /* Updated Buttons: Black & White */
     .btn {
       display: inline-flex;
       align-items: center;
-      padding: 0.8rem 1.8rem;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
       border-radius: 999px;
       font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 0.9rem;
+      border: 1px solid transparent;
       cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
     }
 
-    .btn-primary {
-      background: var(--black);
-      color: var(--white);
-      border: 1px solid var(--black);
-    }
+    .btn-primary { background: var(--black); color: #ffffff; }
+    .btn-primary:active { background: var(--click-highlight); }
+    .btn-outline { border-color: var(--border); color: var(--ink); background: #ffffff; }
 
-    .btn-primary:hover {
-      background: #333;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
+    main section { padding: 6rem 0; }
+    section.white { background: var(--white); }
+    section.gray-light { background: var(--gray-50); }
+    section.gray { background: var(--gray-100); }
+    section.gray-dark { background: var(--gray-200); }
 
-    .btn-primary:active {
-      background: #555; /* Gray hue highlight on click */
-      transform: scale(0.95);
-    }
+    h1 { font-size: clamp(2.2rem, 3vw + 1rem, 3rem); line-height: 1.1; margin: 0 0 1rem; }
+    h2 { font-size: 2rem; margin: 0 0 1rem; }
+    p.lead { max-width: 42rem; color: var(--muted); font-size: 1.1rem; }
 
-    /* --- HERO --- */
-    .hero { padding: 12rem 0 6rem; }
-    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-    .hero p { font-size: 1.25rem; color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; }
-
-    /* --- STICKY SECTION (Sticky-06 Logic) --- */
-    .sticky-container {
-      position: relative;
-      display: flex;
-      gap: 4rem;
-    }
-
-    .sticky-text-col {
-      width: 45%;
-    }
-
-    .text-block {
-      min-height: 80vh; /* Ensures enough scroll space for the eye to track images */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 10vh 0;
-    }
-
-    .pill {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .sticky-visual-col {
-      position: sticky;
-      top: 0;
-      width: 55%;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .image-main-wrapper {
-      position: relative;
-      width: 100%;
-      height: 70vh;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--gray-100);
-      box-shadow: 0 40px 100px rgba(0,0,0,0.15);
-    }
-
-    .sticky-img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      will-change: transform, opacity, filter;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      border-radius: 16px;
-      margin-top: 1.5rem;
-    }
-
-    /* --- FOOTER --- */
-    footer { padding: 6rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
-    .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
-    .address { color: var(--muted); margin-top: 1rem; font-style: normal; line-height: 1.8; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: start; }
+    .card { background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
 
     @media (max-width: 900px) {
-      .sticky-container { flex-direction: column; }
-      .sticky-text-col, .sticky-visual-col { width: 100%; }
-      .sticky-visual-col { height: 50vh; position: relative; }
-      .text-block { min-height: auto; padding: 4rem 0; }
+      .hero-grid, .grid-3 { grid-template-columns: 1fr; }
+      nav { display: none; }
     }
+
+    /* Media Styling */
+    .hero-media img, .section-media img, .card-visual img {
+      width: 100%; object-fit: cover; border-radius: 14px; display: block;
+    }
+    .section-media { margin-top: 2rem; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .section-media img { height: 400px; }
+
+    /* Animation Classes */
+    .kls-char { display: inline-block; will-change: transform, opacity; }
+    .kls-reveal-img { will-change: transform, opacity, filter; }
+
+    footer { background: var(--gray-100); border-top: 1px solid var(--border); padding: 4rem 0; font-size: 0.9rem; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap nav">
-    <div class="brand">
-        <img alt="KLS Logo" src="assets/images/brand/kls-logo-primary.svg" width="24"/>
-        <span>Know Leap Strategies</span>
-    </div>
-    <nav>
-        <a class="btn btn-primary" href="#contact">Get Started</a>
-    </nav>
-  </div>
+<div class="wrap nav">
+<div class="brand"><img alt="KLS logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/><span class="brand-text">Know Leap Strategies</span></div>
+<nav>
+<a href="#who">Who We Serve</a>
+<a href="#services">Services</a>
+<a href="#process">Process</a>
+<a class="magnetic btn btn-primary" href="#contact">Start Here</a>
+</nav>
+</div>
 </header>
 
 <main>
-  <section class="hero wrap">
-    <h1>Clear systems for<br>complex decisions.</h1>
-    <p>Strategy, oversight, and execution design built to replace guesswork with proof and make progress predictable.</p>
-    <a class="btn btn-primary" href="#contact">Request a Call</a>
-  </section>
+<section class="white">
+<div class="wrap hero-grid">
+<div>
+<h1 class="bounce-text">Clear systems for complex decisions.</h1>
+<p class="lead">Strategy, oversight, and execution design. Built to replace guesswork with proof, and make progress predictable.</p>
+<div style="margin-top:1.5rem;">
+<a class="magnetic btn btn-primary" href="#contact">Request a call</a>
+<a class="magnetic btn btn-outline" href="#services" style="margin-left:0.75rem;">Explore services</a>
+</div>
+</div>
+<div class="card hero-media kls-reveal-img">
+    <img alt="Strategy" src="assets/images/sections/hero-strategy.jpeg"/>
+    <div style="margin-top:10px; font-weight:700;">Proof first. Calm execution.</div>
+</div>
+</div>
+</section>
 
-  <div class="wrap sticky-container">
-    <div class="sticky-text-col">
-        <div class="text-block" id="who">
-            <div class="pill">01 / Who We Serve</div>
-            <h2>Built for leaders in motion.</h2>
-            <p>We serve decision-makers who want fewer surprises and cleaner execution. Whether you're a founder or an operator, we provide the systems to hold pressure.</p>
-            <div class="card">
-                <strong>Founders & Operators</strong>
-                <p>Turning ideas into products and accountability loops that actually work.</p>
-            </div>
-        </div>
+<section class="gray-light" id="who">
+<div class="wrap">
+<h2 class="bounce-text">Who We Serve</h2>
+<p class="lead">Built for people already in motion who want fewer surprises and cleaner execution.</p>
+<div class="section-media kls-reveal-img">
+    <img alt="Who" src="assets/images/sections/section-who-clients.jpg"/>
+</div>
+<div class="grid-3">
+<div class="card"><strong>Leaders</strong><p>Decision-makers seeking measurable outcomes.</p></div>
+<div class="card"><strong>Operators</strong><p>Teams needing repeatable systems.</p></div>
+<div class="card"><strong>Founders</strong><p>Builders turning ideas into products.</p></div>
+</div>
+</div>
+</section>
 
-        <div class="text-block" id="services">
-            <div class="pill">02 / Services</div>
-            <h2>Three lanes. Clear outcomes.</h2>
-            <p>Our frameworks are built for speed and real-world follow-through.</p>
-            <div class="card">
-                <h3>Strategy Mapping</h3>
-                <p>Clarity on risks and execution paths before you commit capital.</p>
-            </div>
-            <div class="card">
-                <h3>Oversight Design</h3>
-                <p>Field verification and proof frameworks to ensure work is done right.</p>
-            </div>
-        </div>
+<section class="gray" id="services">
+<div class="wrap">
+<h2 class="bounce-text">Services</h2>
+<p class="lead">Three lanes. Clear deliverables. Built for speed and accountability.</p>
+<div class="section-media kls-reveal-img">
+    <img alt="Services" src="assets/images/sections/section-services-framework.jpg"/>
+</div>
+<div class="grid-3">
+<div class="card"><h3>Strategy Mapping</h3><p>Decision clarity and risk IDs.</p></div>
+<div class="card"><h3>Oversight Design</h3><p>Field verification and proof.</p></div>
+<div class="card"><h3>Platform Advisory</h3><p>User flows and scalability.</p></div>
+</div>
+</div>
+</section>
 
-        <div class="text-block" id="process">
-            <div class="pill">03 / Process</div>
-            <h2>How It Works</h2>
-            <p>A structured, short-term engagement designed to produce immediate clarity.</p>
-            <div class="card">
-                <strong>1. Discovery:</strong> Understand context.
-            </div>
-            <div class="card">
-                <strong>2. Design:</strong> Create systems that match reality.
-            </div>
-            <div class="card">
-                <strong>3. Support:</strong> Involved execution unfolding.
-            </div>
-        </div>
-    </div>
+<section class="white" id="process">
+<div class="wrap">
+<h2 class="bounce-text">How It Works</h2>
+<p class="lead">A short engagement designed to produce a usable plan and a verification loop.</p>
+<div class="section-media kls-reveal-img">
+    <img alt="Process" src="assets/images/sections/section-process-flow.jpg"/>
+</div>
+<div class="grid-3">
+<div class="card"><strong>1. Discovery</strong></div>
+<div class="card"><strong>2. Design</strong></div>
+<div class="card"><strong>3. Support</strong></div>
+</div>
+</div>
+</section>
 
-    <div class="sticky-visual-col">
-        <div class="image-main-wrapper">
-            <img class="sticky-img" src="assets/images/sections/section-who-clients.jpg" alt="Clients">
-            <img class="sticky-img" src="assets/images/sections/section-services-framework.jpg" alt="Services">
-            <img class="sticky-img" src="assets/images/sections/section-process-flow.jpg" alt="Process">
-        </div>
-    </div>
-  </div>
-
-  <section id="contact" style="padding: 10rem 0; text-align: center; background: #fafafa;">
-    <div class="wrap">
-        <div class="pill">Contact</div>
-        <h2 style="font-size: 3rem;">Ready to begin?</h2>
-        <p style="margin-bottom: 2rem;">We'll map the fastest path forward.</p>
-        <a class="btn btn-primary" href="mailto:info@knowleapstrategies.com">info@knowleapstrategies.com</a>
-    </div>
-  </section>
+<section class="gray-dark" id="contact" style="text-align:center;">
+<div class="wrap">
+<h2 class="bounce-text">Contact</h2>
+<p class="lead">We’ll map the fastest path forward.</p>
+<a class="magnetic btn btn-primary" href="mailto:info@knowleapstrategies.com" style="margin-top:2rem; padding: 1rem 3rem;">
+    info@knowleapstrategies.com
+</a>
+</div>
+</section>
 </main>
 
 <footer>
-  <div class="wrap footer-grid">
-    <div>
-        <div class="brand">Know Leap Strategies</div>
-        <address class="address">
-            1785 S King St Suite 3<br>
-            Honolulu, HI 96826, USA
-        </address>
-    </div>
-    <div style="display: flex; gap: 3rem;">
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <strong>Navigation</strong>
-            <a href="#who">Who</a>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <strong>Copyright</strong>
-            <span>© <span id="year"></span> KLS</span>
-        </div>
-    </div>
-  </div>
+<div class="wrap footer-inner">
+<div>
+    © <span id="year"></span> Know Leap Strategies<br>
+    <div style="margin-top:8px; opacity:0.7;">1785 S King St Suite 3, Honolulu, HI 96826, USA</div>
+</div>
+<nav>
+<a href="#who">Who</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
-    // Set Year
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Register Plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    // GSAP Sticky-06 Animation Logic
-    const sections = gsap.utils.toArray(".text-block");
-    const images = gsap.utils.toArray(".sticky-img");
+    // --- 1. STAGGERED BOUNCE TEXT ---
+    function initBounceText() {
+        gsap.utils.toArray(".bounce-text").forEach(el => {
+            const text = el.textContent;
+            el.textContent = "";
+            text.split("").forEach(char => {
+                const span = document.createElement("span");
+                span.className = "kls-char";
+                span.textContent = char === " " ? "\u00A0" : char;
+                el.appendChild(span);
+            });
 
-    // 1. Initial State: Hide all images except the first one
-    gsap.set(images, { opacity: 0, scale: 1.15, filter: "blur(10px)", zIndex: 1 });
-    gsap.set(images[0], { opacity: 1, scale: 1, filter: "blur(0px)", zIndex: 2 });
+            gsap.from(el.querySelectorAll(".kls-char"), {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: -100,
+                opacity: 0,
+                stagger: 0.02,
+                duration: 1.2,
+                ease: "bounce.out"
+            });
+        });
+    }
 
-    // 2. Loop through sections to create transitions
-    sections.forEach((section, i) => {
-        
-        // Trigger for bringing image IN
-        ScrollTrigger.create({
-            trigger: section,
-            start: "top center", 
-            end: "bottom center",
-            onToggle: self => {
-                if (self.isActive) {
-                    // Animate current image to focus
-                    gsap.to(images[i], {
-                        opacity: 1,
-                        scale: 1,
-                        filter: "blur(0px)",
-                        zIndex: 10,
-                        duration: 1,
-                        ease: "expo.out",
-                        overwrite: true
-                    });
-                } else {
-                    // Push current image away
-                    gsap.to(images[i], {
-                        opacity: 0,
-                        scale: 0.9,
-                        filter: "blur(10px)",
-                        zIndex: 1,
-                        duration: 1,
-                        ease: "expo.out",
-                        overwrite: true
-                    });
+    // --- 2. MAGNETIC BUTTONS ---
+    function initMagneticButtons() {
+        const btns = document.querySelectorAll(".magnetic");
+        btns.forEach(btn => {
+            btn.addEventListener("mousemove", (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: "power2.out" });
+            });
+            btn.addEventListener("mouseleave", () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+    }
+
+    // --- 3. IMAGE REVEALS ON SCROLL ---
+    function initImageReveals() {
+        gsap.utils.toArray(".kls-reveal-img img").forEach(img => {
+            gsap.fromTo(img, 
+                { opacity: 0, scale: 1.15, filter: "blur(10px)", y: 50 },
+                {
+                    opacity: 1, scale: 1, filter: "blur(0px)", y: 0,
+                    duration: 1.5,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
                 }
-            }
+            );
         });
-    });
+    }
 
-    // 3. Optional Parallax for the Text Cards
-    gsap.utils.toArray(".card").forEach(card => {
-        gsap.from(card, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            scrollTrigger: {
-                trigger: card,
-                start: "top 90%",
-                toggleActions: "play none none reverse"
-            }
-        });
-    });
-
+    // Initialize all
+    window.onload = () => {
+        initBounceText();
+        initMagneticButtons();
+        initImageReveals();
+    };
 </script>
 </body>
 </html>
