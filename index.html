@@ -4,23 +4,14 @@
 <meta charset="utf-8"/>
 <title>Know Leap Strategies | Clear Systems for Complex Decisions</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Digital products, web presence enhancement, and strategic clarity for startups and small to mid-cap teams." name="description"/>
 <style>
     :root {
       --white: #ffffff;
       --gray-50: #f7f8fa;
-      --gray-100: #eef0f3;
-      --gray-200: #e4e7ec;
       --ink: #0b1220;
-      --muted: #475569;
-      --border: rgba(11, 18, 32, 0.12);
       --black-pearl: #0b0f14;
-      --enlightenment-gray: #a6afb9;
       --max: 1100px;
-      --radius: 18px;
     }
-
-    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -31,97 +22,61 @@
       overflow-x: hidden;
     }
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 5; }
+    /* THE PROGRESS BAR */
+    .kls-progress {
+      position: fixed;
+      top: 0; left: 0; height: 4px;
+      background: var(--black-pearl);
+      width: 0%; z-index: 2000;
+    }
+
+    /* THE WORM/NOODLE CONTAINER */
+    #noodle-wrapper {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 2; /* Base level - will be manipulated by GSAP */
+    }
+
+    .noodle-path {
+      fill: none;
+      stroke: var(--black-pearl);
+      stroke-width: 8; /* Thick enough to see, "worm-like" */
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.15;
+      filter: blur(1px); /* Softens the edges for an organic feel */
+    }
 
     header {
       position: sticky;
       top: 0;
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
       z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-
-    /* Restoration of original Branding Styles */
-    .brand { font-weight: 800; letter-spacing: 1px; color: var(--black-pearl); }
-
-    nav a {
-      position: relative;
-      margin-left: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      text-decoration: none;
-      padding-bottom: 4px;
-    }
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 100%; height: 2px; bottom: 0; left: 0;
-      background: linear-gradient(90deg, var(--black-pearl), var(--enlightenment-gray), var(--black-pearl));
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.4s ease;
-    }
-    nav a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
-
-    .btn {
-      display: inline-flex;
-      padding: 0.75rem 1.8rem;
-      border-radius: 50px;
-      font-weight: 700;
-      background: var(--black-pearl);
-      color: white;
-      text-decoration: none;
-    }
-
-    main section { padding: 8rem 0; position: relative; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 10; }
+    
+    section { padding: 10rem 0; position: relative; }
     .gray-bg { background: var(--gray-50); }
-    .white-bg { background: var(--white); }
 
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 2rem; }
-    h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-    h3 { font-size: 1.6rem; margin: 2rem 0 1rem; }
-
-    p.lead { font-size: 1.3rem; color: var(--ink); font-weight: 500; margin-bottom: 2.5rem; }
-
-    /* Image Styling with Black Border & Magnetic Container */
-    .img-wrap {
-      position: relative;
-      border-radius: 12px;
-      border: 2px solid var(--black-pearl);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-      margin: 4rem 0;
-      overflow: hidden;
-      background: #000;
+    /* Forcing headers and images to have specific z-indices for the "weaving" effect */
+    h1, h2, .lead { position: relative; z-index: 20; }
+    .img-wrap { 
+        position: relative; 
+        z-index: 5; /* Worm will move in front of this */
+        border: 2px solid var(--black-pearl);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     }
-    .img-wrap img { width: 100%; display: block; will-change: transform; }
-
-    /* THE IMPROVED SNAKING NOODLE */
-    #noodle-wrapper {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 1;
-    }
-    .noodle-path {
-      fill: none;
-      stroke: var(--black-pearl);
-      stroke-width: 6;
-      stroke-linecap: round;
-      opacity: 0.12; /* Subtle weaving behind content */
-    }
+    .img-wrap img { width: 100%; display: block; }
 
     .kls-char { display: inline-block; will-change: transform; }
 
-    .kls-progress {
-      position: fixed;
-      top: 0; left: 0; height: 4px;
-      background: var(--black-pearl);
-      width: 0%; z-index: 1000;
-    }
-
-    footer { padding: 5rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
+    .brand { font-weight: 800; letter-spacing: 1px; }
 </style>
 </head>
 
@@ -135,26 +90,22 @@
 </div>
 
 <header>
-  <div class="wrap nav">
+  <div class="wrap" style="display:flex; justify-content:space-between; padding: 1rem 0; align-items:center;">
     <div class="brand">KNOW LEAP STRATEGIES</div>
     <nav>
-      <a class="kls-magnet" href="#who">Who</a>
-      <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#how-it-works">Process</a>
-      <a class="kls-magnet" href="#case-study">Case Study</a>
-      <a class="btn kls-magnet" href="#contact">Start Here</a>
+      <a href="#who" style="margin-left:20px; text-decoration:none; color:inherit;">Who</a>
+      <a href="#services" style="margin-left:20px; text-decoration:none; color:inherit;">Services</a>
     </nav>
   </div>
 </header>
 
-<main style="position: relative;">
+<main>
   <section class="white-bg">
     <div class="wrap">
       <h1 class="kls-bounce">Clear Systems for Complex Decisions</h1>
       <p class="lead">Know Leap Strategies operates at the intersection of strategic clarity and technical execution. We exist to solve the "Translation Gap"—that specific friction point where a company’s vision is world-class, but its market communication remains fragmented and opaque.</p>
-      <p>We specialize in dismantling this complexity by building the digital infrastructure and educational "Trust Artifacts" that empower your sales team and educate your buyers simultaneously. Our mission is to transform raw, internal expertise into tangible assets that the market can interact with, learn from, and ultimately trust.</p>
-      <div class="img-wrap kls-magnet-img">
-        <img src="assets/images/sections/hero-strategy.jpeg" alt="Strategy" class="gsap-img">
+      <div class="img-wrap">
+        <img src="assets/images/sections/hero-strategy.jpeg" alt="Strategy">
       </div>
     </div>
   </section>
@@ -163,8 +114,8 @@
     <div class="wrap">
       <h2 class="kls-bounce">Who We Serve</h2>
       <p>We partner with teams that are already in motion but feel the weight of their own complexity holding them back. Typically, our clients fall into three categories: Founders navigating the turbulent waters of Product-Market Fit, Operators looking to stabilize delivery systems during rapid scaling, and Mid-Cap Leadership teams aiming to consolidate a fragmented brand narrative into a singular, authoritative presence.</p>
-      <div class="img-wrap kls-magnet-img">
-        <img src="assets/images/sections/section-who-clients.jpg" alt="Who We Serve" class="gsap-img">
+      <div class="img-wrap">
+        <img src="assets/images/sections/section-who-clients.jpg" alt="Who We Serve">
       </div>
     </div>
   </section>
@@ -172,9 +123,9 @@
   <section id="services" class="white-bg">
     <div class="wrap">
       <h2 class="kls-bounce">Services & Digital Products</h2>
-      <p>Our core service is the creation of Digital Products that serve as silent salesmen for your business. This involves mapping out your proprietary methodology and packaging it into interactive guides, readiness checklists, and video libraries. Beyond productization, we offer Web Presence Enhancement focused on decision-making architecture. We optimize navigation hierarchies to match buyer intent and refine offer framing to eliminate ambiguity.</p>
-      <div class="img-wrap kls-magnet-img">
-        <img src="assets/images/sections/section-services-framework.jpg" alt="Services" class="gsap-img">
+      <p>Our core service is the creation of Digital Products that serve as silent salesmen for your business. This involves mapping out your proprietary methodology and packaging it into interactive guides, readiness checklists, and video libraries. These assets act as bridge-builders, taking a cold prospect and moving them into a state of "informed readiness."</p>
+      <div class="img-wrap">
+        <img src="assets/images/sections/section-services-framework.jpg" alt="Services">
       </div>
     </div>
   </section>
@@ -186,59 +137,51 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // 1. Weighty Header Bounce (Restored & Continuous)
-  function initHeaderAnimations() {
-    document.querySelectorAll(".kls-bounce").forEach(h => {
-      const text = h.innerText;
-      h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-      
-      gsap.from(h.querySelectorAll(".kls-char"), {
-        scrollTrigger: {
-          trigger: h,
-          start: "top 90%",
-          toggleActions: "play none none reverse"
-        },
-        y: -140,
-        opacity: 0,
-        stagger: 0.02,
-        duration: 1.2,
-        ease: "bounce.out"
-      });
+  // 1. CONTINUOUS BOUNCE FOR HEADERS
+  document.querySelectorAll(".kls-bounce").forEach(h => {
+    const text = h.innerText;
+    h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    gsap.from(h.querySelectorAll(".kls-char"), {
+      scrollTrigger: { trigger: h, start: "top 90%", toggleActions: "play none none reverse" },
+      y: -120, opacity: 0, stagger: 0.02, duration: 1.2, ease: "bounce.out"
     });
-  }
+  });
 
-  // 2. THE SNAKING NOODLE LOGIC
+  // 2. THE CURVING WORM (Bezier Curve Logic)
   const noodlePath = document.querySelector('.noodle-path');
   const noodleWrapper = document.querySelector('#noodle-wrapper');
 
-  function updateNoodle() {
+  function generateSnakePath() {
     const sections = document.querySelectorAll('section');
     const pageHeight = document.documentElement.scrollHeight;
     noodleWrapper.style.height = pageHeight + "px";
 
-    let path = `M ${window.innerWidth / 2} 0`;
-    
+    const w = window.innerWidth;
+    let d = `M ${w / 2} 0`; // Start at top center
+
     sections.forEach((sec, i) => {
       const top = sec.offsetTop;
       const height = sec.offsetHeight;
       const mid = top + (height / 2);
       
-      // Snake side-to-side logic
-      const xTarget = (i % 2 === 0) ? window.innerWidth * 0.1 : window.innerWidth * 0.9;
-      
-      path += ` Q ${window.innerWidth / 2} ${top}, ${xTarget} ${mid}`;
-      path += ` Q ${window.innerWidth / 2} ${top + height}, ${window.innerWidth / 2} ${top + height}`;
+      // We generate two control points per section to create a "S" curve
+      const xSwing = (i % 2 === 0) ? w * 0.15 : w * 0.85;
+      const xDeepSwing = (i % 2 === 0) ? w * 0.05 : w * 0.95;
+
+      // Cubic Bezier curve for "Liquid" snaking
+      d += ` C ${w/2} ${top + 100}, ${xDeepSwing} ${top + 200}, ${xSwing} ${mid}`;
+      d += ` S ${w/2} ${top + height - 100}, ${w/2} ${top + height}`;
     });
 
-    noodlePath.setAttribute('d', path);
-    
-    // Setup for scroll drawing
+    noodlePath.setAttribute('d', d);
+
+    // Initial dash setup for drawing effect
     const length = noodlePath.getTotalLength();
     noodlePath.style.strokeDasharray = length;
     noodlePath.style.strokeDashoffset = length;
   }
 
-  // Animate noodle drawing on scroll
+  // Animate the worm drawing and weaving as you scroll
   gsap.to(noodlePath, {
     strokeDashoffset: 0,
     ease: "none",
@@ -246,44 +189,21 @@
       trigger: "body",
       start: "top top",
       end: "bottom bottom",
-      scrub: 0.5
+      scrub: 0.8, // Slightly higher scrub for "heavy" organic movement
+      onUpdate: (self) => {
+        // Dynamic Weaving: Change Z-index based on scroll position
+        // This makes it look like it goes "behind" then "in front"
+        const progress = self.progress;
+        noodleWrapper.style.zIndex = (Math.sin(progress * 20) > 0) ? "2" : "15";
+      }
     }
   });
 
-  // 3. Magnetic Interaction (Buttons & Images)
-  function initMagnets() {
-    document.querySelectorAll(".kls-magnet").forEach(m => {
-      m.addEventListener("mousemove", (e) => {
-        const r = m.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width/2) * 0.4;
-        const y = (e.clientY - r.top - r.height/2) * 0.4;
-        gsap.to(m, { x, y, duration: 0.6, ease: "power2.out" });
-      });
-      m.addEventListener("mouseleave", () => {
-        gsap.to(m, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-      });
-    });
+  // 3. INITIALIZE & RESIZE
+  window.addEventListener('resize', generateSnakePath);
+  generateSnakePath();
 
-    document.querySelectorAll(".kls-magnet-img").forEach(img => {
-      img.addEventListener("mousemove", (e) => {
-        const r = img.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width/2) * 0.12;
-        const y = (e.clientY - r.top - r.height/2) * 0.12;
-        gsap.to(img, { x, y, duration: 0.4, ease: "power2.out" });
-      });
-      img.addEventListener("mouseleave", () => {
-        gsap.to(img, { x: 0, y: 0, duration: 0.6, ease: "power2.out" });
-      });
-    });
-  }
-
-  // INIT ALL
-  initHeaderAnimations();
-  initMagnets();
-  updateNoodle();
-  window.addEventListener('resize', updateNoodle);
-
-  // Reading Progress Bar
+  // Progress Bar
   gsap.to(".kls-progress", {
     width: "100%",
     ease: "none",
