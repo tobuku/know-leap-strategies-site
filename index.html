@@ -88,6 +88,7 @@
       align-items: center;
       transform: translate3d(0,0,0);
       will-change: transform;
+      overflow: hidden;
     }
 
     nav a::after {
@@ -107,6 +108,7 @@
     nav a:hover { color: var(--ink); }
 
     .btn {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -118,8 +120,8 @@
       transform: translate3d(0,0,0);
       will-change: transform;
       user-select: none;
-      position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .btn-primary {
@@ -135,6 +137,32 @@
       background: #ffffff;
     }
     .btn-outline:active { background: rgba(11, 15, 20, 0.05); }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22), rgba(255,255,255,0.0) 55%);
+      opacity: 0;
+      transition: opacity 160ms ease;
+      pointer-events: none;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:active {
+      box-shadow: 0 0 0 2px rgba(166, 175, 185, 0.35) inset;
+    }
+
+    .btn.btn-primary:active {
+      background: var(--click);
+    }
+
+    .btn.btn-outline:active {
+      background: rgba(11, 15, 20, 0.06);
+    }
 
     main section { 
       padding: 4rem 0;
@@ -157,8 +185,6 @@
       font-size: 1.6rem;
       margin: 0 0 0.5rem;
       letter-spacing: -0.01em;
-      position: relative;
-      z-index: 2;
     }
 
     h3 { margin: 0.2rem 0 0.6rem; }
@@ -237,11 +263,11 @@
       gap: 1rem;
     }
 
-    .footer-inner a {
-      margin-left: 0.75rem;
+    .footer-links a {
+      margin-left: 1rem;
     }
 
-    .footer-inner a:first-child {
+    .footer-links a:first-child {
       margin-left: 0;
     }
 
@@ -349,7 +375,7 @@
     .micro strong { display: block; margin-bottom: 0.35rem; }
     .micro p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
-    /* Snaking noodle SVG container */
+    /* Snaking noodles canvas */
     #noodle-canvas {
       position: fixed;
       top: 0;
@@ -360,22 +386,15 @@
       z-index: 1;
     }
 
-    #noodle-canvas path {
-      fill: none;
-      stroke: #1a1a1a;
-      stroke-width: 3;
-      stroke-linecap: round;
-      opacity: 0.6;
-      filter: drop-shadow(0 0 8px rgba(100, 100, 100, 0.3));
+    main {
+      position: relative;
+      z-index: 2;
     }
 </style>
 </head>
 
 <body>
-<svg id="noodle-canvas" xmlns="http://www.w3.org/2000/svg">
-  <path id="noodle-path" d=""></path>
-</svg>
-
+<canvas id="noodle-canvas"></canvas>
 <div aria-hidden="true" class="kls-progress"></div>
 
 <header>
@@ -385,12 +404,9 @@
       <span class="brand-text">Know Leap Strategies</span>
     </div>
     <nav>
-      <a href="#who">Who We Serve</a>
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="support.html">Support</a>
+      <a class="kls-magnet" href="#who">Who We Serve</a>
+      <a class="kls-magnet" href="#services">Services</a>
+      <a class="kls-magnet" href="#process">How It Works</a>
       <a class="btn btn-primary kls-magnet" href="#contact">Start Here</a>
     </nav>
   </div>
@@ -442,7 +458,7 @@
         </div>
       </div>
 
-      <div class="card hero-media kls-reveal">
+      <div class="card hero-media kls-reveal kls-fade-img">
         <div class="kls-parallax">
           <img alt="Abstract strategy planning visual" loading="eager" src="assets/images/sections/hero-strategy.jpeg"/>
         </div>
@@ -459,7 +475,7 @@
         You need a message that stays consistent, assets that educate, and a plan that survives real execution.
       </p>
 
-      <div class="section-media kls-reveal">
+      <div class="section-media kls-reveal kls-fade-img">
         <div class="kls-parallax">
           <img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/>
         </div>
@@ -510,7 +526,7 @@
         KLS builds digital assets that teach your market, strengthens the web surface where buyers decide, and sets up content systems that keep output consistent.
       </p>
 
-      <div class="section-media kls-reveal">
+      <div class="section-media kls-reveal kls-fade-img">
         <div class="kls-parallax">
           <img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/>
         </div>
@@ -518,7 +534,7 @@
 
       <div class="grid-3">
         <div class="card flip-card kls-reveal">
-          <div class="card-visual">
+          <div class="card-visual kls-fade-img">
             <div class="kls-parallax">
               <img alt="Strategy mapping image" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/>
             </div>
@@ -534,7 +550,7 @@
         </div>
 
         <div class="card flip-card kls-reveal">
-          <div class="card-visual">
+          <div class="card-visual kls-fade-img">
             <div class="kls-parallax">
               <img alt="Oversight design image" loading="lazy" src="assets/images/cards/card-oversight-design.jpg"/>
             </div>
@@ -550,7 +566,7 @@
         </div>
 
         <div class="card flip-card kls-reveal">
-          <div class="card-visual">
+          <div class="card-visual kls-fade-img">
             <div class="kls-parallax">
               <img alt="Platform advisory image" loading="lazy" src="assets/images/cards/card-platform-advisory.jpg"/>
             </div>
@@ -608,7 +624,7 @@
         The goal is clarity, then production, then consistency.
       </p>
 
-      <div class="section-media kls-reveal">
+      <div class="section-media kls-reveal kls-fade-img">
         <div class="kls-parallax">
           <img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/>
         </div>
@@ -656,7 +672,7 @@
         KLS responds with a clear next-step plan, scoped deliverables, and a production path.
       </p>
 
-      <div class="section-media kls-reveal">
+      <div class="section-media kls-reveal kls-fade-img">
         <div class="kls-parallax">
           <img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/>
         </div>
@@ -677,7 +693,7 @@
       © <span id="year"></span> Know Leap Strategies
       <div class="footer-address">1785 S King St Suite 3, Honolulu, HI 96826, USA</div>
     </div>
-    <div>
+    <div class="footer-links">
       <a class="kls-magnet" href="#who">Who</a>
       <a class="kls-magnet" href="#services">Services</a>
       <a class="kls-magnet" href="#contact">Contact</a>
@@ -705,7 +721,84 @@
 
     const hoverOk = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-    // ===== SPLIT TEXT FUNCTION =====
+    // Snaking noodles
+    const canvas = document.getElementById('noodle-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = document.documentElement.scrollHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const sections = ['h1', 'h2[class*="kls-bounce"]'];
+    let sectionPositions = [];
+
+    function updateSectionPositions() {
+      sectionPositions = [];
+      sections.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          const rect = el.getBoundingClientRect();
+          sectionPositions.push({
+            y: rect.top + window.scrollY + rect.height / 2,
+            x: window.innerWidth / 2
+          });
+        });
+      });
+    }
+
+    updateSectionPositions();
+    window.addEventListener('resize', updateSectionPositions);
+
+    let noodleOffset = 0;
+    
+    function drawNoodles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      if (sectionPositions.length < 2) return;
+
+      for (let i = 0; i < sectionPositions.length - 1; i++) {
+        const start = sectionPositions[i];
+        const end = sectionPositions[i + 1];
+        
+        const gradient = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
+        gradient.addColorStop(0, 'rgba(11, 18, 32, 0.15)');
+        gradient.addColorStop(0.5, 'rgba(71, 85, 105, 0.25)');
+        gradient.addColorStop(1, 'rgba(11, 18, 32, 0.15)');
+        
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        
+        const segments = 30;
+        for (let j = 0; j <= segments; j++) {
+          const t = j / segments;
+          const x = start.x + (end.x - start.x) * t;
+          const y = start.y + (end.y - start.y) * t;
+          
+          const waveOffset = Math.sin(t * Math.PI * 4 + noodleOffset) * 40;
+          const waveY = y + waveOffset;
+          
+          if (j === 0) {
+            ctx.moveTo(x, waveY);
+          } else {
+            ctx.lineTo(x, waveY);
+          }
+        }
+        
+        ctx.stroke();
+      }
+      
+      noodleOffset += 0.02;
+      requestAnimationFrame(drawNoodles);
+    }
+
+    drawNoodles();
+
     function splitLetters(el) {
       if (!el) return;
       if (el.dataset.klsSplit === "1") return;
@@ -726,99 +819,183 @@
       el.classList.add("kls-split");
     }
 
-    // ===== BOUNCE HEADING WITH INFINITE SCROLL REPEAT =====
-    function infiniteBounceHeading(el, opts) {
+    function continuousBounceHeading(el, opts) {
       splitLetters(el);
       const chars = gsap.utils.toArray(".kls-char", el);
       if (!chars.length) return;
 
-      // Initial entrance animation
-      gsap.fromTo(
-        chars,
-        { opacity: 0, y: opts.enterFrom, filter: "blur(10px)" },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: opts.enterDur,
-          ease: "bounce.out",
-          stagger: opts.stagger,
-          delay: opts.delay || 0
-        }
-      );
+      const mid = (chars.length - 1) / 2;
 
-      // Infinite scroll-triggered bounce
+      // Bounce in on initial load and every scroll past
       ScrollTrigger.create({
         trigger: el,
-        start: "top 90%",
-        end: "bottom 10%",
-        onEnter: () => {
-          gsap.fromTo(
-            chars,
-            { y: -80, opacity: 0.3 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1.2,
-              ease: "bounce.out",
-              stagger: opts.stagger
-            }
-          );
-        },
-        onEnterBack: () => {
-          gsap.fromTo(
-            chars,
-            { y: 80, opacity: 0.3 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1.2,
-              ease: "bounce.out",
-              stagger: opts.stagger
-            }
-          );
-        },
-        onLeave: () => {
-          gsap.to(chars, { y: 80, opacity: 0.3, duration: 0.6, stagger: opts.stagger * 0.5 });
-        },
-        onLeaveBack: () => {
-          gsap.to(chars, { y: -80, opacity: 0.3, duration: 0.6, stagger: opts.stagger * 0.5 });
+        start: "top 85%",
+        end: "bottom 15%",
+        onEnter: () => animateBounce(),
+        onEnterBack: () => animateBounce(),
+        onLeave: () => animateBounce(),
+        onLeaveBack: () => animateBounce()
+      });
+
+      function animateBounce() {
+        gsap.fromTo(
+          chars,
+          { opacity: 0, y: -100, filter: "blur(10px)" },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.2,
+            ease: "bounce.out",
+            stagger: 0.02,
+            overwrite: true
+          }
+        );
+      }
+
+      // Continuous wave and spread effect
+      gsap.to(chars, {
+        x: (i) => (i - mid) * 1.2,
+        ease: "none",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          end: "bottom 10%",
+          scrub: 0.6
         }
       });
     }
 
-    // ===== SNAKING NOODLE =====
-    function createSnakingNoodle() {
-      const noodlePath = document.getElementById('noodle-path');
-      if (!noodlePath) return;
+    const prog = document.querySelector(".kls-progress");
+    if (prog) {
+      gsap.to(prog, {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 0.25 }
+      });
+    }
 
-      const headers = document.querySelectorAll('h1, h2');
-      let points = [];
+    const header = document.querySelector("header");
+    if (header) {
+      gsap.fromTo(
+        header,
+        { y: -18, opacity: 0, filter: "blur(8px)" },
+        { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8 }
+      );
+    }
 
-      function updateNoodlePath() {
-        points = [];
-        headers.forEach((h, i) => {
-          const rect = h.getBoundingClientRect();
-          const x = rect.left + rect.width / 2;
-          const y = rect.top + rect.height / 2;
-          points.push({ x, y, index: i });
+    const heroH1 = document.querySelector("h1");
+    if (heroH1) continuousBounceHeading(heroH1, { enterFrom: -140, enterDur: 1.4, stagger: 0.018, spread: 1.6 });
+
+    gsap.utils.toArray("h2.kls-bounce-section").forEach((el) => {
+      continuousBounceHeading(el, { enterFrom: -120, enterDur: 1.2, stagger: 0.016, spread: 1.1 });
+    });
+
+    const hero = document.querySelector(".hero-grid");
+    if (hero) {
+      const leadBlocks = hero.querySelectorAll(".lead");
+      const btns = hero.querySelectorAll(".btn");
+      const mediaWrap = hero.querySelector(".hero-media");
+
+      const tl = gsap.timeline({ delay: 0.12 });
+      tl.fromTo(leadBlocks, { y: 16, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", stagger: 0.08, duration: 0.7 }, 0.0);
+      tl.fromTo(btns, { y: 10, opacity: 0, scale: 0.98 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: "back.out(1.6)" }, 0.2);
+      if (mediaWrap) tl.fromTo(mediaWrap, { y: 16, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8 }, 0.05);
+    }
+
+    gsap.utils.toArray(".kls-reveal").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 22, opacity: 0, filter: "blur(12px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          scrollTrigger: { trigger: el, start: "top 84%", toggleActions: "play none none reverse" }
+        }
+      );
+    });
+
+    // Fade images in and out on scroll
+    gsap.utils.toArray(".kls-fade-img img").forEach((img) => {
+      gsap.fromTo(
+        img,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          scrollTrigger: {
+            trigger: img,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse"
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray(".flip-card").forEach((card) => {
+      gsap.fromTo(
+        card,
+        { rotateY: 70, y: 26, opacity: 0, filter: "blur(12px)", transformPerspective: 1000 },
+        { rotateY: 0, y: 0, opacity: 1, filter: "blur(0px)", scrollTrigger: { trigger: card, start: "top 82%", toggleActions: "play none none reverse" } }
+      );
+
+      if (hoverOk) {
+        card.addEventListener("mousemove", (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          gsap.to(card, { rotateX: (-py * 6), rotateY: (px * 7), duration: 0.25, ease: "power3.out" });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.5, ease: "power3.out" });
+        });
+      }
+    });
+
+    function setPointerGlow(el, e) {
+      const r = el.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      el.style.setProperty("--mx", x + "%");
+      el.style.setProperty("--my", y + "%");
+    }
+
+    // Magnetic buttons with elastic pull
+    function initMagnet() {
+      if (!hoverOk) return;
+
+      const items = document.querySelectorAll(".btn, .footer-links .kls-magnet");
+      if (!items.length) return;
+
+      items.forEach((el) => {
+        const strength = 0.35;
+
+        el.addEventListener("mousemove", (e) => {
+          setPointerGlow(el, e);
+
+          const r = el.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          gsap.to(el, { x: x * strength, y: y * strength, duration: 0.3, ease: "power2.out" });
         });
 
-        if (points.length < 2) return;
+        el.addEventListener("mouseleave", () => {
+          gsap.to(el, { x: 0, y: 0, duration: 0.65, ease: "elastic.out(1, 0.4)" });
+        });
 
-        let d = `M ${points[0].x} ${points[0].y}`;
-        
-        for (let i = 1; i < points.length; i++) {
-          const prev = points[i - 1];
-          const curr = points[i];
-          const midX = (prev.x + curr.x) / 2;
-          const midY = (prev.y + curr.y) / 2;
-          
-          // Create wavy curve
-          const offset = 30 + Math.sin(i * 0.5) * 20;
-          const cp1x = prev.x + offset;
-          const cp1y = midY - offset;
-          const cp2x = curr.x - offset;
-          const cp2y = midY + offset;
-          
-          d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.x} ${curr.y}`;
+        el.addEventListener("pointerdown", () => {
+          gsap.to(el, { scale: 0.95, duration: 0.12, ease: "power2.out" });
+        });
+
+        el.addEventListener("pointerup", () => {
+          gsap.to(el, { scale: 1, duration: 0.25, ease: "elastic.out(1, 0.6)" });
+        });
+      });
+    }
+
+    initMagnet();
+  })();
+</script>
+</body>
+</html>
