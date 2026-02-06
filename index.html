@@ -2,289 +2,1372 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Know Leap Strategies | Systems Defining Clarity</title>
+<title>Know Leap Strategies</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Digital products, web presence enhancement, and strategic clarity for startups and small to mid-cap teams." name="description"/>
+<meta content="Strategy, oversight, and execution design. Built to replace guesswork with proof." name="description"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-    :root {
-      --white: #ffffff;
-      --gray-50: #f7f8fa;
-      --gray-100: #eef0f3;
-      --gray-200: #e4e7ec;
-      --ink: #0b1220;
-      --muted: #475569;
-      --border: rgba(11, 18, 32, 0.12);
-      --black-pearl: #0b0f14;
-      --enlightenment-gray: #a6afb9;
-      --max: 1100px;
-      --radius: 18px;
-    }
+/* ============================================================
+   KLS — Geometric Precision
+   Editorial Luxury meets Motion Architecture
+   ============================================================ */
 
-    * { box-sizing: border-box; }
+:root {
+  --white: #ffffff;
+  --off-white: #fafbfc;
+  --gray-50: #f4f5f7;
+  --gray-100: #ebedf1;
+  --gray-200: #dfe2e8;
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+  --ink: #0f172a;
+  --ink-70: rgba(15, 23, 42, 0.7);
+  --muted: #475569;
+  --border: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.14);
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+  --green: #16a34a;
+  --green-dark: #15803d;
+  --green-glow: rgba(22, 163, 74, 0.15);
+  --green-line: rgba(22, 163, 74, 0.5);
 
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-    }
+  --max: 1100px;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.03);
+  --shadow-md: 0 4px 16px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
+  --shadow-lg: 0 12px 40px rgba(15,23,42,0.08), 0 4px 12px rgba(15,23,42,0.04);
+  --shadow-hover: 0 16px 48px rgba(15,23,42,0.12), 0 6px 16px rgba(15,23,42,0.06);
 
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
 
-    /* Restoration of Logo Branding */
-    .brand-group { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-logo { height: 32px; width: auto; }
-    .brand-text { font-weight: 800; letter-spacing: 1px; color: var(--black-pearl); }
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-    nav a {
-      position: relative;
-      margin-left: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      text-decoration: none;
-      padding-bottom: 4px;
-    }
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 100%; height: 2px; bottom: 0; left: 0;
-      background: linear-gradient(90deg, var(--black-pearl), var(--enlightenment-gray), var(--black-pearl));
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.4s ease;
-    }
-    nav a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .btn {
-      display: inline-flex;
-      padding: 0.75rem 1.8rem;
-      border-radius: 50px;
-      font-weight: 700;
-      background: var(--black-pearl);
-      color: white;
-      text-decoration: none;
-    }
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-    main section { padding: 6rem 0; position: relative; z-index: 2; }
-    .gray-bg { background: var(--gray-50); }
-    .white-bg { background: var(--white); }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
 
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
-    h2 { font-size: 2.2rem; margin-bottom: 1rem; }
-    h3 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem; }
+::selection {
+  background: var(--green);
+  color: var(--white);
+}
 
-    p.lead { font-size: 1.2rem; color: var(--muted); max-width: 800px; margin-bottom: 2rem; }
-    .content-block { margin-bottom: 3rem; }
+/* ---- Dot-grid background ---- */
+.kls-dots {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(15,23,42,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.35;
+}
 
-    .img-wrap {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      border: 2px solid var(--black-pearl);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-    }
-    .img-wrap img { width: 100%; display: block; will-change: transform; }
+/* ---- Film grain overlay ---- */
+.kls-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.022;
+  mix-blend-mode: multiply;
+}
+.kls-grain::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
 
-    #noodle-svg {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 1;
-    }
-    .noodle-path { fill: none; stroke: var(--enlightenment-gray); stroke-width: 2; opacity: 0.3; }
+/* ---- Floating geometric decorations ---- */
+.kls-geo {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+.kls-geo-1 { top: 12%; right: 6%; width: 120px; height: 120px; }
+.kls-geo-2 { top: 38%; left: 3%; width: 90px; height: 90px; }
+.kls-geo-3 { top: 62%; right: 4%; width: 100px; height: 100px; }
+.kls-geo-4 { top: 85%; left: 5%; width: 80px; height: 80px; }
 
-    .kls-char { display: inline-block; will-change: transform; }
+/* ---- Progress bar ---- */
+.kls-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, transparent 0%, var(--green) 20%, var(--green) 80%, transparent 100%);
+  z-index: 100;
+  pointer-events: none;
+}
 
-    footer { padding: 4rem 0; background: var(--gray-100); border-top: 1px solid var(--border); }
-    .footer-links { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+/* ---- Layout ---- */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Header / Nav ---- */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+  will-change: transform, opacity;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-family: var(--font-sans);
+}
+
+.logo {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.brand-text { white-space: nowrap; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-links a {
+  position: relative;
+  margin-left: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1.5px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.nav-links a:not(.btn):hover { color: var(--ink); }
+.nav-links a:not(.btn):hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ---- Hamburger menu (mobile) ---- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 60;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--white);
+  z-index: 55;
+  padding: 5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transform: translateX(100%);
+  box-shadow: -8px 0 40px rgba(15,23,42,0.1);
+  will-change: transform;
+}
+.mobile-menu a {
+  display: block;
+  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--ink);
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateX(20px);
+}
+.mobile-menu a.btn {
+  margin-top: 1rem;
+  border-bottom: none;
+  text-align: center;
+}
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.3);
+  z-index: 52;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  border: 1px solid transparent;
+  letter-spacing: 0.01em;
+  transition: all 0.35s var(--ease-out-expo);
+  will-change: transform;
+  position: relative;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(22,163,74,0.2);
+}
+.btn-primary:hover {
+  background: var(--green-dark);
+  box-shadow: 0 4px 16px rgba(22,163,74,0.3);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border-color: var(--border-strong);
+  color: var(--ink);
+  background: var(--white);
+}
+.btn-outline:hover {
+  border-color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* ---- Section System ---- */
+main { position: relative; z-index: 2; }
+
+main section {
+  padding: clamp(5rem, 8vw, 8rem) 0;
+  position: relative;
+  transition: background-color 0.6s ease;
+}
+
+/* Section dividers */
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: var(--border);
+  z-index: 2;
+  overflow: visible;
+}
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 9px;
+  height: 9px;
+  background: var(--white);
+  border: 1px solid var(--border-strong);
+}
+
+/* ---- Typography ---- */
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw + 1rem, 5.5rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3vw + 0.5rem, 3rem);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.75rem;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+
+p.lead {
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.pill {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* ---- Hero ---- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-content { position: relative; }
+
+/* Word-by-word reveal containers */
+.kls-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+}
+.kls-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+.hero-lead {
+  will-change: transform, opacity, filter;
+}
+
+.hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  will-change: transform, opacity;
+}
+
+/* Hero media */
+.hero-media {
+  position: relative;
+  will-change: clip-path, opacity;
+}
+.hero-media img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display: block;
+  box-shadow: var(--shadow-lg);
+}
+.hero-media-caption {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--ink);
+  opacity: 0.8;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Section media ---- */
+.section-media {
+  margin-top: 1.75rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  will-change: clip-path;
+}
+.section-media img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.section-media:hover img {
+  transform: scale(1.03);
+}
+
+/* ---- Cards ---- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  position: relative;
+  transition: box-shadow 0.4s ease, transform 0.4s var(--ease-out-expo);
+  will-change: transform, opacity, filter;
+  /* Glass border accent */
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.card p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+/* ---- Flip cards ---- */
+.flip-card {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+}
+
+.card-visual {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.card-visual img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.flip-card:hover .card-visual img {
+  transform: scale(1.05);
+}
+
+/* Card tilt light overlay */
+.card-light {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+/* ---- Process cards ---- */
+.card strong {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+/* Step number accent */
+.step-num {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--green);
+  opacity: 0.25;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-style: italic;
+}
+
+/* ---- Lists ---- */
+ul {
+  padding-left: 1.2rem;
+  margin: 0.75rem 0 0;
+}
+
+ul li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.45rem;
+  line-height: 1.55;
+}
+
+/* ---- Footer ---- */
+footer {
+  background: var(--gray-50);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-inner a {
+  margin-left: 1.25rem;
+  transition: color 0.3s ease;
+}
+.footer-inner a:hover { color: var(--ink); }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .hero { min-height: auto; padding-top: 3rem; padding-bottom: 3rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-media img { height: 240px; }
+  h1 { font-size: clamp(2.4rem, 8vw, 3.5rem); }
+  .grid-3 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .kls-geo { display: none !important; }
+  main section { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .section-media img { height: 200px; }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 1.15rem; }
+  h1 { font-size: 2.2rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .kls-grain, .kls-geo { display: none !important; }
+}
 </style>
 </head>
-
 <body>
-<div class="kls-progress" style="position:fixed; top:0; left:0; height:4px; background:var(--black-pearl); width:0%; z-index:1000;"></div>
 
+<!-- Atmosphere layers -->
+<div class="kls-dots" aria-hidden="true"></div>
+<div class="kls-grain" aria-hidden="true"></div>
+<div class="kls-progress" aria-hidden="true"></div>
+
+<!-- Floating geometric chevrons -->
+<svg class="kls-geo kls-geo-1" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M60 10 L100 60 L60 110" stroke="rgba(15,23,42,0.07)" stroke-width="1.5" fill="none"/>
+  <path d="M40 25 L75 60 L40 95" stroke="rgba(22,163,74,0.1)" stroke-width="1" fill="none"/>
+</svg>
+<svg class="kls-geo kls-geo-2" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M45 5 L85 45 L45 85 L5 45 Z" stroke="rgba(15,23,42,0.06)" stroke-width="1" fill="none"/>
+</svg>
+<svg class="kls-geo kls-geo-3" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M20 15 L80 50 L20 85" stroke="rgba(15,23,42,0.06)" stroke-width="1.5" fill="none"/>
+  <path d="M35 30 L70 50 L35 70" stroke="rgba(22,163,74,0.08)" stroke-width="1" fill="none"/>
+</svg>
+<svg class="kls-geo kls-geo-4" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M10 40 L40 10 L70 40 L40 70 Z" stroke="rgba(15,23,42,0.05)" stroke-width="1" fill="none"/>
+</svg>
+
+<!-- Header -->
 <header>
-  <div class="wrap nav">
-    <a href="/" class="brand-group">
-      <img src="assets/images/brand/kls-logo-primary.svg" alt="KLS Logo" class="brand-logo">
-      <div class="brand-text">KNOW LEAP STRATEGIES</div>
-    </a>
-    <nav>
-      <a class="kls-magnet" href="#who">Who</a>
-      <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#case-study">Case Study</a>
-      <a class="btn kls-magnet" href="#contact">Start Here</a>
-    </nav>
+<div class="wrap nav">
+  <div class="brand">
+    <img alt="Know Leap Strategies logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/>
+    <span class="brand-text">Know Leap Strategies</span>
   </div>
+  <nav class="nav-links">
+    <a href="#who">Who We Serve</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a class="btn btn-primary" href="#contact">Start Here</a>
+  </nav>
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
 </header>
 
-<main style="position: relative;">
-  <svg id="noodle-svg"><path class="noodle-path" d=""></path></svg>
+<!-- Mobile menu -->
+<div class="mobile-overlay" aria-hidden="true"></div>
+<div class="mobile-menu" aria-hidden="true">
+  <a href="#who">Who We Serve</a>
+  <a href="#services">Services</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-primary" href="#contact">Start Here</a>
+</div>
 
-  <section class="white-bg">
-    <div class="wrap">
-      <h1 class="kls-bounce">Systems Defining Clarity</h1>
-      <p class="lead">
-        Know Leap Strategies operates at the intersection of clarity and execution. For startups and mid-cap teams, the greatest risk isn't a lack of ideas—it’s the friction of communicating them.
-      </p>
-      <p>
-        We specialize in eliminating that friction by building the digital infrastructure and educational products that do the heavy lifting for your sales team. We turn high-stakes ideas into high-trust assets.
-      </p>
-      <div class="img-wrap kls-parallax">
-        <img src="assets/images/sections/hero-strategy.jpeg" alt="Strategic Planning" class="gsap-img">
-      </div>
-    </div>
-  </section>
+<!-- Main content -->
+<main>
 
-  <section id="who" class="gray-bg">
-    <div class="wrap">
-      <h2 class="kls-bounce">Who We Serve</h2>
-      <div class="content-block">
-        <h3>Founders in Pursuit of Product-Market Fit</h3>
-        <p>You have the vision, but your market is confused. We help you "productize" your expertise into tangible guides and toolkits that prove your value before a contract is ever signed.</p>
-        
-        <h3>Operators Scaling Under Pressure</h3>
-        <p>Growth creates chaos. We step in to map your decision rules and build the content workflows that ensure your brand voice doesn't break as your team expands.</p>
-        
-        <h3>Mid-Cap Teams Optimizing for Trust</h3>
-        <p>When the stakes are high, buyers look for credibility signals. We audit your web presence to ensure every page, navigation path, and case study reinforces a single, stable narrative.</p>
-      </div>
-      <div class="img-wrap">
-        <img src="assets/images/sections/section-who-clients.jpg" alt="Clients" class="gsap-img">
-      </div>
+<!-- Hero -->
+<section class="hero">
+<div class="wrap hero-grid">
+  <div class="hero-content">
+    <h1></h1>
+    <p class="lead hero-lead">Strategy, oversight, and execution design. Built to replace guesswork with proof, and make progress predictable.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary kls-magnetic" href="#contact">Request a call</a>
+      <a class="btn btn-outline kls-magnetic" href="#services">Explore services</a>
     </div>
-  </section>
+  </div>
+  <div class="hero-media">
+    <img alt="Abstract strategy planning visual" loading="eager" src="assets/images/sections/hero-strategy.jpeg"/>
+    <div class="hero-media-caption">Proof first. Calm execution. Clean outcomes.</div>
+  </div>
+</div>
+</section>
 
-  <section id="services" class="white-bg">
-    <div class="wrap">
-      <h2 class="kls-bounce">Services & Digital Products</h2>
-      <p class="lead">We build "Trust Artifacts"—the checklists, playbooks, and resource libraries that make your complex service feel simple and "buyable."</p>
-      
-      <div class="content-block">
-        <h3>Digital Product Creation</h3>
-        <p>Topic mapping, outlines, asset production, and landing page copy. We build products that answer buyer questions before the sales call, reducing objections and providing structure.</p>
-        
-        <h3>Web Presence Enhancement</h3>
-        <p>Clarity pass, navigation hierarchy, offer framing, and conversion improvements. We remove friction where decisions happen, clarifying exactly what you do and who it is for.</p>
-      </div>
-      <div class="img-wrap">
-        <img src="assets/images/sections/section-services-framework.jpg" alt="Framework" class="gsap-img">
-      </div>
-    </div>
-  </section>
+<div class="section-divider"></div>
 
-  <section id="case-study" class="gray-bg">
-    <div class="wrap">
-      <h2 class="kls-bounce">Case Study: The Clarity Overhaul</h2>
-      <p class="lead">How a mid-cap SaaS team reduced their sales cycle by 30% through strategic asset architecture.</p>
-      <p>
-        <strong>The Problem:</strong> The client had a world-class product but a high-friction sales process. Potential buyers were overwhelmed by technical complexity.
-      </p>
-      <p>
-        <strong>The KLS Solution:</strong> We audited their buyer journey and identified three "Dark Zones." We produced a suite of Digital Products—a Buyer's Guide, a Deployment Roadmap, and a Readiness Checklist—that educated the market in the founder's voice.
-      </p>
-      <p>
-        <strong>The Outcome:</strong> By providing these high-trust assets early in the funnel, the team saw a 40% increase in lead quality and a significant reduction in repeat questions during discovery calls.
-      </p>
+<!-- Who We Serve -->
+<section id="who" data-bg-start="#ffffff" data-bg-end="#f8f9fb">
+<div class="wrap">
+  <h2></h2>
+  <p class="lead kls-reveal">Built for people already in motion who want fewer surprises and cleaner execution.</p>
+  <div class="section-media kls-img-reveal">
+    <img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/>
+  </div>
+  <div class="grid-3">
+    <div class="card kls-card-reveal">
+      <div class="card-light"></div>
+      <div class="pill">Leaders</div>
+      <p>Decision-makers who want clarity, fewer surprises, and measurable outcomes.</p>
     </div>
-  </section>
+    <div class="card kls-card-reveal">
+      <div class="card-light"></div>
+      <div class="pill">Operators</div>
+      <p>Teams executing in the real world who need a repeatable system that holds under pressure.</p>
+    </div>
+    <div class="card kls-card-reveal">
+      <div class="card-light"></div>
+      <div class="pill">Founders</div>
+      <p>Builders turning ideas into products, processes, and accountability loops that actually work.</p>
+    </div>
+  </div>
+</div>
+</section>
 
-  <section id="contact" class="white-bg">
-    <div class="wrap">
-      <h2 class="kls-bounce">Contact</h2>
-      <p class="lead">Share what you sell, who you serve, and what feels stuck. We respond with a clear next-step plan.</p>
-      <a class="btn kls-magnet" href="mailto:info@knowleapstrategies.com">Request a Call</a>
+<div class="section-divider"></div>
+
+<!-- Services -->
+<section id="services" data-bg-start="#f8f9fb" data-bg-end="#f4f5f7">
+<div class="wrap">
+  <h2></h2>
+  <p class="lead kls-reveal">Three lanes. Clear deliverables. Built for speed, accountability, and real-world follow-through.</p>
+  <div class="section-media kls-img-reveal">
+    <img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/>
+  </div>
+  <div class="grid-3">
+    <div class="card flip-card kls-card-reveal">
+      <div class="card-light"></div>
+      <div class="card-visual"><img alt="Strategy mapping image" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/></div>
+      <h3>Strategy Mapping</h3>
+      <ul>
+        <li>Decision clarity</li>
+        <li>Risk identification</li>
+        <li>Execution paths</li>
+      </ul>
     </div>
-  </section>
+    <div class="card flip-card kls-card-reveal">
+      <div class="card-light"></div>
+      <div class="card-visual"><img alt="Oversight design image" loading="lazy" src="assets/images/cards/card-oversight-design.jpg"/></div>
+      <h3>Oversight Design</h3>
+      <ul>
+        <li>Proof frameworks</li>
+        <li>Field verification</li>
+        <li>Exception handling</li>
+      </ul>
+    </div>
+    <div class="card flip-card kls-card-reveal">
+      <div class="card-light"></div>
+      <div class="card-visual"><img alt="Platform advisory image" loading="lazy" src="assets/images/cards/card-platform-advisory.jpg"/></div>
+      <h3>Platform Advisory</h3>
+      <ul>
+        <li>User flows</li>
+        <li>Permissions</li>
+        <li>Scalable structure</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Process -->
+<section id="process" data-bg-start="#f4f5f7" data-bg-end="#ffffff">
+<div class="wrap">
+  <h2></h2>
+  <p class="lead kls-reveal">A short engagement designed to produce a usable plan, a verification loop, and clear next actions.</p>
+  <div class="section-media kls-img-reveal">
+    <img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/>
+  </div>
+  <div class="grid-3">
+    <div class="card kls-card-reveal">
+      <div class="card-light"></div>
+      <span class="step-num">01</span>
+      <strong>Discovery</strong>
+      <p>Understand context and constraints.</p>
+    </div>
+    <div class="card kls-card-reveal">
+      <div class="card-light"></div>
+      <span class="step-num">02</span>
+      <strong>Design</strong>
+      <p>Create systems that match reality.</p>
+    </div>
+    <div class="card kls-card-reveal">
+      <div class="card-light"></div>
+      <span class="step-num">03</span>
+      <strong>Support</strong>
+      <p>Stay involved as execution unfolds.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Contact -->
+<section id="contact" data-bg-start="#ffffff" data-bg-end="#f0f1f4">
+<div class="wrap">
+  <h2></h2>
+  <p class="lead kls-reveal">Tell us what you're building, where it's stuck, and what proof you need next. We'll map the fastest path forward.</p>
+  <div class="section-media kls-img-reveal">
+    <img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/>
+  </div>
+  <div style="margin-top: 2rem;">
+    <a class="btn btn-primary kls-magnetic" href="mailto:hello@knowleapstrategies.com">hello@knowleapstrategies.com</a>
+  </div>
+</div>
+</section>
+
 </main>
 
 <footer>
-  <div class="wrap">
-    <div>© <span id="year"></span> Know Leap Strategies</div>
-    <div class="footer-links">
-      <a class="kls-magnet" href="#who">Who</a>
-      <a class="kls-magnet" href="#services">Services</a>
-      <a class="kls-magnet" href="#case-study">Case Study</a>
-      <a class="kls-magnet" href="privacy.html">Privacy</a>
-      <a class="kls-magnet" href="terms.html">Terms</a>
-      <a class="kls-magnet" href="support.html">Support</a>
-    </div>
+<div class="wrap footer-inner">
+  <div>&copy; <span id="year"></span> Know Leap Strategies</div>
+  <div>
+    <a href="#who">Who</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
   </div>
+</div>
 </footer>
 
+<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-  gsap.registerPlugin(ScrollTrigger);
+/* ============================================================
+   KLS — Motion Architecture
+   ============================================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  // 1. Weighty Header Bounce (H1 + H2)
-  document.querySelectorAll(".kls-bounce").forEach(h => {
-    const text = h.innerText;
-    h.innerHTML = text.split('').map(c => `<span class="kls-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-    gsap.from(h.querySelectorAll(".kls-char"), {
-      scrollTrigger: { trigger: h, start: "top 85%", toggleActions: "play none none reverse" },
-      y: -150, opacity: 0, stagger: 0.04, duration: 1.2, ease: "bounce.out"
+(function () {
+  'use strict';
+
+  /* ---- Reduced motion bail ---- */
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    // Still populate headline text
+    populateHeadlines();
+    return;
+  }
+
+  if (!window.gsap || !window.ScrollTrigger) {
+    populateHeadlines();
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+  /* ---- Headline text content ---- */
+  const headlineData = {
+    hero: 'Clear systems for complex decisions.',
+    who: 'Who We Serve',
+    services: 'Services',
+    process: 'How It Works',
+    contact: 'Contact'
+  };
+
+  function populateHeadlines() {
+    const heroH1 = document.querySelector('.hero-content h1');
+    if (heroH1 && !heroH1.textContent.trim()) heroH1.textContent = headlineData.hero;
+    const secs = { who: '#who h2', services: '#services h2', process: '#process h2', contact: '#contact h2' };
+    Object.entries(secs).forEach(function(entry) {
+      var el = document.querySelector(entry[1]);
+      if (el && !el.textContent.trim()) el.textContent = headlineData[entry[0]];
+    });
+  }
+
+  /* ---- Word splitting for headline reveals ---- */
+  function splitIntoWords(el, text) {
+    el.textContent = '';
+    var words = text.split(' ');
+    words.forEach(function(word, i) {
+      var wrap = document.createElement('span');
+      wrap.className = 'kls-word-wrap';
+      var inner = document.createElement('span');
+      inner.className = 'kls-word';
+      inner.textContent = word;
+      wrap.appendChild(inner);
+      el.appendChild(wrap);
+      if (i < words.length - 1) {
+        el.appendChild(document.createTextNode(' '));
+      }
+    });
+  }
+
+  /* ---- Setup hero headline word split ---- */
+  var heroH1 = document.querySelector('.hero-content h1');
+  if (heroH1) splitIntoWords(heroH1, headlineData.hero);
+
+  /* ---- Setup section headline word splits ---- */
+  var sectionHeadings = {
+    '#who h2': headlineData.who,
+    '#services h2': headlineData.services,
+    '#process h2': headlineData.process,
+    '#contact h2': headlineData.contact
+  };
+  Object.entries(sectionHeadings).forEach(function(entry) {
+    var el = document.querySelector(entry[0]);
+    if (el) splitIntoWords(el, entry[1]);
+  });
+
+  /* ---- GSAP defaults ---- */
+  gsap.defaults({ ease: 'power3.out', duration: 0.9 });
+
+  /* ==========================================================
+     A. PAGE LOAD SEQUENCE — Orchestrated Timeline
+     ========================================================== */
+  var masterTL = gsap.timeline({ delay: 0.1 });
+
+  /* 1. Progress bar — appears instantly (already visible) */
+
+  /* 2. Nav: slide down with blur clear */
+  var header = document.querySelector('header');
+  if (header) {
+    gsap.set(header, { y: -30, opacity: 0, filter: 'blur(10px)' });
+    masterTL.to(header, {
+      y: 0, opacity: 1, filter: 'blur(0px)',
+      duration: 0.7, ease: 'power3.out'
+    }, 0.15);
+  }
+
+  /* 3. Logo: rotate in with elastic */
+  var logo = document.querySelector('.logo');
+  if (logo) {
+    gsap.set(logo, { rotate: -15, scale: 0.8, opacity: 0 });
+    masterTL.to(logo, {
+      rotate: 0, scale: 1, opacity: 1,
+      duration: 0.8, ease: 'elastic.out(1, 0.6)'
+    }, 0.25);
+  }
+
+  /* 4. Hero headline: word-by-word clip-mask reveal */
+  if (heroH1) {
+    var heroWords = heroH1.querySelectorAll('.kls-word');
+    gsap.set(heroWords, { y: '110%' });
+    masterTL.to(heroWords, {
+      y: '0%',
+      duration: 0.9,
+      ease: 'power3.out',
+      stagger: 0.07
+    }, 0.35);
+  }
+
+  /* 5. Hero lead text: fade up with blur dissolve */
+  var heroLead = document.querySelector('.hero-lead');
+  if (heroLead) {
+    gsap.set(heroLead, { y: 24, opacity: 0, filter: 'blur(12px)' });
+    masterTL.to(heroLead, {
+      y: 0, opacity: 1, filter: 'blur(0px)',
+      duration: 0.8
+    }, 1.0);
+  }
+
+  /* 6. CTA buttons: scale up with back.out elastic */
+  var heroButtons = document.querySelectorAll('.hero-actions .btn');
+  if (heroButtons.length) {
+    gsap.set(heroButtons, { y: 16, opacity: 0, scale: 0.92 });
+    masterTL.to(heroButtons, {
+      y: 0, opacity: 1, scale: 1,
+      duration: 0.65, stagger: 0.1,
+      ease: 'back.out(2.2)'
+    }, 1.2);
+  }
+
+  /* 7. Hero image: diagonal clip-path wipe */
+  var heroMedia = document.querySelector('.hero-media');
+  if (heroMedia) {
+    gsap.set(heroMedia, {
+      clipPath: 'polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%)',
+      opacity: 0
+    });
+    masterTL.to(heroMedia, {
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+      opacity: 1,
+      duration: 1.2,
+      ease: 'power3.inOut'
+    }, 0.8);
+  }
+
+  /* 8. Floating geometric decorations drift in */
+  var geos = document.querySelectorAll('.kls-geo');
+  if (geos.length) {
+    geos.forEach(function(geo, i) {
+      var startX = i % 2 === 0 ? 60 : -60;
+      gsap.set(geo, { x: startX, opacity: 0 });
+      masterTL.to(geo, {
+        x: 0, opacity: 1,
+        duration: 1.2,
+        ease: 'power2.out'
+      }, 1.4 + (i * 0.12));
+    });
+  }
+
+  /* ==========================================================
+     B. SCROLL-TRIGGERED SECTION ANIMATIONS
+     ========================================================== */
+
+  /* Section headings: word-by-word slide-up reveal */
+  document.querySelectorAll('section:not(.hero) h2').forEach(function(h2) {
+    var words = h2.querySelectorAll('.kls-word');
+    if (!words.length) return;
+
+    gsap.set(words, { y: '110%' });
+    ScrollTrigger.create({
+      trigger: h2,
+      start: 'top 82%',
+      onEnter: function() {
+        gsap.to(words, {
+          y: '0%',
+          duration: 0.75,
+          ease: 'power3.out',
+          stagger: 0.06
+        });
+      },
+      once: true
     });
   });
 
-  // 2. Magnetic Pull for Buttons & Images
-  function applyMagnet(targets, strength) {
-    targets.forEach(el => {
-      el.addEventListener("mousemove", (e) => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * strength;
-        const y = (e.clientY - r.top - r.height / 2) * strength;
-        gsap.to(el, { x, y, duration: 0.6, ease: "power2.out" });
-      });
-      el.addEventListener("mouseleave", () => {
-        gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-      });
-    });
-  }
-  applyMagnet(document.querySelectorAll(".kls-magnet"), 0.4);
-  applyMagnet(document.querySelectorAll(".img-wrap"), 0.15);
-
-  // 3. Noodle Path Logic
-  const noodlePath = document.querySelector('.noodle-path');
-  function updateNoodle() {
-    const sections = document.querySelectorAll('section');
-    let d = `M ${window.innerWidth/2} 0`;
-    sections.forEach((s, i) => {
-      const y = s.offsetTop + s.offsetHeight/2;
-      const x = (i % 2 === 0) ? window.innerWidth * 0.1 : window.innerWidth * 0.9;
-      d += ` Q ${window.innerWidth/2} ${s.offsetTop}, ${x} ${y}`;
-    });
-    noodlePath.setAttribute('d', d);
-  }
-  window.addEventListener('scroll', updateNoodle);
-  window.addEventListener('resize', updateNoodle);
-  updateNoodle();
-
-  // 4. Image Scroll Fade
-  gsap.utils.toArray(".gsap-img").forEach(img => {
-    gsap.fromTo(img, { opacity: 0, filter: "blur(8px)" }, {
-      opacity: 1, filter: "blur(0px)",
-      scrollTrigger: { trigger: img, start: "top 90%", toggleActions: "play none none reverse" }
+  /* Section lead text: fade up with blur dissolve */
+  document.querySelectorAll('.kls-reveal').forEach(function(el) {
+    gsap.set(el, { y: 20, opacity: 0, filter: 'blur(8px)' });
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      onEnter: function() {
+        gsap.to(el, {
+          y: 0, opacity: 1, filter: 'blur(0px)',
+          duration: 0.8
+        });
+      },
+      once: true
     });
   });
 
-  // 5. Progress Bar
-  gsap.to(".kls-progress", { width: "100%", ease: "none", scrollTrigger: { scrub: 0.3 } });
+  /* Section images: geometric clip-path reveal */
+  document.querySelectorAll('.kls-img-reveal').forEach(function(el) {
+    gsap.set(el, {
+      clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)'
+    });
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 80%',
+      onEnter: function() {
+        gsap.to(el, {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          duration: 1.0,
+          ease: 'power3.inOut'
+        });
+      },
+      once: true
+    });
+  });
+
+  /* Cards: staggered fly-in from bottom with subtle rotation */
+  document.querySelectorAll('.grid-3').forEach(function(grid) {
+    var cards = grid.querySelectorAll('.kls-card-reveal');
+    if (!cards.length) return;
+
+    gsap.set(cards, {
+      y: 50, opacity: 0, rotateX: 8, filter: 'blur(6px)',
+      transformPerspective: 1000
+    });
+
+    ScrollTrigger.create({
+      trigger: grid,
+      start: 'top 80%',
+      onEnter: function() {
+        gsap.to(cards, {
+          y: 0, opacity: 1, rotateX: 0, filter: 'blur(0px)',
+          duration: 0.85,
+          ease: 'power3.out',
+          stagger: 0.12
+        });
+      },
+      once: true
+    });
+  });
+
+  /* ==========================================================
+     C. PARALLAX & DEPTH SYSTEM
+     ========================================================== */
+
+  /* Section images: multi-speed scroll parallax */
+  document.querySelectorAll('.section-media img').forEach(function(img) {
+    gsap.to(img, {
+      y: -30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: img.closest('.section-media'),
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.4
+      }
+    });
+  });
+
+  /* Floating decorations: parallax at different rates */
+  geos.forEach(function(geo, i) {
+    var rate = 0.1 + (i * 0.06);
+    gsap.to(geo, {
+      y: function() { return -rate * 300; },
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5
+      }
+    });
+  });
+
+  /* Progress bar */
+  var prog = document.querySelector('.kls-progress');
+  if (prog) {
+    gsap.to(prog, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.25
+      }
+    });
+  }
+
+  /* ==========================================================
+     D. HOVER MICRO-INTERACTIONS
+     ========================================================== */
+
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (canHover) {
+
+    /* Magnetic buttons */
+    document.querySelectorAll('.kls-magnetic').forEach(function(btn) {
+      var strength = 0.3;
+      var radius = 80;
+
+      btn.addEventListener('mousemove', function(e) {
+        var rect = btn.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var dx = e.clientX - cx;
+        var dy = e.clientY - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < radius) {
+          gsap.to(btn, {
+            x: dx * strength,
+            y: dy * strength,
+            duration: 0.35,
+            ease: 'power3.out'
+          });
+        }
+      });
+
+      btn.addEventListener('mouseleave', function() {
+        gsap.to(btn, {
+          x: 0, y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)'
+        });
+      });
+    });
+
+    /* Card 3D tilt with dynamic light overlay */
+    document.querySelectorAll('.card').forEach(function(card) {
+      var light = card.querySelector('.card-light');
+
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width;
+        var py = (e.clientY - rect.top) / rect.height;
+        var rotX = (py - 0.5) * -8;
+        var rotY = (px - 0.5) * 10;
+
+        gsap.to(card, {
+          rotateX: rotX,
+          rotateY: rotY,
+          transformPerspective: 1000,
+          duration: 0.3,
+          ease: 'power3.out'
+        });
+
+        if (light) {
+          light.style.opacity = '1';
+          light.style.background =
+            'radial-gradient(circle at ' +
+            (px * 100) + '% ' + (py * 100) + '%, ' +
+            'rgba(255,255,255,0.15) 0%, transparent 60%)';
+        }
+      });
+
+      card.addEventListener('mouseleave', function() {
+        gsap.to(card, {
+          rotateX: 0, rotateY: 0,
+          duration: 0.5,
+          ease: 'power3.out'
+        });
+        if (light) {
+          light.style.opacity = '0';
+        }
+      });
+    });
+  }
+
+  /* ==========================================================
+     E. SMOOTH SCROLL-LINKED BACKGROUND TRANSITIONS
+     ========================================================== */
+
+  document.querySelectorAll('section[data-bg-start]').forEach(function(sec) {
+    var start = sec.getAttribute('data-bg-start');
+    var end = sec.getAttribute('data-bg-end');
+
+    sec.style.backgroundColor = start;
+
+    gsap.fromTo(sec,
+      { backgroundColor: start },
+      {
+        backgroundColor: end,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sec,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.3
+        }
+      }
+    );
+  });
+
+  /* ==========================================================
+     F. MOBILE HAMBURGER MENU
+     ========================================================== */
+
+  var hamburger = document.querySelector('.hamburger');
+  var mobileMenu = document.querySelector('.mobile-menu');
+  var overlay = document.querySelector('.mobile-overlay');
+  var menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+  var menuOpen = false;
+
+  function openMenu() {
+    menuOpen = true;
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    gsap.to(mobileMenu, {
+      x: 0,
+      duration: 0.5,
+      ease: 'power3.out'
+    });
+    gsap.to(menuLinks, {
+      opacity: 1,
+      x: 0,
+      duration: 0.4,
+      stagger: 0.06,
+      delay: 0.15,
+      ease: 'power3.out'
+    });
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+
+    gsap.to(mobileMenu, {
+      x: '100%',
+      duration: 0.4,
+      ease: 'power3.inOut'
+    });
+    gsap.set(menuLinks, {
+      opacity: 0, x: 20,
+      delay: 0.4
+    });
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      menuOpen ? closeMenu() : openMenu();
+    });
+  }
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+  menuLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (menuOpen) closeMenu();
+    });
+  });
+
+  /* ==========================================================
+     G. FLIP CARD ENHANCED 3D
+     ========================================================== */
+
+  document.querySelectorAll('.flip-card').forEach(function(card) {
+    var visualImg = card.querySelector('.card-visual img');
+    if (visualImg) {
+      gsap.fromTo(visualImg,
+        { scale: 1.12 },
+        {
+          scale: 1.0,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'bottom 20%',
+            scrub: 0.3
+          }
+        }
+      );
+    }
+  });
+
+  /* ==========================================================
+     H. SMOOTH SCROLL FOR ANCHOR LINKS
+     ========================================================== */
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        gsap.to(window, {
+          scrollTo: { y: target, offsetY: 70 },
+          duration: 1,
+          ease: 'power3.inOut'
+        });
+      }
+    });
+  });
+
+})();
 </script>
 </body>
 </html>
