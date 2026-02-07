@@ -10,45 +10,32 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   KLS — Geometric Precision
-   Editorial Luxury meets Motion Architecture
+   KLS — "Wow" Edition
+   Cinematic Motion Architecture
    ============================================================ */
-
 :root {
   --white: #ffffff;
   --off-white: #fafbfc;
-  --gray-50: #f4f5f7;
-  --gray-100: #ebedf1;
-  --gray-200: #dfe2e8;
-
   --ink: #0f172a;
-  --ink-70: rgba(15, 23, 42, 0.7);
-  --muted: #475569;
-  --border: rgba(15, 23, 42, 0.08);
-  --border-strong: rgba(15, 23, 42, 0.14);
-
+  --ink-50: rgba(15,23,42,0.5);
+  --ink-70: rgba(15,23,42,0.7);
+  --muted: #64748b;
+  --border: rgba(15,23,42,0.08);
+  --border-strong: rgba(15,23,42,0.15);
   --green: #16a34a;
   --green-dark: #15803d;
-  --green-glow: rgba(22, 163, 74, 0.15);
-  --green-line: rgba(22, 163, 74, 0.5);
-
-  --max: 1100px;
+  --green-glow: rgba(22,163,74,0.12);
+  --max: 1140px;
   --radius: 20px;
   --radius-lg: 28px;
-  --shadow-sm: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.03);
-  --shadow-md: 0 4px 16px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
-  --shadow-lg: 0 12px 40px rgba(15,23,42,0.08), 0 4px 12px rgba(15,23,42,0.04);
-  --shadow-hover: 0 16px 48px rgba(15,23,42,0.12), 0 6px 16px rgba(15,23,42,0.06);
-
-  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
-
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---- Reset & Base ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: auto; }
 
 body {
   font-family: var(--font-sans);
@@ -57,624 +44,792 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
+button { font-family: inherit; }
 
-::selection {
+::selection { background: var(--green); color: #fff; }
+
+/* ============================================================
+   PRELOADER — Cinematic curtain
+   ============================================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  pointer-events: none;
+}
+.preloader-logo {
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  filter: invert(1) brightness(2);
+}
+.preloader-bar {
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.preloader-fill {
+  height: 100%;
+  width: 0%;
   background: var(--green);
-  color: var(--white);
+  border-radius: 2px;
 }
 
-/* ---- Dot-grid background ---- */
+/* ============================================================
+   CURSOR GLOW — Follows mouse
+   ============================================================ */
+.cursor-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(22,163,74,0.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* ============================================================
+   GLOBAL TEXTURES
+   ============================================================ */
 .kls-dots {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: radial-gradient(circle, rgba(15,23,42,0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.35;
+  background-image: radial-gradient(circle, rgba(15,23,42,0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* ---- Film grain overlay ---- */
 .kls-grain {
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 998;
   pointer-events: none;
-  opacity: 0.022;
+  opacity: 0.025;
   mix-blend-mode: multiply;
 }
 .kls-grain::before {
   content: '';
   position: absolute;
   inset: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  width: 200%; height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
 }
 
-/* ---- Floating geometric decorations ---- */
-.kls-geo {
+/* ============================================================
+   SVG LINE DRAW — Scrolling chevron paths
+   ============================================================ */
+.kls-lineart {
   position: fixed;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0;
+  overflow: hidden;
 }
-.kls-geo-1 { top: 12%; right: 6%; width: 120px; height: 120px; }
-.kls-geo-2 { top: 38%; left: 3%; width: 90px; height: 90px; }
-.kls-geo-3 { top: 62%; right: 4%; width: 100px; height: 100px; }
-.kls-geo-4 { top: 85%; left: 5%; width: 80px; height: 80px; }
+.kls-lineart svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.draw-path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
 
-/* ---- Progress bar ---- */
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
 .kls-progress {
   position: fixed;
-  left: 0;
-  top: 0;
+  top: 0; left: 0;
   height: 3px;
   width: 100%;
   transform-origin: 0 50%;
   transform: scaleX(0);
-  background: linear-gradient(90deg, transparent 0%, var(--green) 20%, var(--green) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
   z-index: 100;
   pointer-events: none;
 }
 
-/* ---- Layout ---- */
+/* ============================================================
+   LAYOUT
+   ============================================================ */
 .wrap {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   position: relative;
   z-index: 2;
 }
 
-/* ---- Header / Nav ---- */
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
-  position: sticky;
-  top: 0;
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  border-bottom: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   z-index: 50;
-  will-change: transform, opacity;
+  transition: background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+header.scrolled {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom-color: var(--border);
 }
 
-.nav {
+.nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.9rem 0;
-  gap: 1rem;
+  padding: 1.1rem 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+.logo { width: 28px; height: 28px; }
+.brand-text {
   font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.78rem;
-  font-family: var(--font-sans);
 }
-
-.logo {
-  width: 26px;
-  height: 26px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.brand-text { white-space: nowrap; }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 2rem;
 }
-
 .nav-links a {
-  position: relative;
-  margin-left: 1.5rem;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--muted);
-  letter-spacing: 0.01em;
-  transition: color 0.3s ease;
+  position: relative;
+  transition: color 0.3s;
 }
-
+.nav-links a:not(.btn):hover { color: var(--ink); }
 .nav-links a:not(.btn)::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
+  bottom: -4px; left: 0; right: 0;
   height: 1.5px;
   background: var(--green);
   transform: scaleX(0);
-  transform-origin: right center;
-  transition: transform 0.4s var(--ease-out-expo);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-expo);
 }
-
-.nav-links a:not(.btn):hover { color: var(--ink); }
 .nav-links a:not(.btn):hover::after {
   transform: scaleX(1);
-  transform-origin: left center;
+  transform-origin: left;
 }
 
-/* ---- Hamburger menu (mobile) ---- */
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-expo), box-shadow 0.4s ease;
+}
+.btn-primary {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(22,163,74,0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(22,163,74,0.35);
+}
+/* Ripple on click */
+.btn .btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--border-strong);
+  box-shadow: none;
+}
+.btn-outline:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(15,23,42,0.08);
+}
+
+/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
-  justify-content: center;
   gap: 5px;
-  width: 28px;
-  height: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 60;
+  width: 26px; height: 26px;
+  background: none; border: none;
+  cursor: pointer; padding: 0; z-index: 60;
+  justify-content: center;
 }
 .hamburger span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease;
+  display: block; width: 100%; height: 2px;
+  background: var(--ink); border-radius: 2px;
+  transition: transform 0.4s var(--ease-expo), opacity 0.3s;
   transform-origin: center;
 }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Mobile menu */
+.mobile-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,23,42,0.4);
+  z-index: 52; opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(4px);
+}
+.mobile-overlay.active { opacity: 1; pointer-events: auto; }
+
 .mobile-menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: min(320px, 85vw);
-  height: 100vh;
-  height: 100dvh;
+  position: fixed; top: 0; right: 0;
+  width: min(340px, 88vw); height: 100dvh;
   background: var(--white);
-  z-index: 55;
-  padding: 5rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  z-index: 55; padding: 5rem 2rem 2rem;
+  display: flex; flex-direction: column; gap: 0;
   transform: translateX(100%);
-  box-shadow: -8px 0 40px rgba(15,23,42,0.1);
-  will-change: transform;
+  box-shadow: -12px 0 60px rgba(15,23,42,0.12);
 }
 .mobile-menu a {
   display: block;
-  font-size: 1.1rem;
-  font-family: var(--font-sans);
+  font-size: 1.15rem;
   font-weight: 500;
   color: var(--ink);
-  padding: 0.9rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--border);
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(30px);
 }
-.mobile-menu a.btn {
-  margin-top: 1rem;
-  border-bottom: none;
-  text-align: center;
-}
-.mobile-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15,23,42,0.3);
-  z-index: 52;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-.mobile-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
+.mobile-menu a.btn { margin-top: 1.5rem; border-bottom: none; text-align: center; }
 
-/* ---- Buttons ---- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.75rem;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.88rem;
-  font-family: var(--font-sans);
-  border: 1px solid transparent;
-  letter-spacing: 0.01em;
-  transition: all 0.35s var(--ease-out-expo);
-  will-change: transform;
-  position: relative;
-}
-
-.btn-primary {
-  background: var(--green);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(22,163,74,0.2);
-}
-.btn-primary:hover {
-  background: var(--green-dark);
-  box-shadow: 0 4px 16px rgba(22,163,74,0.3);
-  transform: translateY(-1px);
-}
-
-.btn-outline {
-  border-color: var(--border-strong);
-  color: var(--ink);
-  background: var(--white);
-}
-.btn-outline:hover {
-  border-color: var(--ink);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-1px);
-}
-
-/* ---- Section System ---- */
-main { position: relative; z-index: 2; }
-
-main section {
-  padding: clamp(5rem, 8vw, 8rem) 0;
-  position: relative;
-  transition: background-color 0.6s ease;
-}
-
-/* Section dividers */
-.section-divider {
-  position: relative;
-  height: 1px;
-  background: var(--border);
-  z-index: 2;
-  overflow: visible;
-}
-.section-divider::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  width: 9px;
-  height: 9px;
-  background: var(--white);
-  border: 1px solid var(--border-strong);
-}
-
-/* ---- Typography ---- */
-h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 6vw + 1rem, 5.5rem);
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.25rem;
-}
-
-h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 3vw + 0.5rem, 3rem);
-  line-height: 1.1;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  margin: 0 0 0.75rem;
-}
-
-h3 {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 400;
-  line-height: 1.25;
-  margin: 0 0 0.5rem;
-}
-
-p.lead {
-  max-width: 40rem;
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  font-weight: 400;
-}
-
-.pill {
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-weight: 500;
-}
-
-/* ---- Hero ---- */
+/* ============================================================
+   HERO — Full viewport cinematic
+   ============================================================ */
 .hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
+  overflow: hidden;
+  padding: 6rem 0 4rem;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 3.5rem;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
   align-items: center;
 }
 
-.hero-content { position: relative; }
+.hero-content { position: relative; z-index: 3; }
 
-/* Word-by-word reveal containers */
-.kls-word-wrap {
+/* Character-by-character reveal */
+.kls-char {
   display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  padding-bottom: 0.08em;
-}
-.kls-word {
-  display: inline-block;
-  will-change: transform;
-}
-
-.hero-lead {
-  will-change: transform, opacity, filter;
-}
-
-.hero-actions {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
   will-change: transform, opacity;
 }
 
-/* Hero media */
-.hero-media {
-  position: relative;
-  will-change: clip-path, opacity;
-}
-.hero-media img {
-  width: 100%;
-  height: 340px;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  display: block;
-  box-shadow: var(--shadow-lg);
-}
-.hero-media-caption {
-  margin-top: 1rem;
-  font-weight: 600;
-  font-size: 0.88rem;
-  color: var(--ink);
-  opacity: 0.8;
-  letter-spacing: 0.01em;
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3.2rem, 6vw + 1rem, 6rem);
+  line-height: 1.02;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
 }
 
-/* ---- Section media ---- */
+h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.5vw + 0.5rem, 3.5rem);
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+
+p.lead {
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.hero-lead { margin-bottom: 2.5rem; }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Hero media — dramatic reveal */
+.hero-media {
+  position: relative;
+  z-index: 3;
+}
+.hero-media-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(15,23,42,0.12), 0 8px 24px rgba(15,23,42,0.08);
+}
+.hero-media-wrapper img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.15);
+  will-change: transform;
+}
+/* Decorative frame accent */
+.hero-media::before {
+  content: '';
+  position: absolute;
+  top: -8px; right: -8px;
+  bottom: 16px; left: 16px;
+  border: 1.5px solid var(--green);
+  border-radius: var(--radius-lg);
+  opacity: 0.3;
+  z-index: -1;
+}
+.hero-media-caption {
+  margin-top: 1.25rem;
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   HORIZONTAL SCROLLING TEXT MARQUEE
+   ============================================================ */
+.marquee-strip {
+  overflow: hidden;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-track span {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-style: italic;
+  color: rgba(15,23,42,0.06);
+  white-space: nowrap;
+  padding: 0 2rem;
+  user-select: none;
+  line-height: 1.1;
+}
+.marquee-track span .green-word {
+  color: rgba(22,163,74,0.12);
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+main { position: relative; z-index: 2; }
+
+main > section {
+  padding: clamp(5rem, 10vw, 9rem) 0;
+  position: relative;
+}
+
+.pill {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   SECTION MEDIA — Cinematic reveal
+   ============================================================ */
 .section-media {
-  margin-top: 1.75rem;
+  margin-top: 2.5rem;
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  will-change: clip-path;
+  position: relative;
 }
 .section-media img {
   width: 100%;
-  height: 280px;
+  height: 320px;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s var(--ease-out-expo);
+  will-change: transform;
 }
-.section-media:hover img {
-  transform: scale(1.03);
-}
-
-/* ---- Cards ---- */
-.card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  position: relative;
-  transition: box-shadow 0.4s ease, transform 0.4s var(--ease-out-expo);
-  will-change: transform, opacity, filter;
-  /* Glass border accent */
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.8);
-}
-.card:hover {
-  box-shadow: var(--shadow-hover);
+/* Gradient overlay on images */
+.section-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(15,23,42,0.04) 100%);
+  pointer-events: none;
 }
 
-.card p {
-  font-size: 0.92rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
+/* ============================================================
+   CARDS — Glass + tilt
+   ============================================================ */
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 2.25rem;
+  margin-top: 2.5rem;
 }
 
-/* ---- Flip cards ---- */
-.flip-card {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  will-change: transform, opacity, filter;
-}
-
-.card-visual {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 1rem;
+.card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.5s ease;
+  will-change: transform;
 }
-.card-visual img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s var(--ease-out-expo);
+.card:hover {
+  box-shadow: 0 20px 60px rgba(15,23,42,0.1), 0 4px 16px rgba(15,23,42,0.06);
 }
-.flip-card:hover .card-visual img {
-  transform: scale(1.05);
+.card p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
-/* Card tilt light overlay */
+/* Card shimmer effect on hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(22,163,74,0.03) 10%, transparent 20%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: card-shimmer 6s linear infinite;
+  pointer-events: none;
+}
+.card:hover::before { opacity: 1; }
+
+@keyframes card-shimmer {
+  to { transform: rotate(360deg); }
+}
+
+/* Card light reflection */
 .card-light {
   position: absolute;
   inset: 0;
   border-radius: var(--radius);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
+  transition: opacity 0.3s;
+  z-index: 3;
 }
 
-/* ---- Process cards ---- */
+/* Flip cards */
+.flip-card {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+.card-visual {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.card-visual img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease-expo);
+}
+.flip-card:hover .card-visual img { transform: scale(1.08); }
+
+/* Process step numbers */
+.step-num {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--green);
+  opacity: 0.15;
+  margin-bottom: 0.75rem;
+  display: block;
+  font-style: italic;
+}
+
 .card strong {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 400;
   display: block;
   margin-bottom: 0.35rem;
 }
 
-/* Step number accent */
-.step-num {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--green);
-  opacity: 0.25;
-  margin-bottom: 0.5rem;
-  display: block;
-  font-style: italic;
-}
-
-/* ---- Lists ---- */
-ul {
-  padding-left: 1.2rem;
-  margin: 0.75rem 0 0;
-}
-
+ul { padding-left: 1.2rem; margin: 0.75rem 0 0; list-style: none; }
 ul li {
   font-size: 0.9rem;
   color: var(--muted);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
   line-height: 1.55;
+  position: relative;
+  padding-left: 1rem;
+}
+ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 1.5px;
+  background: var(--green);
 }
 
-/* ---- Footer ---- */
-footer {
-  background: var(--gray-50);
-  border-top: 1px solid var(--border);
+/* ============================================================
+   HORIZONTAL SCROLL SECTION — Services cards
+   ============================================================ */
+.hscroll-section {
+  position: relative;
+  overflow: hidden;
+}
+.hscroll-track {
+  display: flex;
+  gap: 2rem;
   padding: 2.5rem 0;
-  font-size: 0.8rem;
-  color: var(--muted);
+  will-change: transform;
+}
+.hscroll-track .card {
+  min-width: 340px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   COUNTER ANIMATION
+   ============================================================ */
+.counter-num {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1;
+  color: var(--green);
+  opacity: 0.2;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 4rem 0;
+  font-size: 0.82rem;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
-
-.footer-inner {
+footer .wrap { position: relative; z-index: 2; }
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.footer-brand img {
+  width: 24px; height: 24px;
+  filter: invert(1) brightness(2);
+}
+.footer-brand span {
+  color: rgba(255,255,255,0.8);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  color: rgba(255,255,255,0.4);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.9); }
+footer .footer-line {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  align-items: center;
+}
+/* Animated gradient bar in footer */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  opacity: 0.5;
 }
 
-.footer-inner a {
-  margin-left: 1.25rem;
-  transition: color 0.3s ease;
-}
-.footer-inner a:hover { color: var(--ink); }
-
-/* ---- Responsive ---- */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 900px) {
-  .hero { min-height: auto; padding-top: 3rem; padding-bottom: 3rem; }
-  .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-media img { height: 240px; }
-  h1 { font-size: clamp(2.4rem, 8vw, 3.5rem); }
+  .hero { min-height: auto; padding: 7rem 0 3rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-media-wrapper img { height: 260px; }
+  .hero-media::before { display: none; }
+  h1 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
   .grid-3 { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .kls-geo { display: none !important; }
-  main section { padding: clamp(3rem, 6vw, 5rem) 0; }
-  .section-media img { height: 200px; }
+  .hscroll-track .card { min-width: 300px; }
+  .section-media img { height: 220px; }
+  .kls-lineart { display: none; }
+  .cursor-glow { display: none; }
 }
 
 @media (max-width: 480px) {
-  .wrap { padding: 0 1.15rem; }
-  h1 { font-size: 2.2rem; }
+  .wrap { padding: 0 1.25rem; }
+  h1 { font-size: 2.4rem; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; }
+  .marquee-track span { font-size: 2rem; }
 }
 
-/* ---- Reduced motion ---- */
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .kls-grain, .kls-geo { display: none !important; }
+  .preloader { display: none !important; }
+  .kls-grain, .kls-lineart, .cursor-glow { display: none !important; }
+  .marquee-track { animation: none !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- Atmosphere layers -->
+<!-- ======== PRELOADER ======== -->
+<div class="preloader" aria-hidden="true">
+  <img class="preloader-logo" src="assets/images/brand/kls-logo-primary.svg" alt=""/>
+  <div class="preloader-bar">
+    <div class="preloader-fill"></div>
+  </div>
+</div>
+
+<!-- ======== CURSOR GLOW ======== -->
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<!-- ======== TEXTURES ======== -->
 <div class="kls-dots" aria-hidden="true"></div>
 <div class="kls-grain" aria-hidden="true"></div>
 <div class="kls-progress" aria-hidden="true"></div>
 
-<!-- Floating geometric chevrons -->
-<svg class="kls-geo kls-geo-1" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M60 10 L100 60 L60 110" stroke="rgba(15,23,42,0.07)" stroke-width="1.5" fill="none"/>
-  <path d="M40 25 L75 60 L40 95" stroke="rgba(22,163,74,0.1)" stroke-width="1" fill="none"/>
-</svg>
-<svg class="kls-geo kls-geo-2" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M45 5 L85 45 L45 85 L5 45 Z" stroke="rgba(15,23,42,0.06)" stroke-width="1" fill="none"/>
-</svg>
-<svg class="kls-geo kls-geo-3" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M20 15 L80 50 L20 85" stroke="rgba(15,23,42,0.06)" stroke-width="1.5" fill="none"/>
-  <path d="M35 30 L70 50 L35 70" stroke="rgba(22,163,74,0.08)" stroke-width="1" fill="none"/>
-</svg>
-<svg class="kls-geo kls-geo-4" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M10 40 L40 10 L70 40 L40 70 Z" stroke="rgba(15,23,42,0.05)" stroke-width="1" fill="none"/>
-</svg>
+<!-- ======== SVG LINE ART — Geometric chevrons drawn on scroll ======== -->
+<div class="kls-lineart" aria-hidden="true">
+  <svg viewBox="0 0 1440 4000" preserveAspectRatio="none">
+    <!-- Large chevron left -->
+    <path class="draw-path" d="M -20 200 L 180 500 L -20 800" stroke="rgba(22,163,74,0.08)" stroke-width="1.5"/>
+    <!-- Diamond right -->
+    <path class="draw-path" d="M 1460 600 L 1260 900 L 1460 1200" stroke="rgba(15,23,42,0.05)" stroke-width="1"/>
+    <!-- Small chevron left -->
+    <path class="draw-path" d="M 60 1400 L 200 1600 L 60 1800" stroke="rgba(22,163,74,0.06)" stroke-width="1"/>
+    <!-- Zigzag right -->
+    <path class="draw-path" d="M 1380 2000 L 1280 2200 L 1380 2400 L 1280 2600" stroke="rgba(15,23,42,0.04)" stroke-width="1.5"/>
+    <!-- Large V bottom left -->
+    <path class="draw-path" d="M -20 2800 L 250 3200 L -20 3600" stroke="rgba(22,163,74,0.06)" stroke-width="1"/>
+  </svg>
+</div>
 
-<!-- Header -->
+<!-- ======== HEADER ======== -->
 <header>
-<div class="wrap nav">
-  <div class="brand">
-    <img alt="Know Leap Strategies logo" class="logo" src="assets/images/brand/kls-logo-primary.svg"/>
+<div class="wrap nav-bar">
+  <a href="#" class="brand">
+    <img class="logo" src="assets/images/brand/kls-logo-primary.svg" alt="Know Leap Strategies"/>
     <span class="brand-text">Know Leap Strategies</span>
-  </div>
+  </a>
   <nav class="nav-links">
     <a href="#who">Who We Serve</a>
     <a href="#services">Services</a>
     <a href="#process">Process</a>
     <a class="btn btn-primary" href="#contact">Start Here</a>
   </nav>
-  <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+  <button class="hamburger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </div>
@@ -690,14 +845,14 @@ footer {
   <a class="btn btn-primary" href="#contact">Start Here</a>
 </div>
 
-<!-- Main content -->
+<!-- ======== MAIN ======== -->
 <main>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero">
 <div class="wrap hero-grid">
   <div class="hero-content">
-    <h1></h1>
+    <h1 class="kls-headline" data-text="Clear systems for complex decisions."></h1>
     <p class="lead hero-lead">Strategy, oversight, and execution design. Built to replace guesswork with proof, and make progress predictable.</p>
     <div class="hero-actions">
       <a class="btn btn-primary kls-magnetic" href="#contact">Request a call</a>
@@ -705,18 +860,37 @@ footer {
     </div>
   </div>
   <div class="hero-media">
-    <img alt="Abstract strategy planning visual" loading="eager" src="assets/images/sections/hero-strategy.jpeg"/>
+    <div class="hero-media-wrapper">
+      <img alt="Abstract strategy planning visual" loading="eager" src="assets/images/sections/hero-strategy.jpeg"/>
+    </div>
     <div class="hero-media-caption">Proof first. Calm execution. Clean outcomes.</div>
   </div>
 </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- MARQUEE 1 -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Strategy &mdash;</span>
+    <span><em class="green-word">Clarity</em> &mdash;</span>
+    <span>Oversight &mdash;</span>
+    <span>Execution &mdash;</span>
+    <span>Proof &mdash;</span>
+    <span><em class="green-word">Systems</em> &mdash;</span>
+    <span>Strategy &mdash;</span>
+    <span><em class="green-word">Clarity</em> &mdash;</span>
+    <span>Oversight &mdash;</span>
+    <span>Execution &mdash;</span>
+    <span>Proof &mdash;</span>
+    <span><em class="green-word">Systems</em> &mdash;</span>
+  </div>
+</div>
 
-<!-- Who We Serve -->
-<section id="who" data-bg-start="#ffffff" data-bg-end="#f8f9fb">
+<!-- WHO WE SERVE -->
+<section id="who">
 <div class="wrap">
-  <h2></h2>
+  <div class="pill">Audience</div>
+  <h2 class="kls-headline" data-text="Who We Serve"></h2>
   <p class="lead kls-reveal">Built for people already in motion who want fewer surprises and cleaner execution.</p>
   <div class="section-media kls-img-reveal">
     <img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/>
@@ -741,12 +915,29 @@ footer {
 </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- MARQUEE 2 -->
+<div class="marquee-strip">
+  <div class="marquee-track marquee-reverse">
+    <span>Decision clarity &mdash;</span>
+    <span><em class="green-word">Risk mapping</em> &mdash;</span>
+    <span>Proof frameworks &mdash;</span>
+    <span>User flows &mdash;</span>
+    <span><em class="green-word">Scalable structure</em> &mdash;</span>
+    <span>Verification &mdash;</span>
+    <span>Decision clarity &mdash;</span>
+    <span><em class="green-word">Risk mapping</em> &mdash;</span>
+    <span>Proof frameworks &mdash;</span>
+    <span>User flows &mdash;</span>
+    <span><em class="green-word">Scalable structure</em> &mdash;</span>
+    <span>Verification &mdash;</span>
+  </div>
+</div>
 
-<!-- Services -->
-<section id="services" data-bg-start="#f8f9fb" data-bg-end="#f4f5f7">
+<!-- SERVICES -->
+<section id="services">
 <div class="wrap">
-  <h2></h2>
+  <div class="pill">Capabilities</div>
+  <h2 class="kls-headline" data-text="Services"></h2>
   <p class="lead kls-reveal">Three lanes. Clear deliverables. Built for speed, accountability, and real-world follow-through.</p>
   <div class="section-media kls-img-reveal">
     <img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/>
@@ -754,7 +945,7 @@ footer {
   <div class="grid-3">
     <div class="card flip-card kls-card-reveal">
       <div class="card-light"></div>
-      <div class="card-visual"><img alt="Strategy mapping image" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/></div>
+      <div class="card-visual"><img alt="Strategy mapping" loading="lazy" src="assets/images/cards/card-strategy-mapping.jpg"/></div>
       <h3>Strategy Mapping</h3>
       <ul>
         <li>Decision clarity</li>
@@ -764,7 +955,7 @@ footer {
     </div>
     <div class="card flip-card kls-card-reveal">
       <div class="card-light"></div>
-      <div class="card-visual"><img alt="Oversight design image" loading="lazy" src="assets/images/cards/card-oversight-design.jpg"/></div>
+      <div class="card-visual"><img alt="Oversight design" loading="lazy" src="assets/images/cards/card-oversight-design.jpg"/></div>
       <h3>Oversight Design</h3>
       <ul>
         <li>Proof frameworks</li>
@@ -774,7 +965,7 @@ footer {
     </div>
     <div class="card flip-card kls-card-reveal">
       <div class="card-light"></div>
-      <div class="card-visual"><img alt="Platform advisory image" loading="lazy" src="assets/images/cards/card-platform-advisory.jpg"/></div>
+      <div class="card-visual"><img alt="Platform advisory" loading="lazy" src="assets/images/cards/card-platform-advisory.jpg"/></div>
       <h3>Platform Advisory</h3>
       <ul>
         <li>User flows</li>
@@ -786,12 +977,11 @@ footer {
 </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- Process -->
-<section id="process" data-bg-start="#f4f5f7" data-bg-end="#ffffff">
+<!-- PROCESS -->
+<section id="process">
 <div class="wrap">
-  <h2></h2>
+  <div class="pill">Method</div>
+  <h2 class="kls-headline" data-text="How It Works"></h2>
   <p class="lead kls-reveal">A short engagement designed to produce a usable plan, a verification loop, and clear next actions.</p>
   <div class="section-media kls-img-reveal">
     <img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/>
@@ -799,19 +989,19 @@ footer {
   <div class="grid-3">
     <div class="card kls-card-reveal">
       <div class="card-light"></div>
-      <span class="step-num">01</span>
+      <span class="step-num counter-num" data-target="1">0</span>
       <strong>Discovery</strong>
       <p>Understand context and constraints.</p>
     </div>
     <div class="card kls-card-reveal">
       <div class="card-light"></div>
-      <span class="step-num">02</span>
+      <span class="step-num counter-num" data-target="2">0</span>
       <strong>Design</strong>
       <p>Create systems that match reality.</p>
     </div>
     <div class="card kls-card-reveal">
       <div class="card-light"></div>
-      <span class="step-num">03</span>
+      <span class="step-num counter-num" data-target="3">0</span>
       <strong>Support</strong>
       <p>Stay involved as execution unfolds.</p>
     </div>
@@ -819,317 +1009,380 @@ footer {
 </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- Contact -->
-<section id="contact" data-bg-start="#ffffff" data-bg-end="#f0f1f4">
+<!-- CONTACT -->
+<section id="contact">
 <div class="wrap">
-  <h2></h2>
+  <div class="pill">Connect</div>
+  <h2 class="kls-headline" data-text="Contact"></h2>
   <p class="lead kls-reveal">Tell us what you're building, where it's stuck, and what proof you need next. We'll map the fastest path forward.</p>
   <div class="section-media kls-img-reveal">
     <img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/>
   </div>
-  <div style="margin-top: 2rem;">
-    <a class="btn btn-primary kls-magnetic" href="mailto:hello@knowleapstrategies.com">hello@knowleapstrategies.com</a>
+  <div style="margin-top: 2.5rem;">
+    <a class="btn btn-primary kls-magnetic" href="mailto:hello@knowleapstrategies.com" style="font-size: 1rem; padding: 1rem 2.5rem;">hello@knowleapstrategies.com</a>
   </div>
 </div>
 </section>
 
 </main>
 
+<!-- ======== FOOTER ======== -->
 <footer>
-<div class="wrap footer-inner">
-  <div>&copy; <span id="year"></span> Know Leap Strategies</div>
-  <div>
-    <a href="#who">Who</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+<div class="wrap">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <img src="assets/images/brand/kls-logo-primary.svg" alt="KLS"/>
+        <span>Know Leap Strategies</span>
+      </div>
+      <p style="max-width: 280px;">Clear systems for complex decisions. Strategy, oversight, and execution design.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#who">Who</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-line">
+    <div>&copy; <span id="year"></span> Know Leap Strategies. All rights reserved.</div>
   </div>
 </div>
 </footer>
 
-<!-- GSAP -->
+<!-- ======== SCRIPTS ======== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
 <script>
 /* ============================================================
-   KLS — Motion Architecture
+   KLS — Cinematic Motion Engine
    ============================================================ */
 document.getElementById('year').textContent = new Date().getFullYear();
 
-(function () {
+(function() {
   'use strict';
 
-  /* ---- Reduced motion bail ---- */
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
-    // Still populate headline text
-    populateHeadlines();
-    return;
-  }
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (!window.gsap || !window.ScrollTrigger) {
-    populateHeadlines();
-    return;
-  }
+  /* Populate headlines for no-JS / reduced-motion */
+  document.querySelectorAll('.kls-headline').forEach(function(el) {
+    if (!el.textContent.trim()) el.textContent = el.getAttribute('data-text') || '';
+  });
+
+  if (reduced || !window.gsap || !window.ScrollTrigger) return;
 
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-  /* ---- Headline text content ---- */
-  const headlineData = {
-    hero: 'Clear systems for complex decisions.',
-    who: 'Who We Serve',
-    services: 'Services',
-    process: 'How It Works',
-    contact: 'Contact'
-  };
+  /* ========================================================
+     0. PRELOADER — Cinematic entrance
+     ======================================================== */
+  var preloader = document.querySelector('.preloader');
+  var preloaderLogo = document.querySelector('.preloader-logo');
+  var preloaderFill = document.querySelector('.preloader-fill');
+  var pageReady = gsap.timeline({ paused: true });
 
-  function populateHeadlines() {
-    const heroH1 = document.querySelector('.hero-content h1');
-    if (heroH1 && !heroH1.textContent.trim()) heroH1.textContent = headlineData.hero;
-    const secs = { who: '#who h2', services: '#services h2', process: '#process h2', contact: '#contact h2' };
-    Object.entries(secs).forEach(function(entry) {
-      var el = document.querySelector(entry[1]);
-      if (el && !el.textContent.trim()) el.textContent = headlineData[entry[0]];
+  // Preloader sequence
+  var preloaderTL = gsap.timeline({
+    onComplete: function() {
+      pageReady.play();
+    }
+  });
+
+  preloaderTL
+    .to(preloaderLogo, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+      ease: 'power2.out'
+    })
+    .to(preloaderFill, {
+      width: '100%',
+      duration: 1.2,
+      ease: 'power2.inOut'
+    }, 0.2)
+    .to(preloaderLogo, {
+      scale: 0.8,
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in'
+    }, 1.2)
+    .to(preloader, {
+      yPercent: -100,
+      duration: 0.8,
+      ease: 'power3.inOut'
+    }, 1.4)
+    .set(preloader, { display: 'none' });
+
+  /* ========================================================
+     1. CHARACTER SPLIT + SCRAMBLE REVEAL
+     ======================================================== */
+  var scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890';
+
+  function splitChars(el) {
+    var text = el.getAttribute('data-text') || el.textContent;
+    el.textContent = '';
+    el.setAttribute('data-text', text);
+
+    for (var i = 0; i < text.length; i++) {
+      var span = document.createElement('span');
+      span.className = 'kls-char';
+      span.setAttribute('data-char', text[i]);
+      span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+      el.appendChild(span);
+    }
+    return el.querySelectorAll('.kls-char');
+  }
+
+  function scrambleReveal(chars, opts) {
+    var defaults = { stagger: 0.03, delay: 0, duration: 0.6 };
+    var o = Object.assign({}, defaults, opts || {});
+
+    gsap.set(chars, { opacity: 0, y: 40, rotateX: -90, transformOrigin: 'bottom center' });
+
+    chars.forEach(function(ch, i) {
+      var original = ch.getAttribute('data-char');
+      if (original === ' ' || original === '\u00A0') {
+        gsap.to(ch, { opacity: 1, y: 0, rotateX: 0, delay: o.delay + (i * o.stagger), duration: o.duration, ease: 'power3.out' });
+        return;
+      }
+
+      var scrambleCount = 0;
+      var maxScrambles = 4;
+      var interval;
+
+      gsap.to(ch, {
+        opacity: 1, y: 0, rotateX: 0,
+        delay: o.delay + (i * o.stagger),
+        duration: o.duration,
+        ease: 'power3.out',
+        onStart: function() {
+          interval = setInterval(function() {
+            scrambleCount++;
+            if (scrambleCount >= maxScrambles) {
+              ch.textContent = original;
+              clearInterval(interval);
+            } else {
+              ch.textContent = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+            }
+          }, 50);
+        }
+      });
     });
   }
 
-  /* ---- Word splitting for headline reveals ---- */
-  function splitIntoWords(el, text) {
-    el.textContent = '';
-    var words = text.split(' ');
-    words.forEach(function(word, i) {
-      var wrap = document.createElement('span');
-      wrap.className = 'kls-word-wrap';
-      var inner = document.createElement('span');
-      inner.className = 'kls-word';
-      inner.textContent = word;
-      wrap.appendChild(inner);
-      el.appendChild(wrap);
-      if (i < words.length - 1) {
-        el.appendChild(document.createTextNode(' '));
+  /* ========================================================
+     2. PAGE LOAD SEQUENCE (within pageReady timeline)
+     ======================================================== */
+  var header = document.querySelector('header');
+  var heroH1 = document.querySelector('.hero-content .kls-headline');
+  var heroLead = document.querySelector('.hero-lead');
+  var heroActions = document.querySelector('.hero-actions');
+  var heroBtns = document.querySelectorAll('.hero-actions .btn');
+  var heroMediaWrap = document.querySelector('.hero-media-wrapper');
+  var heroMediaImg = document.querySelector('.hero-media-wrapper img');
+  var heroCaption = document.querySelector('.hero-media-caption');
+  var heroFrame = document.querySelector('.hero-media::before');
+  var logo = document.querySelector('.logo');
+  var cursorGlow = document.querySelector('.cursor-glow');
+
+  // Set initial states
+  if (header) gsap.set(header, { y: -40, opacity: 0 });
+  if (logo) gsap.set(logo, { rotate: -20, scale: 0.6, opacity: 0 });
+  if (heroLead) gsap.set(heroLead, { y: 30, opacity: 0, filter: 'blur(12px)' });
+  if (heroBtns.length) gsap.set(heroBtns, { y: 20, opacity: 0, scale: 0.9 });
+  if (heroMediaWrap) gsap.set(heroMediaWrap, { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0 });
+  if (heroMediaImg) gsap.set(heroMediaImg, { scale: 1.3 });
+  if (heroCaption) gsap.set(heroCaption, { opacity: 0, y: 10 });
+
+  // Split hero headline chars
+  var heroChars = heroH1 ? splitChars(heroH1) : [];
+
+  // Build pageReady timeline
+  pageReady
+    .to(header, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0)
+    .to(logo, { rotate: 0, scale: 1, opacity: 1, duration: 1, ease: 'elastic.out(1, 0.5)' }, 0.1)
+    .add(function() {
+      scrambleReveal(heroChars, { stagger: 0.025, delay: 0, duration: 0.7 });
+    }, 0.3)
+    .to(heroLead, { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.9 }, 1.0)
+    .to(heroBtns, { y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 0.7, ease: 'back.out(2.5)' }, 1.3)
+    .to(heroMediaWrap, { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, duration: 1.2, ease: 'power3.inOut' }, 0.6)
+    .to(heroMediaImg, { scale: 1.15, duration: 1.4, ease: 'power2.out' }, 0.8)
+    .to(heroCaption, { opacity: 1, y: 0, duration: 0.5 }, 1.8)
+    .to(cursorGlow, { opacity: 1, duration: 0.5 }, 1.5);
+
+  /* ========================================================
+     3. CURSOR GLOW FOLLOWER
+     ======================================================== */
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (canHover && cursorGlow) {
+    var mouseX = 0, mouseY = 0;
+    var glowX = 0, glowY = 0;
+
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function updateGlow() {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      cursorGlow.style.transform = 'translate(' + (glowX - 250) + 'px, ' + (glowY - 250) + 'px)';
+      requestAnimationFrame(updateGlow);
+    }
+    updateGlow();
+  }
+
+  /* ========================================================
+     4. HEADER SCROLL STATE
+     ======================================================== */
+  ScrollTrigger.create({
+    start: 80,
+    onUpdate: function(self) {
+      header.classList.toggle('scrolled', self.progress > 0);
+    }
+  });
+
+  /* ========================================================
+     5. SCROLL-TRIGGERED HEADLINE SCRAMBLE REVEALS
+     ======================================================== */
+  document.querySelectorAll('section:not(.hero) .kls-headline').forEach(function(h) {
+    var chars = splitChars(h);
+    gsap.set(chars, { opacity: 0, y: 40, rotateX: -90 });
+
+    ScrollTrigger.create({
+      trigger: h,
+      start: 'top 82%',
+      once: true,
+      onEnter: function() {
+        scrambleReveal(chars, { stagger: 0.03, duration: 0.6 });
       }
     });
-  }
-
-  /* ---- Setup hero headline word split ---- */
-  var heroH1 = document.querySelector('.hero-content h1');
-  if (heroH1) splitIntoWords(heroH1, headlineData.hero);
-
-  /* ---- Setup section headline word splits ---- */
-  var sectionHeadings = {
-    '#who h2': headlineData.who,
-    '#services h2': headlineData.services,
-    '#process h2': headlineData.process,
-    '#contact h2': headlineData.contact
-  };
-  Object.entries(sectionHeadings).forEach(function(entry) {
-    var el = document.querySelector(entry[0]);
-    if (el) splitIntoWords(el, entry[1]);
   });
 
-  /* ---- GSAP defaults ---- */
-  gsap.defaults({ ease: 'power3.out', duration: 0.9 });
-
-  /* ==========================================================
-     A. PAGE LOAD SEQUENCE — Orchestrated Timeline
-     ========================================================== */
-  var masterTL = gsap.timeline({ delay: 0.1 });
-
-  /* 1. Progress bar — appears instantly (already visible) */
-
-  /* 2. Nav: slide down with blur clear */
-  var header = document.querySelector('header');
-  if (header) {
-    gsap.set(header, { y: -30, opacity: 0, filter: 'blur(10px)' });
-    masterTL.to(header, {
-      y: 0, opacity: 1, filter: 'blur(0px)',
-      duration: 0.7, ease: 'power3.out'
-    }, 0.15);
-  }
-
-  /* 3. Logo: rotate in with elastic */
-  var logo = document.querySelector('.logo');
-  if (logo) {
-    gsap.set(logo, { rotate: -15, scale: 0.8, opacity: 0 });
-    masterTL.to(logo, {
-      rotate: 0, scale: 1, opacity: 1,
-      duration: 0.8, ease: 'elastic.out(1, 0.6)'
-    }, 0.25);
-  }
-
-  /* 4. Hero headline: word-by-word clip-mask reveal */
-  if (heroH1) {
-    var heroWords = heroH1.querySelectorAll('.kls-word');
-    gsap.set(heroWords, { y: '110%' });
-    masterTL.to(heroWords, {
-      y: '0%',
-      duration: 0.9,
-      ease: 'power3.out',
-      stagger: 0.07
-    }, 0.35);
-  }
-
-  /* 5. Hero lead text: fade up with blur dissolve */
-  var heroLead = document.querySelector('.hero-lead');
-  if (heroLead) {
-    gsap.set(heroLead, { y: 24, opacity: 0, filter: 'blur(12px)' });
-    masterTL.to(heroLead, {
-      y: 0, opacity: 1, filter: 'blur(0px)',
-      duration: 0.8
-    }, 1.0);
-  }
-
-  /* 6. CTA buttons: scale up with back.out elastic */
-  var heroButtons = document.querySelectorAll('.hero-actions .btn');
-  if (heroButtons.length) {
-    gsap.set(heroButtons, { y: 16, opacity: 0, scale: 0.92 });
-    masterTL.to(heroButtons, {
-      y: 0, opacity: 1, scale: 1,
-      duration: 0.65, stagger: 0.1,
-      ease: 'back.out(2.2)'
-    }, 1.2);
-  }
-
-  /* 7. Hero image: diagonal clip-path wipe */
-  var heroMedia = document.querySelector('.hero-media');
-  if (heroMedia) {
-    gsap.set(heroMedia, {
-      clipPath: 'polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%)',
-      opacity: 0
-    });
-    masterTL.to(heroMedia, {
-      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-      opacity: 1,
-      duration: 1.2,
-      ease: 'power3.inOut'
-    }, 0.8);
-  }
-
-  /* 8. Floating geometric decorations drift in */
-  var geos = document.querySelectorAll('.kls-geo');
-  if (geos.length) {
-    geos.forEach(function(geo, i) {
-      var startX = i % 2 === 0 ? 60 : -60;
-      gsap.set(geo, { x: startX, opacity: 0 });
-      masterTL.to(geo, {
-        x: 0, opacity: 1,
-        duration: 1.2,
-        ease: 'power2.out'
-      }, 1.4 + (i * 0.12));
-    });
-  }
-
-  /* ==========================================================
-     B. SCROLL-TRIGGERED SECTION ANIMATIONS
-     ========================================================== */
-
-  /* Section headings: word-by-word slide-up reveal */
-  document.querySelectorAll('section:not(.hero) h2').forEach(function(h2) {
-    var words = h2.querySelectorAll('.kls-word');
-    if (!words.length) return;
-
-    gsap.set(words, { y: '110%' });
-    ScrollTrigger.create({
-      trigger: h2,
-      start: 'top 82%',
-      onEnter: function() {
-        gsap.to(words, {
-          y: '0%',
-          duration: 0.75,
-          ease: 'power3.out',
-          stagger: 0.06
-        });
-      },
-      once: true
-    });
-  });
-
-  /* Section lead text: fade up with blur dissolve */
+  /* ========================================================
+     6. SECTION REVEALS — Lead text, images, cards
+     ======================================================== */
+  /* Lead text — blur dissolve */
   document.querySelectorAll('.kls-reveal').forEach(function(el) {
-    gsap.set(el, { y: 20, opacity: 0, filter: 'blur(8px)' });
+    gsap.set(el, { y: 25, opacity: 0, filter: 'blur(10px)' });
     ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
+      once: true,
       onEnter: function() {
-        gsap.to(el, {
-          y: 0, opacity: 1, filter: 'blur(0px)',
-          duration: 0.8
-        });
-      },
-      once: true
+        gsap.to(el, { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out' });
+      }
     });
   });
 
-  /* Section images: geometric clip-path reveal */
-  document.querySelectorAll('.kls-img-reveal').forEach(function(el) {
-    gsap.set(el, {
-      clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)'
+  /* Pill labels — slide in */
+  document.querySelectorAll('.pill').forEach(function(pill) {
+    gsap.set(pill, { x: -20, opacity: 0 });
+    ScrollTrigger.create({
+      trigger: pill,
+      start: 'top 88%',
+      once: true,
+      onEnter: function() {
+        gsap.to(pill, { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' });
+      }
     });
+  });
+
+  /* Section images — dramatic clip reveal + Ken Burns */
+  document.querySelectorAll('.kls-img-reveal').forEach(function(el) {
+    var img = el.querySelector('img');
+    gsap.set(el, { clipPath: 'inset(100% 0% 0% 0%)' });
+    if (img) gsap.set(img, { scale: 1.25 });
+
     ScrollTrigger.create({
       trigger: el,
-      start: 'top 80%',
+      start: 'top 78%',
+      once: true,
       onEnter: function() {
-        gsap.to(el, {
-          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          duration: 1.0,
-          ease: 'power3.inOut'
-        });
-      },
-      once: true
+        gsap.to(el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power3.inOut' });
+        if (img) gsap.to(img, { scale: 1.0, duration: 1.6, ease: 'power2.out' });
+      }
     });
+
+    /* Parallax on scroll */
+    if (img) {
+      gsap.to(img, {
+        y: -40,
+        ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+      });
+    }
   });
 
-  /* Cards: staggered fly-in from bottom with subtle rotation */
+  /* Cards — staggered entrance with 3D */
   document.querySelectorAll('.grid-3').forEach(function(grid) {
     var cards = grid.querySelectorAll('.kls-card-reveal');
     if (!cards.length) return;
 
     gsap.set(cards, {
-      y: 50, opacity: 0, rotateX: 8, filter: 'blur(6px)',
-      transformPerspective: 1000
+      y: 80, opacity: 0, rotateX: 12, rotateY: -5,
+      filter: 'blur(8px)', transformPerspective: 1200
     });
 
     ScrollTrigger.create({
       trigger: grid,
-      start: 'top 80%',
+      start: 'top 78%',
+      once: true,
       onEnter: function() {
         gsap.to(cards, {
-          y: 0, opacity: 1, rotateX: 0, filter: 'blur(0px)',
-          duration: 0.85,
-          ease: 'power3.out',
-          stagger: 0.12
+          y: 0, opacity: 1, rotateX: 0, rotateY: 0, filter: 'blur(0px)',
+          duration: 1.0, ease: 'power3.out', stagger: 0.15
         });
-      },
-      once: true
-    });
-  });
-
-  /* ==========================================================
-     C. PARALLAX & DEPTH SYSTEM
-     ========================================================== */
-
-  /* Section images: multi-speed scroll parallax */
-  document.querySelectorAll('.section-media img').forEach(function(img) {
-    gsap.to(img, {
-      y: -30,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: img.closest('.section-media'),
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.4
       }
     });
   });
 
-  /* Floating decorations: parallax at different rates */
-  geos.forEach(function(geo, i) {
-    var rate = 0.1 + (i * 0.06);
-    gsap.to(geo, {
-      y: function() { return -rate * 300; },
+  /* ========================================================
+     7. MARQUEE — Infinite scroll + velocity response
+     ======================================================== */
+  document.querySelectorAll('.marquee-track').forEach(function(track, idx) {
+    var dir = track.classList.contains('marquee-reverse') ? 1 : -1;
+    var speed = 80; // px per second base
+
+    // Duplicate content for seamless loop
+    track.innerHTML += track.innerHTML;
+
+    var totalW = track.scrollWidth / 2;
+    var pos = 0;
+    var velocity = 0;
+
+    // Scroll velocity boost
+    ScrollTrigger.create({
+      onUpdate: function(self) {
+        velocity = self.getVelocity() * 0.002;
+      }
+    });
+
+    function animateMarquee() {
+      var frameSpeed = (speed + Math.abs(velocity) * 0.5) * dir * (1/60);
+      pos += frameSpeed;
+      if (dir < 0 && Math.abs(pos) >= totalW) pos += totalW;
+      if (dir > 0 && pos >= totalW) pos -= totalW;
+      track.style.transform = 'translateX(' + pos + 'px)';
+      requestAnimationFrame(animateMarquee);
+    }
+    animateMarquee();
+  });
+
+  /* ========================================================
+     8. SVG LINE DRAW ON SCROLL
+     ======================================================== */
+  document.querySelectorAll('.draw-path').forEach(function(path) {
+    var length = path.getTotalLength();
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+
+    gsap.to(path, {
+      strokeDashoffset: 0,
       ease: 'none',
       scrollTrigger: {
         trigger: document.documentElement,
@@ -1140,131 +1393,134 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   });
 
-  /* Progress bar */
+  /* ========================================================
+     9. PROGRESS BAR
+     ======================================================== */
   var prog = document.querySelector('.kls-progress');
   if (prog) {
     gsap.to(prog, {
       scaleX: 1,
       ease: 'none',
-      scrollTrigger: {
-        trigger: document.documentElement,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.25
-      }
+      scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'bottom bottom', scrub: 0.2 }
     });
   }
 
-  /* ==========================================================
-     D. HOVER MICRO-INTERACTIONS
-     ========================================================== */
+  /* ========================================================
+     10. COUNTER ANIMATION — Process numbers
+     ======================================================== */
+  document.querySelectorAll('.counter-num').forEach(function(num) {
+    var target = parseInt(num.getAttribute('data-target'), 10);
 
-  var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    ScrollTrigger.create({
+      trigger: num,
+      start: 'top 85%',
+      once: true,
+      onEnter: function() {
+        var obj = { val: 0 };
+        gsap.to(obj, {
+          val: target,
+          duration: 1.5,
+          ease: 'power2.out',
+          onUpdate: function() {
+            num.textContent = '0' + Math.round(obj.val);
+          }
+        });
+      }
+    });
+  });
 
+  /* ========================================================
+     11. HOVER MICRO-INTERACTIONS
+     ======================================================== */
   if (canHover) {
 
     /* Magnetic buttons */
     document.querySelectorAll('.kls-magnetic').forEach(function(btn) {
-      var strength = 0.3;
-      var radius = 80;
-
       btn.addEventListener('mousemove', function(e) {
-        var rect = btn.getBoundingClientRect();
-        var cx = rect.left + rect.width / 2;
-        var cy = rect.top + rect.height / 2;
-        var dx = e.clientX - cx;
-        var dy = e.clientY - cy;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < radius) {
-          gsap.to(btn, {
-            x: dx * strength,
-            y: dy * strength,
-            duration: 0.35,
-            ease: 'power3.out'
-          });
-        }
+        var r = btn.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width/2);
+        var dy = e.clientY - (r.top + r.height/2);
+        gsap.to(btn, { x: dx * 0.35, y: dy * 0.35, duration: 0.4, ease: 'power3.out' });
       });
-
       btn.addEventListener('mouseleave', function() {
-        gsap.to(btn, {
-          x: 0, y: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1, 0.5)'
+        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+      });
+    });
+
+    /* Button ripple on click */
+    document.querySelectorAll('.btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var r = btn.getBoundingClientRect();
+        var ripple = document.createElement('span');
+        ripple.className = 'btn-ripple';
+        ripple.style.left = (e.clientX - r.left) + 'px';
+        ripple.style.top = (e.clientY - r.top) + 'px';
+        btn.appendChild(ripple);
+        gsap.to(ripple, {
+          scale: 4, opacity: 0, duration: 0.6,
+          onComplete: function() { ripple.remove(); }
         });
       });
     });
 
-    /* Card 3D tilt with dynamic light overlay */
+    /* Card 3D tilt with light source */
     document.querySelectorAll('.card').forEach(function(card) {
       var light = card.querySelector('.card-light');
 
       card.addEventListener('mousemove', function(e) {
-        var rect = card.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width;
-        var py = (e.clientY - rect.top) / rect.height;
-        var rotX = (py - 0.5) * -8;
-        var rotY = (px - 0.5) * 10;
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
 
         gsap.to(card, {
-          rotateX: rotX,
-          rotateY: rotY,
+          rotateX: (py - 0.5) * -12,
+          rotateY: (px - 0.5) * 14,
           transformPerspective: 1000,
-          duration: 0.3,
+          duration: 0.35,
           ease: 'power3.out'
         });
 
         if (light) {
           light.style.opacity = '1';
-          light.style.background =
-            'radial-gradient(circle at ' +
-            (px * 100) + '% ' + (py * 100) + '%, ' +
-            'rgba(255,255,255,0.15) 0%, transparent 60%)';
+          light.style.background = 'radial-gradient(circle at ' + (px*100) + '% ' + (py*100) + '%, rgba(255,255,255,0.2) 0%, transparent 55%)';
         }
       });
 
       card.addEventListener('mouseleave', function() {
-        gsap.to(card, {
-          rotateX: 0, rotateY: 0,
-          duration: 0.5,
-          ease: 'power3.out'
-        });
-        if (light) {
-          light.style.opacity = '0';
-        }
+        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' });
+        if (light) light.style.opacity = '0';
       });
     });
+
+    /* Hero image hover — zoom pulse */
+    if (heroMediaWrap) {
+      heroMediaWrap.addEventListener('mouseenter', function() {
+        gsap.to(heroMediaImg, { scale: 1.08, duration: 0.8, ease: 'power2.out' });
+      });
+      heroMediaWrap.addEventListener('mouseleave', function() {
+        gsap.to(heroMediaImg, { scale: 1.15, duration: 0.8, ease: 'power2.out' });
+      });
+    }
   }
 
-  /* ==========================================================
-     E. SMOOTH SCROLL-LINKED BACKGROUND TRANSITIONS
-     ========================================================== */
-
-  document.querySelectorAll('section[data-bg-start]').forEach(function(sec) {
-    var start = sec.getAttribute('data-bg-start');
-    var end = sec.getAttribute('data-bg-end');
-
-    sec.style.backgroundColor = start;
-
-    gsap.fromTo(sec,
-      { backgroundColor: start },
-      {
-        backgroundColor: end,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sec,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.3
-        }
+  /* ========================================================
+     12. SMOOTH SCROLL
+     ======================================================== */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = a.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        gsap.to(window, { scrollTo: { y: target, offsetY: 80 }, duration: 1.2, ease: 'power3.inOut' });
       }
-    );
+    });
   });
 
-  /* ==========================================================
-     F. MOBILE HAMBURGER MENU
-     ========================================================== */
-
+  /* ========================================================
+     13. MOBILE MENU
+     ======================================================== */
   var hamburger = document.querySelector('.hamburger');
   var mobileMenu = document.querySelector('.mobile-menu');
   var overlay = document.querySelector('.mobile-overlay');
@@ -1275,97 +1531,53 @@ document.getElementById('year').textContent = new Date().getFullYear();
     menuOpen = true;
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
-    mobileMenu.setAttribute('aria-hidden', 'false');
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-
-    gsap.to(mobileMenu, {
-      x: 0,
-      duration: 0.5,
-      ease: 'power3.out'
-    });
-    gsap.to(menuLinks, {
-      opacity: 1,
-      x: 0,
-      duration: 0.4,
-      stagger: 0.06,
-      delay: 0.15,
-      ease: 'power3.out'
-    });
+    gsap.to(mobileMenu, { x: 0, duration: 0.5, ease: 'power3.out' });
+    gsap.to(menuLinks, { opacity: 1, x: 0, stagger: 0.06, delay: 0.15, duration: 0.4, ease: 'power3.out' });
   }
 
   function closeMenu() {
     menuOpen = false;
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
-    mobileMenu.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
-
-    gsap.to(mobileMenu, {
-      x: '100%',
-      duration: 0.4,
-      ease: 'power3.inOut'
-    });
-    gsap.set(menuLinks, {
-      opacity: 0, x: 20,
-      delay: 0.4
-    });
+    gsap.to(mobileMenu, { x: '100%', duration: 0.4, ease: 'power3.inOut' });
+    gsap.set(menuLinks, { opacity: 0, x: 30, delay: 0.4 });
   }
 
-  if (hamburger) {
-    hamburger.addEventListener('click', function() {
-      menuOpen ? closeMenu() : openMenu();
-    });
-  }
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
-  menuLinks.forEach(function(link) {
-    link.addEventListener('click', function() {
-      if (menuOpen) closeMenu();
+  if (hamburger) hamburger.addEventListener('click', function() { menuOpen ? closeMenu() : openMenu(); });
+  if (overlay) overlay.addEventListener('click', closeMenu);
+  menuLinks.forEach(function(l) { l.addEventListener('click', function() { if (menuOpen) closeMenu(); }); });
+
+  /* ========================================================
+     14. FLIP CARD IMAGE PARALLAX
+     ======================================================== */
+  document.querySelectorAll('.flip-card .card-visual img').forEach(function(img) {
+    gsap.fromTo(img, { scale: 1.15 }, {
+      scale: 1.0,
+      scrollTrigger: { trigger: img, start: 'top 90%', end: 'bottom 20%', scrub: 0.4 }
     });
   });
 
-  /* ==========================================================
-     G. FLIP CARD ENHANCED 3D
-     ========================================================== */
-
-  document.querySelectorAll('.flip-card').forEach(function(card) {
-    var visualImg = card.querySelector('.card-visual img');
-    if (visualImg) {
-      gsap.fromTo(visualImg,
-        { scale: 1.12 },
-        {
-          scale: 1.0,
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            end: 'bottom 20%',
-            scrub: 0.3
-          }
-        }
-      );
-    }
-  });
-
-  /* ==========================================================
-     H. SMOOTH SCROLL FOR ANCHOR LINKS
-     ========================================================== */
-
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      var target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        gsap.to(window, {
-          scrollTo: { y: target, offsetY: 70 },
-          duration: 1,
-          ease: 'power3.inOut'
+  /* ========================================================
+     15. FOOTER REVEAL
+     ======================================================== */
+  var footer = document.querySelector('footer');
+  if (footer) {
+    gsap.set(footer.children, { y: 30, opacity: 0 });
+    ScrollTrigger.create({
+      trigger: footer,
+      start: 'top 90%',
+      once: true,
+      onEnter: function() {
+        gsap.to(footer.querySelectorAll('.wrap > *'), {
+          y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out'
         });
       }
     });
-  });
+  }
 
 })();
 </script>
