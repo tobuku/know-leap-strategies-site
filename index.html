@@ -64,7 +64,11 @@ button { font-family: inherit; }
   justify-content: center;
   background: var(--ink);
   pointer-events: none;
+  transition: opacity 0.5s ease;
 }
+/* Safety: if JS fails, hide preloader after 4s */
+@keyframes preloader-fallback { 0%,99% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+.preloader { animation: preloader-fallback 4s forwards; }
 .preloader-logo {
   width: 60px;
   height: 60px;
@@ -852,7 +856,7 @@ footer::before {
 <section class="hero">
 <div class="wrap hero-grid">
   <div class="hero-content">
-    <h1 class="kls-headline" data-text="Clear systems for complex decisions."></h1>
+    <h1 class="kls-headline" data-text="Clear systems for complex decisions.">Clear systems for complex decisions.</h1>
     <p class="lead hero-lead">Strategy, oversight, and execution design. Built to replace guesswork with proof, and make progress predictable.</p>
     <div class="hero-actions">
       <a class="btn btn-primary kls-magnetic" href="#contact">Request a call</a>
@@ -890,7 +894,7 @@ footer::before {
 <section id="who">
 <div class="wrap">
   <div class="pill">Audience</div>
-  <h2 class="kls-headline" data-text="Who We Serve"></h2>
+  <h2 class="kls-headline" data-text="Who We Serve">Who We Serve</h2>
   <p class="lead kls-reveal">Built for people already in motion who want fewer surprises and cleaner execution.</p>
   <div class="section-media kls-img-reveal">
     <img alt="who section image" loading="lazy" src="assets/images/sections/section-who-clients.jpg"/>
@@ -937,7 +941,7 @@ footer::before {
 <section id="services">
 <div class="wrap">
   <div class="pill">Capabilities</div>
-  <h2 class="kls-headline" data-text="Services"></h2>
+  <h2 class="kls-headline" data-text="Services">Services</h2>
   <p class="lead kls-reveal">Three lanes. Clear deliverables. Built for speed, accountability, and real-world follow-through.</p>
   <div class="section-media kls-img-reveal">
     <img alt="services section image" loading="lazy" src="assets/images/sections/section-services-framework.jpg"/>
@@ -981,7 +985,7 @@ footer::before {
 <section id="process">
 <div class="wrap">
   <div class="pill">Method</div>
-  <h2 class="kls-headline" data-text="How It Works"></h2>
+  <h2 class="kls-headline" data-text="How It Works">How It Works</h2>
   <p class="lead kls-reveal">A short engagement designed to produce a usable plan, a verification loop, and clear next actions.</p>
   <div class="section-media kls-img-reveal">
     <img alt="process section image" loading="lazy" src="assets/images/sections/section-process-flow.jpg"/>
@@ -1013,7 +1017,7 @@ footer::before {
 <section id="contact">
 <div class="wrap">
   <div class="pill">Connect</div>
-  <h2 class="kls-headline" data-text="Contact"></h2>
+  <h2 class="kls-headline" data-text="Contact">Contact</h2>
   <p class="lead kls-reveal">Tell us what you're building, where it's stuck, and what proof you need next. We'll map the fastest path forward.</p>
   <div class="section-media kls-img-reveal">
     <img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/>
@@ -1071,9 +1075,21 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (!el.textContent.trim()) el.textContent = el.getAttribute('data-text') || '';
   });
 
-  if (reduced || !window.gsap || !window.ScrollTrigger) return;
+  /* Kill preloader immediately if animations won't run */
+  function killPreloader() {
+    var p = document.querySelector('.preloader');
+    if (p) { p.style.display = 'none'; }
+  }
+
+  if (reduced || !window.gsap || !window.ScrollTrigger) {
+    killPreloader();
+    return;
+  }
 
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+  /* Global safety — if anything errors, make sure preloader clears */
+  try {
 
   /* ========================================================
      0. PRELOADER — Cinematic entrance
@@ -1550,6 +1566,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
   if (hamburger) hamburger.addEventListener('click', function() { menuOpen ? closeMenu() : openMenu(); });
   if (overlay) overlay.addEventListener('click', closeMenu);
   menuLinks.forEach(function(l) { l.addEventListener('click', function() { if (menuOpen) closeMenu(); }); });
+
+  } catch(e) {
+    /* If anything failed, ensure preloader is gone and page is usable */
+    console.error('KLS animation error:', e);
+    killPreloader();
+    document.querySelectorAll('.kls-headline').forEach(function(el) {
+      if (!el.textContent.trim()) el.textContent = el.getAttribute('data-text') || '';
+    });
+  }
 
   /* ========================================================
      14. FLIP CARD IMAGE PARALLAX
