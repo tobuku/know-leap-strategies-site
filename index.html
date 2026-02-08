@@ -1176,7 +1176,7 @@ html.lenis, html.lenis body { height: auto; }
     <img alt="contact section image" loading="lazy" src="assets/images/sections/section-contact-network.jpg"/>
   </div>
   <div style="margin-top: 1.5rem;">
-    <a class="btn btn-primary kls-magnetic" href="mailto:info@knowleapstrategies.com" style="font-size: 1rem; padding: 1rem 2.5rem;">hello@knowleapstrategies.com</a>
+    <a class="btn btn-primary kls-magnetic" href="mailto:info@knowleapstrategies.com" style="font-size: 1rem; padding: 1rem 2.5rem;">info@knowleapstrategies.com</a>
   </div>
 </div>
 </section>
@@ -1854,13 +1854,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
      ======================================================== */
   var footer = document.querySelector('footer');
   if (footer) {
-    gsap.set(footer.children, { y: 30, opacity: 0 });
+    var footerItems = footer.querySelectorAll('.wrap > *');
+    gsap.set(footerItems, { y: 30, opacity: 0 });
     ScrollTrigger.create({
       trigger: footer,
       start: 'top 90%',
       once: true,
       onEnter: function() {
-        gsap.to(footer.querySelectorAll('.wrap > *'), {
+        gsap.to(footerItems, {
           y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out'
         });
       }
