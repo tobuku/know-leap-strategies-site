@@ -1698,6 +1698,15 @@ img {
   letter-spacing: 0.05em;
 }
 
+.footer-legal a {
+  margin-left: 1.5rem;
+  transition: color 0.3s;
+}
+
+.footer-legal a:hover {
+  color: var(--void-purple);
+}
+
 /* ================================================
    RESPONSIVE
    ================================================ */
@@ -1841,6 +1850,11 @@ img {
   .footer-bottom {
     flex-direction: column;
     gap: var(--space-sm);
+  }
+
+  .footer-legal a {
+    margin-left: 0;
+    margin-right: 1.5rem;
   }
 }
 
