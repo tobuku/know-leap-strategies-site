@@ -5,6 +5,14 @@
 <title>Terms of Service — Know Leap Strategies</title>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="Know Leap Strategies terms of service." name="description"/>
+<link rel="icon" href="/assets/images/icons/knowleap_favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/images/icons/favicon-256x256.png">
+<meta property="og:image" content="/assets/images/icons/favicon-256x256.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/assets/images/icons/favicon-256x256.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -62,18 +70,17 @@
     gap: 0.5rem;
   }
 
-  .logo-text {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+  .nav-logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
   }
 
-  .logo-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--void-purple);
-    border-radius: 50%;
+  .footer-logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+    margin-bottom: 0.75rem;
   }
 
   .header-nav {
@@ -285,6 +292,7 @@
 
   @media (max-width: 768px) {
     .header-nav { display: none; }
+    .nav-logo-img { height: 36px; }
     .footer-top { flex-direction: column; gap: 2rem; }
     .footer-links { gap: 2rem; }
     .footer-bottom { flex-direction: column; gap: 0.75rem; }
@@ -296,8 +304,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo-link">
-      <span class="logo-text">KLS</span>
-      <span class="logo-dot"></span>
+      <img src="/assets/images/brand/kls-logo-primary.svg" alt="Know Leap Strategies logo" class="nav-logo-img">
     </a>
     <nav class="header-nav">
       <a href="index.html#about">About</a>
@@ -382,6 +389,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
+        <img src="/assets/images/brand/kls-logo-primary.svg" alt="Know Leap Strategies logo" class="footer-logo-img" loading="lazy">
         <div class="footer-logo">Know Leap Strategies</div>
         <p class="footer-tagline">Clear systems for complex decisions. Proof first. Clean outcomes.</p>
       </div>

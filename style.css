@@ -231,6 +231,14 @@ img {
   border-radius: 2px;
 }
 
+.loader-logo {
+  display: block;
+  width: 80px;
+  height: auto;
+  margin: 0 auto var(--space-sm);
+  opacity: 0.9;
+}
+
 .loader-text {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -257,6 +265,12 @@ img {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.nav-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 .logo-void {
@@ -1643,6 +1657,13 @@ img {
   margin-bottom: var(--space-xl);
 }
 
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
 .footer-logo {
   font-size: 3rem;
   font-weight: 800;
@@ -1775,6 +1796,10 @@ img {
 @media (max-width: 768px) {
   .nav {
     padding: var(--space-sm);
+  }
+
+  .nav-logo-img {
+    height: 36px;
   }
 
   .nav-links {
