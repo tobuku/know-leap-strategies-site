@@ -24,7 +24,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
 <style>
 :root{--void-black:#0a0a0b;--void-dark:#111113;--void-gray:#1a1a1d;--void-gray-light:#2a2a2f;--void-white:#fafafa;--void-muted:#6b6b7b;--void-purple:#8b5cf6;--void-gradient:linear-gradient(135deg,#8b5cf6 0%,#3b82f6 50%,#f97316 100%);--font-display:'Syne',sans-serif;--font-serif:'Instrument Serif',serif;--font-mono:'Space Mono',monospace;--max:1200px;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -43,17 +42,21 @@ a{color:inherit;text-decoration:none;}
 .header-nav .nav-cta{background:var(--void-white);color:var(--void-black);padding:.6rem 1.25rem;border-radius:100px;font-weight:600;font-size:.85rem;transition:box-shadow .3s;}
 .header-nav .nav-cta:hover{box-shadow:0 10px 30px rgba(139,92,246,.3);}
 
-/* Gallery Hero */
-.gallery-hero{position:relative;height:100vh;background:var(--void-black);overflow:hidden;}
-.gallery-hero-label{position:absolute;top:2rem;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--font-mono);font-size:.7rem;color:var(--void-muted);letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;pointer-events:none;}
-.gallery-hero-sub{position:absolute;bottom:6rem;left:50%;transform:translateX(-50%);z-index:10;text-align:center;pointer-events:none;white-space:nowrap;font-family:var(--font-mono);font-size:.7rem;color:rgba(250,250,250,.3);letter-spacing:.15em;text-transform:uppercase;}
-.gallery{position:absolute;width:100%;height:100%;overflow:hidden;}
-.cards{position:absolute;width:22rem;top:50%;left:50%;transform:translate(-50%,-50%);list-style:none;padding:0;margin:0;}
-.cards li{width:22rem;aspect-ratio:4/3;position:absolute;background-size:cover;background-repeat:no-repeat;background-position:center;top:0;left:0;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.6);}
-.actions{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:.75rem;z-index:10;}
-.actions button{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;background:rgba(250,250,250,.07);color:var(--void-white);border:1px solid rgba(250,250,250,.14);padding:.65rem 1.5rem;border-radius:100px;cursor:pointer;transition:background .3s,border-color .3s;backdrop-filter:blur(8px);}
-.actions button:hover{background:rgba(139,92,246,.2);border-color:rgba(139,92,246,.4);}
-.drag-proxy{visibility:hidden;position:absolute;}
+/* Image Reel */
+.reel-section{background:var(--void-black);padding:5rem 0 6rem;overflow:hidden;}
+.reel-intro{max-width:var(--max);margin:0 auto;padding:0 2rem 3rem;}
+.reel-label{font-family:var(--font-mono);font-size:.7rem;color:var(--void-muted);letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:1.25rem;}
+.reel-heading{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;}
+.reel-heading em{font-family:var(--font-serif);font-style:italic;font-weight:400;background:var(--void-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.reel-rows{display:flex;flex-direction:column;gap:1rem;}
+.reel-row{display:flex;gap:1rem;overflow:hidden;}
+.reel-inner{display:flex;gap:1rem;flex-shrink:0;}
+.reel-row--fwd .reel-inner{animation:reelFwd 50s linear infinite;}
+.reel-row--rev .reel-inner{animation:reelRev 42s linear infinite;}
+.reel-row--slow .reel-inner{animation-duration:65s;}
+.reel-img{width:320px;height:210px;object-fit:cover;border-radius:10px;display:block;flex-shrink:0;}
+@keyframes reelFwd{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+@keyframes reelRev{from{transform:translateX(-100%);}to{transform:translateX(0);}}
 
 /* Page intro */
 .page-hero{padding:5rem 2rem 3.5rem;max-width:var(--max);margin:0 auto;}
@@ -157,7 +160,6 @@ a{color:inherit;text-decoration:none;}
   .si-panel.si-reverse .si-visual,.si-panel.si-reverse .si-content{order:0;}
   .si-visual{flex:none;width:100%;height:60vw;position:relative;top:auto;}
   .si-content{flex:none;width:100%;padding:3rem 1.5rem;}
-  .cards{width:16rem;}.cards li{width:16rem;}
   .footer-top{flex-direction:column;gap:2rem;}
   .footer-links{gap:2rem;}
   .footer-bottom{flex-direction:column;gap:.75rem;}
@@ -193,8 +195,8 @@ a{color:inherit;text-decoration:none;}
   <p class="page-label">( Track Record )</p>
   <h1 class="page-title">Companies We've<br><em>Worked With</em></h1>
   <p class="page-intro">
-    Before founding Know Leap Strategies, I ran Computer Corner Hawaii, an IT services company that served businesses across
-    Oahu for over a decade. These are the companies we fixed, secured, and supported over the years.
+    Before founding Know Leap Strategies, we ran Computer Corner Hawaii, an IT services company that served businesses across
+    Oahu for over a decade. These are the companies we provided upgrade, repair, networking, system security and more services over the years.
   </p>
   <div class="stat-row">
     <div class="stat-item"><strong>30+</strong>Companies served</div>
@@ -296,6 +298,15 @@ a{color:inherit;text-decoration:none;}
       </div>
     </div>
 
+    <div class="client-card">
+      <div class="card-gallery">
+        <div class="card-slides">
+          <img class="card-slide" src="img/clients/blazin-steaks-smm-seo.jpg" alt="Blazin Steaks social media and SEO">
+        </div>
+      </div>
+      <div class="card-body"><div class="card-name">Blazin Steaks</div><div class="card-industry">Restaurant</div><div class="card-tags"><span class="tag">SMM</span><span class="tag">SEO</span></div></div>
+    </div>
+
   </div>
 </section>
 
@@ -321,7 +332,7 @@ a{color:inherit;text-decoration:none;}
           <button class="slide-next" aria-label="Next">&#8250;</button>
         </div>
       </div>
-      <div class="card-body"><div class="card-name">T&amp;C Plumbing</div><div class="card-industry">Plumbing Contractor</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">Networking</span><span class="tag">IT Support</span></div></div>
+      <div class="card-body"><div class="card-name">T&amp;C Plumbing</div><div class="card-industry">Plumbing Contractor</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">SEO</span><span class="tag">Networking</span><span class="tag">IT Support</span></div></div>
     </div>
 
     <div class="client-card">
@@ -336,7 +347,7 @@ a{color:inherit;text-decoration:none;}
           <button class="slide-next" aria-label="Next">&#8250;</button>
         </div>
       </div>
-      <div class="card-body"><div class="card-name">R&amp;C Roofing</div><div class="card-industry">Roofing Contractor</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">LAN Install</span><span class="tag">IT Support</span></div></div>
+      <div class="card-body"><div class="card-name">R&amp;C Roofing</div><div class="card-industry">Roofing Contractor</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">SEO</span><span class="tag">LAN Install</span><span class="tag">IT Support</span></div></div>
     </div>
 
     <div class="client-card">
@@ -355,6 +366,15 @@ a{color:inherit;text-decoration:none;}
         </div>
       </div>
       <div class="card-body"><div class="card-name">Alternative Air Conditioning</div><div class="card-industry">HVAC Contractor</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">SEO</span></div></div>
+    </div>
+
+    <div class="client-card">
+      <div class="card-gallery">
+        <div class="card-slides">
+          <img class="card-slide" src="img/clients/hawaii-pool-cleaners-web-development-seo.jpg" alt="Hawaii Pool Cleaners website">
+        </div>
+      </div>
+      <div class="card-body"><div class="card-name">Hawaii Pool Cleaners</div><div class="card-industry">Pool Cleaning &amp; Maintenance</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">SEO</span></div></div>
     </div>
 
   </div>
@@ -457,15 +477,6 @@ a{color:inherit;text-decoration:none;}
       <div class="card-body"><div class="card-name">Extra Space Storage</div><div class="card-industry">Self-Storage Facility</div><div class="card-tags"><span class="tag">Intercom Systems</span><span class="tag">Networking</span></div></div>
     </div>
 
-    <div class="client-card">
-      <div class="card-gallery">
-        <div class="card-slides">
-          <img class="card-slide" src="img/clients/aeropostale-security-sensor-install.jpg" alt="Aeropostale security sensor install">
-        </div>
-      </div>
-      <div class="card-body"><div class="card-name">Aeropostale</div><div class="card-industry">Apparel Retail</div><div class="card-tags"><span class="tag">Security Sensors</span><span class="tag">IT Support</span></div></div>
-    </div>
-
   </div>
 </section>
 
@@ -545,7 +556,7 @@ a{color:inherit;text-decoration:none;}
     <div class="client-card">
       <div class="card-gallery">
         <div class="card-slides">
-          <img class="card-slide" src="img/clients/wikiwiki-autoglass-hardware-repair.JPG" alt="Wiki Wiki Auto Glass hardware repair">
+          <img class="card-slide" src="img/clients/wikiwiki-autoglass-hardware-repair.jpg" alt="Wiki Wiki Auto Glass hardware repair">
         </div>
       </div>
       <div class="card-body"><div class="card-name">Wiki Wiki Auto Glass</div><div class="card-industry">Auto Glass</div><div class="card-tags"><span class="tag">Hardware Repair</span><span class="tag">IT Support</span></div></div>
@@ -595,69 +606,97 @@ a{color:inherit;text-decoration:none;}
       <div class="card-body"><div class="card-name">Tails of Hawaii</div><div class="card-industry">Pet Services</div><div class="card-tags"><span class="tag">Web Dev</span><span class="tag">LAN Install</span><span class="tag">Networking</span></div></div>
     </div>
 
-    <div class="client-card"><div class="card-image"><div class="card-image-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Photo / Screenshot</div></div><div class="card-body"><div class="card-name">KMCB Radio</div><div class="card-industry">Radio Broadcasting</div><div class="card-tags"><span class="tag">Networking</span><span class="tag">Computer Repair</span></div></div></div>
-    <div class="client-card"><div class="card-image"><div class="card-image-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Photo / Screenshot</div></div><div class="card-body"><div class="card-name">TumbleBus Hawaii</div><div class="card-industry">Mobile Gymnastics</div><div class="card-tags"><span class="tag">IT Support</span><span class="tag">Web Dev</span></div></div></div>
-    <div class="client-card"><div class="card-image"><div class="card-image-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Photo / Screenshot</div></div><div class="card-body"><div class="card-name">IPIC</div><div class="card-industry">Entertainment</div><div class="card-tags"><span class="tag">Networking</span><span class="tag">IT Support</span></div></div></div>
 
   </div>
 </section>
 
-<!-- GALLERY HERO -->
-<div class="gallery-hero">
-  <p class="gallery-hero-label">( Scroll, drag, or use buttons )</p>
-  <p class="gallery-hero-sub">10 years &nbsp;&#183;&nbsp; One island &nbsp;&#183;&nbsp; Dozens of clients</p>
-  <div class="gallery">
-    <ul class="cards">
-      <li style="background-image:url(img/clients/advanced-pcs-seo-consultation.JPG)"></li>
-      <li style="background-image:url(img/clients/advanced-pcs-seo-pos-hardware.JPG)"></li>
-      <li style="background-image:url(img/clients/advanced-pcs-seo.JPG)"></li>
-      <li style="background-image:url(img/clients/arturos-hot-sauce.jpg)"></li>
-      <li style="background-image:url(img/clients/avnet.jpg)"></li>
-      <li style="background-image:url(img/clients/cold-stone-creamer-security-cameras.JPG)"></li>
-      <li style="background-image:url(img/clients/cold-stone-creamery-security-cam.JPG)"></li>
-      <li style="background-image:url(img/clients/cold-stone-creamery.jpg)"></li>
-      <li style="background-image:url(img/clients/dr.raymond-yoza-lan-netoworking.JPG)"></li>
-      <li style="background-image:url(img/clients/dr.raymond-yoza-lan.JPG)"></li>
-      <li style="background-image:url(img/clients/dr.raymond-yoza.jpg)"></li>
-      <li style="background-image:url(img/clients/extra-space-storage-intercom.JPG)"></li>
-      <li style="background-image:url(img/clients/hawaii-detective-and-guard-web-development.jpg)"></li>
-      <li style="background-image:url(img/clients/just-print-printer-networking.JPG)"></li>
-      <li style="background-image:url(img/clients/just-print-printers-networking.JPG)"></li>
-      <li style="background-image:url(img/clients/liberty-tax-lan-install.JPG)"></li>
-      <li style="background-image:url(img/clients/liberty-tax-netoworking.JPG)"></li>
-      <li style="background-image:url(img/clients/liberty-tax-networking.JPG)"></li>
-      <li style="background-image:url(img/clients/liberty-tax-waianae-lan-install.JPG)"></li>
-      <li style="background-image:url(img/clients/liberty-tax.jpg)"></li>
-      <li style="background-image:url(img/clients/outback-pos-lan-voip.JPG)"></li>
-      <li style="background-image:url(img/clients/outback-steak-house-pos-lan.JPG)"></li>
-      <li style="background-image:url(img/clients/rnc-roofing-contractors-lan.JPG)"></li>
-      <li style="background-image:url(img/clients/rnc-roofing-contractors-web-development.jpg)"></li>
-      <li style="background-image:url(img/clients/subway-aiea-pc-repair.JPG)"></li>
-      <li style="background-image:url(img/clients/subway-aiea.JPG)"></li>
-      <li style="background-image:url(img/clients/tails-of-hawaii-lan.jpeg)"></li>
-      <li style="background-image:url(img/clients/tails-of-hawaii-networking.JPG)"></li>
-      <li style="background-image:url(img/clients/tails-of-hawaii-web-development.jpg)"></li>
-      <li style="background-image:url(img/clients/the-property-managers-blown-capacitors-hardware-repair.JPG)"></li>
-      <li style="background-image:url(img/clients/the-property-managers.jpg)"></li>
-      <li style="background-image:url(img/clients/tnc-plumbing-web-development%20.JPG)"></li>
-      <li style="background-image:url(img/clients/tnc-plumbing-website-development.JPG)"></li>
-      <li style="background-image:url(img/clients/tnc-plumbing.jpg)"></li>
-      <li style="background-image:url(img/clients/nexicor-warranty-repair.JPG)"></li>
-      <li style="background-image:url(img/clients/nexicore-lg-warranty.JPG)"></li>
-      <li style="background-image:url(img/clients/nnexicore.jpg)"></li>
-      <li style="background-image:url(img/clients/alternative-air-conditioning-web-development-seo.jpg)"></li>
-      <li style="background-image:url(img/clients/upright-fencing-web-development.jpg)"></li>
-      <li style="background-image:url(img/clients/worknet-inc.jpg)"></li>
-      <li style="background-image:url(img/clients/worknet-lan-install.jpg)"></li>
-      <li style="background-image:url(img/clients/worknet-networking.JPG)"></li>
-    </ul>
-    <div class="actions">
-      <button class="prev">&#8592; Prev</button>
-      <button class="next">Next &#8594;</button>
+<!-- IMAGE REEL -->
+<section class="reel-section">
+  <div class="reel-intro">
+    <span class="reel-label">( 10 years &nbsp;&middot;&nbsp; One island &nbsp;&middot;&nbsp; Dozens of clients )</span>
+    <h2 class="reel-heading">A Decade of<br><em>Oahu Businesses</em></h2>
+  </div>
+  <div class="reel-rows">
+    <div class="reel-row reel-row--fwd">
+      <div class="reel-inner">
+        <img class="reel-img" src="img/clients/advanced-pcs-seo-consultation.JPG" alt="">
+        <img class="reel-img" src="img/clients/cold-stone-creamery.jpg" alt="">
+        <img class="reel-img" src="img/clients/hawaii-detective-and-guard-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/liberty-tax.jpg" alt="">
+        <img class="reel-img" src="img/clients/outback-steak-house-pos-lan.JPG" alt="">
+        <img class="reel-img" src="img/clients/rnc-roofing-contractors-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/subway-aiea.JPG" alt="">
+        <img class="reel-img" src="img/clients/tails-of-hawaii-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/the-property-managers.jpg" alt="">
+        <img class="reel-img" src="img/clients/worknet-inc.jpg" alt="">
+      </div>
+      <div class="reel-inner" aria-hidden="true">
+        <img class="reel-img" src="img/clients/advanced-pcs-seo-consultation.JPG" alt="">
+        <img class="reel-img" src="img/clients/cold-stone-creamery.jpg" alt="">
+        <img class="reel-img" src="img/clients/hawaii-detective-and-guard-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/liberty-tax.jpg" alt="">
+        <img class="reel-img" src="img/clients/outback-steak-house-pos-lan.JPG" alt="">
+        <img class="reel-img" src="img/clients/rnc-roofing-contractors-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/subway-aiea.JPG" alt="">
+        <img class="reel-img" src="img/clients/tails-of-hawaii-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/the-property-managers.jpg" alt="">
+        <img class="reel-img" src="img/clients/worknet-inc.jpg" alt="">
+      </div>
+    </div>
+    <div class="reel-row reel-row--rev">
+      <div class="reel-inner">
+        <img class="reel-img" src="img/clients/tnc-plumbing-website-development.JPG" alt="">
+        <img class="reel-img" src="img/clients/alternative-air-conditioning-web-development-seo.jpg" alt="">
+        <img class="reel-img" src="img/clients/upright-fencing-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/dr.raymond-yoza.jpg" alt="">
+        <img class="reel-img" src="img/clients/just-print-printer-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/liberty-tax-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/nnexicore.jpg" alt="">
+        <img class="reel-img" src="img/clients/extra-space-storage-intercom.JPG" alt="">
+        <img class="reel-img" src="img/clients/blazin-steaks-smm-seo.jpg" alt="">
+        <img class="reel-img" src="img/clients/hawaii-pool-cleaners-web-development-seo.jpg" alt="">
+      </div>
+      <div class="reel-inner" aria-hidden="true">
+        <img class="reel-img" src="img/clients/tnc-plumbing-website-development.JPG" alt="">
+        <img class="reel-img" src="img/clients/alternative-air-conditioning-web-development-seo.jpg" alt="">
+        <img class="reel-img" src="img/clients/upright-fencing-web-development.jpg" alt="">
+        <img class="reel-img" src="img/clients/dr.raymond-yoza.jpg" alt="">
+        <img class="reel-img" src="img/clients/just-print-printer-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/liberty-tax-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/nnexicore.jpg" alt="">
+        <img class="reel-img" src="img/clients/extra-space-storage-intercom.JPG" alt="">
+        <img class="reel-img" src="img/clients/blazin-steaks-smm-seo.jpg" alt="">
+        <img class="reel-img" src="img/clients/hawaii-pool-cleaners-web-development-seo.jpg" alt="">
+      </div>
+    </div>
+    <div class="reel-row reel-row--fwd reel-row--slow">
+      <div class="reel-inner">
+        <img class="reel-img" src="img/clients/cold-stone-creamer-security-cameras.JPG" alt="">
+        <img class="reel-img" src="img/clients/rnc-roofing-contractors-lan.JPG" alt="">
+        <img class="reel-img" src="img/clients/avnet.jpg" alt="">
+        <img class="reel-img" src="img/clients/the-property-managers-blown-capacitors-hardware-repair.JPG" alt="">
+        <img class="reel-img" src="img/clients/tails-of-hawaii-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/liberty-tax-waianae-lan-install.JPG" alt="">
+        <img class="reel-img" src="img/clients/worknet-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/arturos-hot-sauce.jpg" alt="">
+        <img class="reel-img" src="img/clients/wikiwiki-autoglass-hardware-repair.jpg" alt="">
+        <img class="reel-img" src="img/clients/aeropostale-security-sensor-install.jpg" alt="">
+      </div>
+      <div class="reel-inner" aria-hidden="true">
+        <img class="reel-img" src="img/clients/cold-stone-creamer-security-cameras.JPG" alt="">
+        <img class="reel-img" src="img/clients/rnc-roofing-contractors-lan.JPG" alt="">
+        <img class="reel-img" src="img/clients/avnet.jpg" alt="">
+        <img class="reel-img" src="img/clients/the-property-managers-blown-capacitors-hardware-repair.JPG" alt="">
+        <img class="reel-img" src="img/clients/tails-of-hawaii-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/liberty-tax-waianae-lan-install.JPG" alt="">
+        <img class="reel-img" src="img/clients/worknet-networking.JPG" alt="">
+        <img class="reel-img" src="img/clients/arturos-hot-sauce.jpg" alt="">
+        <img class="reel-img" src="img/clients/wikiwiki-autoglass-hardware-repair.jpg" alt="">
+        <img class="reel-img" src="img/clients/aeropostale-security-sensor-install.jpg" alt="">
+      </div>
     </div>
   </div>
-  <div class="drag-proxy"></div>
-</div>
+</section>
 
 <!-- WEB DEV SHOWCASE — STICKY PANELS -->
 <div class="showcase-outer">
@@ -800,94 +839,17 @@ a{color:inherit;text-decoration:none;}
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-gsap.registerPlugin(ScrollTrigger, Draggable);
+gsap.registerPlugin(ScrollTrigger);
 
-/* ── 1. SEAMLESS LOOP GALLERY ── */
-let iteration = 0;
-gsap.set('.cards li', {xPercent:400, opacity:0, scale:0});
-
-const spacing    = 0.1,
-      snapTime   = gsap.utils.snap(spacing),
-      cards      = gsap.utils.toArray('.cards li'),
-      animFunc   = el => {
-        const tl = gsap.timeline();
-        tl.fromTo(el, {scale:0,opacity:0}, {scale:1,opacity:1,zIndex:100,duration:0.5,yoyo:true,repeat:1,ease:'power1.in',immediateRender:false})
-          .fromTo(el, {xPercent:400}, {xPercent:-400,duration:1,ease:'none',immediateRender:false}, 0);
-        return tl;
-      },
-      seamless   = buildSeamlessLoop(cards, spacing, animFunc),
-      playhead   = {offset:0},
-      wrapTime   = gsap.utils.wrap(0, seamless.duration()),
-      scrub      = gsap.to(playhead, {
-        offset: 0,
-        onUpdate() { seamless.time(wrapTime(playhead.offset)); },
-        duration: 0.5, ease:'power3', paused:true
-      }),
-      trigger    = ScrollTrigger.create({
-        trigger: '.gallery-hero',
-        start: 'top top',
-        end: '+=3000',
-        pin: true,
-        onUpdate(self) {
-          const scroll = self.scroll();
-          if (scroll < self.start + 1 && self.direction < 0) {
-            wrap(-1, self.end - 2);
-          } else {
-            scrub.vars.offset = (iteration + self.progress) * seamless.duration();
-            scrub.invalidate().restart();
-          }
-        }
-      }),
-      p2s = p => gsap.utils.clamp(trigger.start+1, trigger.end-1,
-                   trigger.start + gsap.utils.wrap(0,1,p) * (trigger.end - trigger.start)),
-      wrap = (delta, scrollTo) => { iteration += delta; trigger.scroll(scrollTo); trigger.update(); };
-
-ScrollTrigger.addEventListener('scrollEnd', () => {
-  const scroll = window.scrollY;
-  if (scroll >= trigger.start && scroll <= trigger.end - 10) {
-    scrollToOffset(scrub.vars.offset);
-  }
+/* ── 1. REEL SECTION ENTRANCE ── */
+gsap.fromTo('.reel-intro', {opacity:0, y:40}, {
+  opacity:1, y:0, duration:1, ease:'power2.out',
+  scrollTrigger:{trigger:'.reel-section', start:'top 80%'}
 });
-
-function scrollToOffset(offset) {
-  const snapped  = snapTime(offset),
-        progress = (snapped - seamless.duration() * iteration) / seamless.duration(),
-        scroll   = p2s(progress);
-  if (progress >= 1 || progress < 0) return wrap(Math.floor(progress), scroll);
-  trigger.scroll(scroll);
-}
-
-document.querySelector('.next').addEventListener('click', () => scrollToOffset(scrub.vars.offset + spacing));
-document.querySelector('.prev').addEventListener('click', () => scrollToOffset(scrub.vars.offset - spacing));
-
-Draggable.create('.drag-proxy', {
-  type:'x', trigger:'.cards',
-  onPress()    { this.startOffset = scrub.vars.offset; },
-  onDrag()     { scrub.vars.offset = this.startOffset + (this.startX - this.x) * 0.001; scrub.invalidate().restart(); },
-  onDragEnd()  { scrollToOffset(scrub.vars.offset); }
+gsap.fromTo('.reel-rows', {opacity:0, y:30}, {
+  opacity:1, y:0, duration:1, delay:0.2, ease:'power2.out',
+  scrollTrigger:{trigger:'.reel-section', start:'top 75%'}
 });
-
-function buildSeamlessLoop(items, spacing, animFunc) {
-  const overlap     = Math.ceil(1/spacing),
-        startTime   = items.length * spacing + 0.5,
-        loopTime    = (items.length + overlap) * spacing + 1,
-        rawSeq      = gsap.timeline({paused:true}),
-        loop        = gsap.timeline({paused:true, repeat:-1,
-          onRepeat() { this._time === this._dur && (this._tTime += this._dur - 0.01); }
-        }),
-        total       = items.length + overlap * 2;
-
-  for (let i = 0; i < total; i++) {
-    const idx  = i % items.length,
-          time = i * spacing;
-    rawSeq.add(animFunc(items[idx]), time);
-    if (i <= items.length) loop.add('label'+i, time);
-  }
-  rawSeq.time(startTime);
-  loop.to(rawSeq, {time:loopTime, duration:loopTime-startTime, ease:'none'})
-      .fromTo(rawSeq, {time:overlap*spacing+1}, {time:startTime, duration:startTime-(overlap*spacing+1), immediateRender:false, ease:'none'});
-  return loop;
-}
 
 /* ── 2. PER-CARD IMAGE GALLERY ── */
 document.querySelectorAll('.card-gallery').forEach(gallery => {
