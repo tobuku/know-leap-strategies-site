@@ -397,8 +397,8 @@ aboutWords.forEach((word, i) => {
     opacity: 1,
     scrollTrigger: {
       trigger: aboutSection,
-      start: () => `top+=${(i / aboutWords.length) * 200}% top`,
-      end: () => `top+=${((i + 1) / aboutWords.length) * 200}% top`,
+      start: () => `top+=${(i / aboutWords.length) * 150}% top`,
+      end: () => `top+=${((i + 1) / aboutWords.length) * 150}% top`,
       scrub: true
     }
   });
