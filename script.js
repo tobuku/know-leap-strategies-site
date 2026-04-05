@@ -171,6 +171,72 @@ function initHeroAnimations() {
 document.addEventListener('DOMContentLoaded', initHeroAnimations);
 
 // ==========================================
+// BACKGROUND RING ANIMATIONS
+// ==========================================
+if (!reduceMotion) {
+  gsap.to('.bg-ring--1', {
+    x: 70,
+    y: 50,
+    duration: 14,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
+  });
+
+  gsap.to('.bg-ring--2', {
+    x: -55,
+    y: 70,
+    rotation: 45,
+    duration: 18,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true,
+    delay: 2
+  });
+
+  gsap.to('.bg-ring--3', {
+    x: 45,
+    y: -55,
+    duration: 12,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true,
+    delay: 5
+  });
+
+  gsap.to('.bg-ring--4', {
+    x: -65,
+    y: -45,
+    scale: 1.3,
+    duration: 16,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true,
+    delay: 1
+  });
+
+  gsap.to('.bg-ring--5', {
+    scale: 1.12,
+    rotation: 25,
+    duration: 22,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
+  });
+
+  gsap.to('.bg-ring--6', {
+    x: -40,
+    y: 60,
+    scale: 0.75,
+    duration: 10,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true,
+    delay: 3
+  });
+}
+
+// ==========================================
 // ABOUT SECTION - SIMPLE FADE REVEAL
 // ==========================================
 if (!reduceMotion) {
