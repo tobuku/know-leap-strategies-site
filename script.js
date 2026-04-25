@@ -327,6 +327,22 @@ if (!reduceMotion) {
   });
 }
 
+// KLS SERVICES (JUNK REMOVAL) SECTION
+// ==========================================
+if (!reduceMotion) {
+  gsap.from('.kls-service-item', {
+    y: 60,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '.kls-services-grid',
+      start: 'top 80%'
+    }
+  });
+}
+
 // ==========================================
 // STACK SECTION - SIMPLE CARD REVEAL
 // ==========================================

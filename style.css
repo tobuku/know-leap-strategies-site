@@ -1424,6 +1424,102 @@ img {
 }
 
 /* ================================================
+   KLS: SERVICES DIVISION BREAK
+   ================================================ */
+.division-break {
+  padding: 2.5rem var(--space-lg);
+  background: var(--void-black);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.division-break::before,
+.division-break::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--void-gray);
+}
+
+.division-break-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--void-purple);
+  white-space: nowrap;
+}
+
+/* ================================================
+   KLS: JUNK REMOVAL SERVICES SECTION
+   ================================================ */
+.kls-services {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--void-black);
+}
+
+.kls-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--void-gray);
+}
+
+.kls-service-item {
+  background: var(--void-black);
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-md);
+  align-items: start;
+  transition: background 0.4s;
+}
+
+.kls-service-item:hover {
+  background: var(--void-gray);
+}
+
+.kls-services-cta {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border: 1px solid var(--void-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.kls-cta-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 480px;
+}
+
+.kls-cta-actions {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .kls-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kls-services-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .kls-cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* ================================================
    KLS: PROCESS DELIVERABLES & TRUST
    ================================================ */
 .process-extras {
