@@ -20,14 +20,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --void-black: #0a0a0b;
-    --void-dark: #111113;
-    --void-gray: #1a1a1d;
-    --void-gray-light: #2a2a2f;
-    --void-white: #fafafa;
-    --void-muted: #6b6b7b;
-    --void-purple: #8b5cf6;
-    --void-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #f97316 100%);
+    --void-black: #f5f4f1;
+    --void-dark: #ebeae7;
+    --void-gray: #d0ceca;
+    --void-gray-light: #bcbab6;
+    --void-white: #111111;
+    --void-muted: #585858;
+    --void-purple: #1a1a1a;
+    --void-gradient: linear-gradient(135deg, #111111 0%, #404040 50%, #1a1a1a 100%);
     --font-display: 'Syne', sans-serif;
     --font-serif: 'Instrument Serif', serif;
     --font-mono: 'Space Mono', monospace;
@@ -46,14 +46,14 @@
 
   a { color: inherit; text-decoration: none; }
 
-  ::selection { background: var(--void-purple); color: var(--void-white); }
+  ::selection { background: #1a1a1a; color: #f5f4f1; }
 
   /* Header */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(10, 10, 11, 0.85);
+    background: rgba(245, 244, 241, 0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--void-gray);
   }
@@ -112,7 +112,7 @@
   }
 
   .header-nav .nav-cta:hover {
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     color: var(--void-black);
   }
 
@@ -208,7 +208,7 @@
     padding: 1.25rem;
     border: 1px solid var(--void-gray);
     border-radius: 16px;
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(0, 0, 0, 0.04);
   }
 
   .contact-box strong {
@@ -233,7 +233,7 @@
   }
 
   .back-link:hover {
-    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     color: var(--void-black);
   }
 

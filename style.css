@@ -5,19 +5,19 @@
 
 /* CSS Custom Properties */
 :root {
-  /* Colors */
-  --void-black: #2d2d2d;
-  --void-dark: #393939;
-  --void-gray: #484848;
-  --void-gray-light: #575757;
-  --void-white: #fafafa;
-  --void-muted: #6E6E6E;
-  --void-purple: #8b5cf6;
-  --void-purple-dark: #6d28d9;
+  /* Colors - Light Theme */
+  --void-black: #f5f4f1;
+  --void-dark: #ebeae7;
+  --void-gray: #d0ceca;
+  --void-gray-light: #bcbab6;
+  --void-white: #111111;
+  --void-muted: #585858;
+  --void-purple: #1a1a1a;
+  --void-purple-dark: #000000;
   --void-blue: #3b82f6;
   --void-coral: #f97316;
   --void-pink: #ec4899;
-  --void-gradient: linear-gradient(135deg, var(--void-purple) 0%, var(--void-blue) 50%, var(--void-coral) 100%);
+  --void-gradient: linear-gradient(135deg, #111111 0%, #404040 50%, #1a1a1a 100%);
 
   /* Typography */
   --font-display: 'Syne', sans-serif;
@@ -93,8 +93,8 @@ img {
 
 /* Selection */
 ::selection {
-  background: var(--void-purple);
-  color: var(--void-white);
+  background: #1a1a1a;
+  color: #f5f4f1;
 }
 
 /* Navigation */
@@ -108,7 +108,10 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  mix-blend-mode: difference;
+  background: rgba(245, 244, 241, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--void-gray);
 }
 
 .nav-logo {
@@ -205,9 +208,9 @@ img {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.15), transparent),
-    radial-gradient(ellipse 60% 60% at 80% 20%, rgba(59, 130, 246, 0.1), transparent),
-    radial-gradient(ellipse 50% 80% at 60% 80%, rgba(249, 115, 22, 0.08), transparent);
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.05), transparent),
+    radial-gradient(ellipse 60% 60% at 80% 20%, rgba(59, 130, 246, 0.04), transparent),
+    radial-gradient(ellipse 50% 80% at 60% 80%, rgba(249, 115, 22, 0.03), transparent);
 }
 
 /* Hero Images */
@@ -362,7 +365,7 @@ img {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary .btn-icon {
@@ -386,7 +389,7 @@ img {
 
 .btn-ghost:hover {
   border-color: var(--void-muted);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Hero Footer Stats */
@@ -486,7 +489,7 @@ img {
   content: '';
   position: absolute;
   inset: 30px;
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 50%;
   z-index: 2;
   pointer-events: none;
@@ -722,7 +725,7 @@ img {
   right: var(--space-sm);
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.1em;
   z-index: 2;
 }
@@ -1039,7 +1042,7 @@ img {
 }
 
 .btn-submit:hover {
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .btn-submit .btn-icon {
@@ -1836,7 +1839,7 @@ img {
 .bg-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(110, 110, 110, 0.28);
+  border: 1px solid rgba(60, 60, 60, 0.18);
   will-change: transform;
 }
 
@@ -1853,7 +1856,7 @@ img {
   height: 480px;
   top: 5%;
   right: -80px;
-  border-color: rgba(110, 110, 110, 0.20);
+  border-color: rgba(60, 60, 60, 0.13);
 }
 
 .bg-ring--3 {
@@ -1861,7 +1864,7 @@ img {
   height: 340px;
   bottom: -60px;
   left: 30%;
-  border-color: rgba(110, 110, 110, 0.18);
+  border-color: rgba(60, 60, 60, 0.11);
 }
 
 .bg-ring--4 {
@@ -1869,8 +1872,8 @@ img {
   height: 260px;
   top: 40%;
   left: 10%;
-  border-color: rgba(110, 110, 110, 0.24);
-  background: radial-gradient(circle at center, rgba(110, 110, 110, 0.07) 0%, transparent 70%);
+  border-color: rgba(60, 60, 60, 0.15);
+  background: radial-gradient(circle at center, rgba(60, 60, 60, 0.04) 0%, transparent 70%);
 }
 
 .bg-ring--5 {
@@ -1878,7 +1881,7 @@ img {
   height: 860px;
   top: calc(50% - 430px);
   left: calc(50% - 430px);
-  border-color: rgba(110, 110, 110, 0.10);
+  border-color: rgba(60, 60, 60, 0.07);
 }
 
 .bg-ring--6 {
@@ -1886,7 +1889,7 @@ img {
   height: 160px;
   top: 18%;
   left: 58%;
-  border-color: rgba(110, 110, 110, 0.22);
+  border-color: rgba(60, 60, 60, 0.14);
 }
 
 /* ================================================
