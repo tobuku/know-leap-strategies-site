@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FE89VCG9CY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FE89VCG9CY');
+</script>
+  <meta charset="UTF-8">
+  <title>WordPress Client Onboarding Kit — Free Template | Know Leap Strategies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free WordPress client onboarding kit: CMS walkthrough, content editing guide, analytics setup, and marketing campaign framework. Perfect for freelancers and agencies handing off WordPress sites to clients.">
+  <link rel="canonical" href="https://knowleapstrategies.com/wordpress-onboarding-kit.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="WordPress Client Onboarding Kit — Free Template | Know Leap Strategies" />
+  <meta property="og:description" content="Free WordPress client onboarding kit: CMS walkthrough, content editing guide, analytics setup, and marketing campaign framework." />
+  <meta property="og:url" content="https://knowleapstrategies.com/wordpress-onboarding-kit.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://knowleapstrategies.com/assets/images/icons/favicon-256x256.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WordPress Client Onboarding Kit — Free Template" />
+  <meta name="twitter:description" content="Free WordPress client onboarding kit for freelancers and agencies." />
+  <meta name="twitter:image" content="https://knowleapstrategies.com/assets/images/icons/favicon-256x256.png" />
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "WordPress Client Onboarding Kit",
+    "description": "Free WordPress client onboarding kit: CMS walkthrough, content editing guide, analytics setup, and marketing campaign framework.",
+    "author": {
+      "@type": "Organization",
+      "name": "Know Leap Strategies",
+      "url": "https://knowleapstrategies.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Know Leap Strategies",
+      "url": "https://knowleapstrategies.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://knowleapstrategies.com/assets/images/brand/kls-logo-primary.svg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://knowleapstrategies.com/wordpress-onboarding-kit.html"
+    },
+    "datePublished": "2026-06-14",
+    "dateModified": "2026-06-14",
+    "url": "https://knowleapstrategies.com/wordpress-onboarding-kit.html"
+  }
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/images/icons/knowleap_favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/images/icons/favicon-256x256.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---- CSS Custom Properties (from style.css) ---- */
+    :root {
+      --void-black: #f5f4f1;
+      --void-dark: #ebeae7;
+      --void-gray: #d0ceca;
+      --void-gray-light: #bcbab6;
+      --void-white: #111111;
+      --void-muted: #585858;
+      --void-blue: #3b82f6;
+      --void-coral: #f97316;
+      --font-display: 'Syne', sans-serif;
+      --font-serif: 'Instrument Serif', serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    /* ---- Reset ---- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    /* ---- Body ---- */
+    body {
+      font-family: var(--font-display);
+      font-weight: 400;
+      background: var(--void-black);
+      color: var(--void-white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--void-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---- Top Nav ---- */
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: var(--void-black);
+      border-bottom: 1px solid var(--void-gray);
+    }
+    .article-nav img { height: 28px; width: auto; }
+    .article-nav .back-link {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--void-muted);
+      transition: color 0.2s;
+    }
+    .article-nav .back-link:hover { color: var(--void-white); text-decoration: none; }
+
+    /* ---- Article Container ---- */
+    .article-container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    /* ---- Typography ---- */
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--void-white);
+    }
+    .article-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--void-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-top: 3.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--void-gray);
+      color: var(--void-white);
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    p { margin-bottom: 1.25rem; font-size: 1.05rem; }
+    ul, ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; font-size: 1.05rem; }
+    li ul { margin-top: 0.5rem; }
+    strong { font-weight: 700; }
+
+    /* ---- Table of Contents ---- */
+    .toc {
+      background: var(--void-dark);
+      border: 1px solid var(--void-gray);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 3rem;
+    }
+    .toc-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--void-muted);
+      margin-bottom: 1rem;
+    }
+    .toc ol { list-style: none; padding-left: 0; counter-reset: toc-counter; }
+    .toc li { counter-increment: toc-counter; margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .toc li::before {
+      content: counter(toc-counter) ".";
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--void-muted);
+      margin-right: 0.5rem;
+    }
+    .toc a { color: var(--void-white); text-decoration: none; transition: color 0.2s; }
+    .toc a:hover { color: var(--void-blue); }
+
+    /* ---- Template Block ---- */
+    .template-block {
+      background: var(--void-dark);
+      border: 1px solid var(--void-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    .template-block h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--void-white);
+    }
+    .template-block p { font-size: 0.95rem; }
+    .template-block ul { font-size: 0.95rem; }
+    .placeholder {
+      background: #fff3cd;
+      color: #664d03;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* ---- Copy Bar ---- */
+    .copy-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .copy-btn {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--void-gray);
+      border-radius: 5px;
+      background: var(--void-black);
+      color: var(--void-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { border-color: var(--void-white); color: var(--void-white); }
+
+    /* ---- Example Block ---- */
+    .example-block {
+      background: var(--void-dark);
+      border-left: 4px solid var(--void-blue);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .example-block p { margin-bottom: 0; font-size: 0.95rem; }
+    .example-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--void-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ---- Checklist ---- */
+    .checklist-box {
+      background: var(--void-dark);
+      border: 1px solid var(--void-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+    .checklist-box ul { list-style: none; padding-left: 0; }
+    .checklist-box li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.65rem;
+      font-size: 1rem;
+    }
+    .checklist-box li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--void-gray-light);
+      border-radius: 3px;
+    }
+
+    /* ---- CTA Section ---- */
+    .cta-section {
+      margin-top: 3.5rem;
+      padding: 2.5rem;
+      background: var(--void-white);
+      color: var(--void-black);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: var(--void-black);
+      border-bottom: none;
+      margin-top: 0;
+      padding-bottom: 0;
+      font-size: 1.4rem;
+    }
+    .cta-section p {
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      color: rgba(245, 244, 241, 0.8);
+    }
+    .cta-btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.85rem 2.5rem;
+      background: var(--void-black);
+      color: var(--void-white);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; text-decoration: none; }
+
+    /* ---- Footer ---- */
+    .article-footer {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      text-align: center;
+      border-top: 1px solid var(--void-gray);
+      color: var(--void-muted);
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+    .article-footer a { color: var(--void-muted); text-decoration: underline; }
+    .article-footer a:hover { color: var(--void-white); }
+    .footer-logo { height: 22px; width: auto; margin-bottom: 0.75rem; opacity: 0.5; }
+
+    /* ---- Print Styles ---- */
+    @media print {
+      .article-nav, .cta-section, .copy-bar { display: none; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .article-container { max-width: 100%; padding: 0; }
+      h1 { font-size: 22pt; }
+      h2 { font-size: 14pt; border-color: #ccc; }
+      a { color: #000; text-decoration: underline; }
+      .toc, .template-block, .checklist-box, .example-block { border-color: #ccc; background: #f9f9f9; }
+      .placeholder { background: #ffe69c; }
+      .article-footer { border-color: #ccc; }
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 640px) {
+      .article-nav { padding: 0.75rem 1rem; }
+      .article-container { padding: 2rem 1rem 3rem; }
+      .toc { padding: 1.25rem 1.25rem; }
+      .template-block { padding: 1.25rem; }
+      .checklist-box { padding: 1.25rem; }
+      .cta-section { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="article-nav">
+    <a href="index.html">
+      <img src="/assets/images/brand/kls-logo-primary.svg" alt="Know Leap Strategies logo">
+    </a>
+    <a href="index.html" class="back-link">Back to Main Site</a>
+  </nav>
+
+  <article class="article-container">
+
+    <h1>WordPress Client Onboarding Kit</h1>
+    <p class="article-subtitle">A complete, ready-to-customize documentation package for handing off WordPress sites to clients. Covers CMS training, content editing, user roles, event management, analytics, and marketing campaigns. Built from real client handoff experience.</p>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+      <div class="toc-title">What's in This Kit</div>
+      <ol>
+        <li><a href="#overview">Who This Kit Is For</a></li>
+        <li><a href="#dashboard">Dashboard Orientation</a></li>
+        <li><a href="#roles">User Roles and Permissions</a></li>
+        <li><a href="#content">Content Editing Guide</a></li>
+        <li><a href="#media">Media and Image Management</a></li>
+        <li><a href="#events">Event and Calendar Management</a></li>
+        <li><a href="#analytics">Google Analytics Walkthrough</a></li>
+        <li><a href="#campaigns">Marketing Campaign Framework</a></li>
+        <li><a href="#maintenance">Ongoing Maintenance Checklist</a></li>
+        <li><a href="#handoff">Client Handoff Checklist</a></li>
+      </ol>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 id="overview">1. Who This Kit Is For</h2>
+    <p>If you build WordPress websites for clients, you know the hardest part is not the build -- it is the handoff. Clients call you two weeks later because they cannot figure out how to change a phone number. They accidentally delete a page. They do not understand why their Google Analytics shows zero traffic.</p>
+    <p>This kit solves that problem. It is a complete documentation package you can customize with your client's specific site details, hand over at launch, and reference every time they have a question. It saves you hours of support calls and makes you look more professional.</p>
+    <p><strong>Customize the <span class="placeholder">highlighted fields</span> with your client's specific details.</strong></p>
+
+    <!-- Section 2 -->
+    <h2 id="dashboard">2. Dashboard Orientation</h2>
+
+    <div class="template-block" id="template-dashboard">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-dashboard')">Copy This Section</button>
+      </div>
+      <h4>Your WordPress Dashboard</h4>
+      <p>Your website runs on WordPress, the same platform that powers 43% of all websites on the internet. You will manage everything through the Dashboard, which you access by going to:</p>
+      <p><strong><span class="placeholder">https://yoursite.com</span>/wp-admin</strong></p>
+      <p>Log in with the credentials we provided. Once logged in, you will see the Dashboard home screen with these key areas:</p>
+      <ul>
+        <li><strong>Posts:</strong> Blog articles, news, and updates. These appear on your blog page and are organized by date.</li>
+        <li><strong>Pages:</strong> Static pages like Home, About, Services, Contact. These do not change frequently.</li>
+        <li><strong>Media:</strong> Your image and file library. Every photo, PDF, or video you upload lives here.</li>
+        <li><strong>Appearance:</strong> Theme settings, menus, and widgets. <em>Do not change these without consulting your developer.</em></li>
+        <li><strong>Plugins:</strong> Extensions that add features to your site. <em>Do not install, update, or delete plugins yourself.</em></li>
+        <li><strong>Settings:</strong> Site title, tagline, and general configuration. <em>Do not change these.</em></li>
+      </ul>
+      <p>The left sidebar is your main navigation. Everything you need is there.</p>
+    </div>
+
+    <!-- Section 3 -->
+    <h2 id="roles">3. User Roles and Permissions</h2>
+
+    <div class="template-block" id="template-roles">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-roles')">Copy This Section</button>
+      </div>
+      <h4>WordPress User Roles</h4>
+      <p>WordPress has five user roles. Each role has different permissions:</p>
+      <ul>
+        <li><strong>Administrator:</strong> Full access to everything. Your developer has this role. You should have exactly one admin account for your business. Do not create additional admin accounts.</li>
+        <li><strong>Editor:</strong> Can create, edit, publish, and delete any post or page -- including other people's content. Good for a content manager or marketing lead.</li>
+        <li><strong>Author:</strong> Can create, edit, and publish their own posts only. Cannot edit other people's content. Good for blog contributors.</li>
+        <li><strong>Contributor:</strong> Can write and edit their own posts, but cannot publish them. Posts go to "Pending Review" status for an Editor or Admin to approve.</li>
+        <li><strong>Subscriber:</strong> Can only log in and manage their own profile. No content access. Used for membership features.</li>
+      </ul>
+      <p><strong>Your team's roles:</strong></p>
+      <ul>
+        <li><span class="placeholder">Name</span> — Administrator (primary site owner)</li>
+        <li><span class="placeholder">Name</span> — Editor (content manager)</li>
+        <li><span class="placeholder">Developer Name / Agency</span> — Administrator (technical support)</li>
+      </ul>
+      <p>To add a new user: go to <strong>Users > Add New</strong>. Enter their email, assign them the <strong>Author</strong> or <strong>Contributor</strong> role (never Administrator), and click "Add New User." They will receive an email to set their password.</p>
+    </div>
+
+    <!-- Section 4 -->
+    <h2 id="content">4. Content Editing Guide</h2>
+
+    <div class="template-block" id="template-content">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-content')">Copy This Section</button>
+      </div>
+      <h4>Editing Existing Content</h4>
+      <p>To edit any page or post:</p>
+      <ol>
+        <li>Log in to your Dashboard.</li>
+        <li>Go to <strong>Pages</strong> (for static pages) or <strong>Posts</strong> (for blog articles).</li>
+        <li>Hover over the page or post you want to edit. Click <strong>"Edit"</strong>.</li>
+        <li>Make your changes in the editor. The editor uses blocks -- each paragraph, image, heading, or button is a separate block you can click and edit.</li>
+        <li>Click <strong>"Update"</strong> (top right) to save and publish your changes immediately.</li>
+      </ol>
+
+      <h4>Creating New Content</h4>
+      <ol>
+        <li>Go to <strong>Posts > Add New</strong> (for a blog article) or <strong>Pages > Add New</strong> (for a static page).</li>
+        <li>Enter your title at the top.</li>
+        <li>Start typing your content. Press Enter to create new paragraph blocks.</li>
+        <li>To add an image, click the <strong>"+"</strong> button and select "Image." Upload from your computer or choose from the Media Library.</li>
+        <li>To add a heading, click <strong>"+"</strong> and select "Heading." Use Heading 2 (H2) for main sections and Heading 3 (H3) for subsections. Never use Heading 1 -- that is reserved for the page title.</li>
+        <li>Set a <strong>Featured Image</strong> in the right sidebar. This is the image that appears in previews, social media shares, and search results.</li>
+        <li>Set the <strong>Category</strong> and <strong>Tags</strong> in the right sidebar.</li>
+        <li>Click <strong>"Publish"</strong> to go live, or <strong>"Save Draft"</strong> to save without publishing.</li>
+      </ol>
+
+      <h4>Content Best Practices</h4>
+      <ul>
+        <li>Keep paragraphs short -- 2 to 3 sentences maximum.</li>
+        <li>Use headings to break up long content. Readers scan before they read.</li>
+        <li>Every blog post should be at least 300 words for SEO purposes. 800-1,200 words is ideal.</li>
+        <li>Include at least one image per post. Name image files descriptively before uploading (e.g., "team-photo-july-2026.jpg" not "IMG_4523.jpg").</li>
+        <li>Fill in the <strong>Excerpt</strong> field (right sidebar) with a 1-2 sentence summary. This appears in search results and post listings.</li>
+        <li>Check "Preview" before publishing to see how it will look to visitors.</li>
+      </ul>
+    </div>
+
+    <!-- Section 5 -->
+    <h2 id="media">5. Media and Image Management</h2>
+
+    <div class="template-block" id="template-media">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-media')">Copy This Section</button>
+      </div>
+      <h4>Working with Images</h4>
+      <p>All images and files you upload go to the <strong>Media Library</strong> (left sidebar > Media).</p>
+      <ul>
+        <li><strong>Image size:</strong> Resize images to 1200px wide maximum before uploading. Large images slow down your site. Use a free tool like <a href="https://squoosh.app" target="_blank" rel="noopener">squoosh.app</a> to compress images.</li>
+        <li><strong>File format:</strong> Use JPEG (.jpg) for photographs and PNG (.png) for graphics with transparency (logos, icons). Use WebP when possible for best performance.</li>
+        <li><strong>File naming:</strong> Name files descriptively before uploading. WordPress uses the filename as the default alt text, which matters for SEO and accessibility.</li>
+        <li><strong>Alt text:</strong> Always fill in the "Alt Text" field when uploading an image. Describe what the image shows in a short phrase: "Team installing new roof on residential home" -- not "photo" or "image1."</li>
+        <li><strong>Do not delete images</strong> from the Media Library unless you are certain they are not used anywhere on the site. Deleting an image that is embedded in a page will leave a broken image placeholder.</li>
+      </ul>
+
+      <h4>Uploading Files (PDFs, Documents)</h4>
+      <p>You can upload PDFs, Word documents, and other files through Media > Add New. To link to a file from a page or post, upload it first, copy the file URL from the Media Library, then create a link in your content.</p>
+    </div>
+
+    <!-- Section 6 -->
+    <h2 id="events">6. Event and Calendar Management</h2>
+
+    <div class="template-block" id="template-events">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-events')">Copy This Section</button>
+      </div>
+      <h4>Managing Events</h4>
+      <p><em>Skip this section if your site does not have an events feature.</em></p>
+      <p>If your site uses an events plugin (such as The Events Calendar, Events Manager, or a custom events post type), managing events works similarly to managing posts:</p>
+      <ol>
+        <li>Go to <strong>Events</strong> in the left sidebar.</li>
+        <li>Click <strong>"Add New"</strong> to create an event.</li>
+        <li>Fill in the event title, description, date, time, and location.</li>
+        <li>Set a Featured Image for the event (this appears on the calendar and event listings).</li>
+        <li>Set the event <strong>Category</strong> (e.g., Workshop, Fundraiser, Meeting).</li>
+        <li>Click <strong>"Publish"</strong> to make the event visible on your site's calendar.</li>
+      </ol>
+      <p><strong>Recurring events:</strong> If the plugin supports it, use the "Recurrence" option instead of creating the same event multiple times. This keeps your calendar clean and makes it easy to update all instances at once.</p>
+      <p><strong>Past events:</strong> Most event plugins automatically move past events off the main calendar view. You do not need to delete them -- they serve as an archive and help with SEO.</p>
+    </div>
+
+    <!-- Section 7 -->
+    <h2 id="analytics">7. Google Analytics Walkthrough</h2>
+
+    <div class="template-block" id="template-analytics">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-analytics')">Copy This Section</button>
+      </div>
+      <h4>Accessing Your Analytics</h4>
+      <p>Your site has Google Analytics installed. This tells you how many people visit your site, where they come from, and what they do. To access it:</p>
+      <ol>
+        <li>Go to <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a>.</li>
+        <li>Log in with the Google account: <span class="placeholder">analytics-email@gmail.com</span></li>
+        <li>Select your property: <span class="placeholder">Your Site Name</span></li>
+      </ol>
+
+      <h4>Key Reports to Check Monthly</h4>
+      <ul>
+        <li><strong>Realtime:</strong> Shows who is on your site right now. Fun to watch during a marketing push, but not actionable for strategy.</li>
+        <li><strong>Acquisition > Overview:</strong> Where your traffic comes from -- organic search (Google), direct (typed URL or bookmarks), social media, referrals (links from other sites), or paid ads. This tells you which marketing channels are working.</li>
+        <li><strong>Engagement > Pages and Screens:</strong> Which pages get the most views. If your Services page gets 10x the views of your About page, invest more in your Services content.</li>
+        <li><strong>Engagement > Landing Pages:</strong> The first page people see when they arrive. If your blog post is the top landing page, your SEO is working. If it is always the Home page, you need more content.</li>
+        <li><strong>User Attributes > Demographics:</strong> Age, gender, location, and interests of your visitors. Use this to validate that you are reaching your target audience.</li>
+      </ul>
+
+      <h4>What the Numbers Mean</h4>
+      <ul>
+        <li><strong>Users:</strong> Unique visitors (one person visiting 5 times = 1 user).</li>
+        <li><strong>Sessions:</strong> Total visits (one person visiting 5 times = 5 sessions).</li>
+        <li><strong>Pageviews:</strong> Total pages viewed (one visit viewing 3 pages = 3 pageviews).</li>
+        <li><strong>Avg. Engagement Time:</strong> How long people actively interact with your site. Under 30 seconds is a red flag -- it means people leave quickly.</li>
+        <li><strong>Bounce Rate:</strong> Percentage of visitors who leave after viewing only one page. High bounce rate on a blog post is normal. High bounce rate on your Home page is a problem.</li>
+      </ul>
+    </div>
+
+    <!-- Section 8 -->
+    <h2 id="campaigns">8. Marketing Campaign Framework</h2>
+
+    <div class="template-block" id="template-campaigns">
+      <div class="copy-bar">
+        <button class="copy-btn" onclick="copySection('template-campaigns')">Copy This Section</button>
+      </div>
+      <h4>How to Track a Marketing Campaign</h4>
+      <p>When you run a promotion, event, or advertising campaign, you want to know if it drove traffic to your website. Google Analytics can track this using <strong>UTM parameters</strong> -- special tags you add to your URLs.</p>
+
+      <h4>Step-by-Step: Creating a Tracked Campaign Link</h4>
+      <ol>
+        <li>Go to Google's <a href="https://ga-dev-tools.google/ga4/campaign-url-builder/" target="_blank" rel="noopener">Campaign URL Builder</a>.</li>
+        <li>Enter your website URL: <span class="placeholder">https://yoursite.com</span></li>
+        <li>Fill in three required fields:
+          <ul>
+            <li><strong>Campaign Source:</strong> Where the link will be posted (e.g., "facebook", "newsletter", "flyer")</li>
+            <li><strong>Campaign Medium:</strong> The type of marketing (e.g., "social", "email", "print", "cpc")</li>
+            <li><strong>Campaign Name:</strong> A name for this specific campaign (e.g., "summer-sale-2026", "grand-opening")</li>
+          </ul>
+        </li>
+        <li>Copy the generated URL. It will look like:<br>
+          <code style="font-size: 0.85rem; word-break: break-all;">https://yoursite.com/?utm_source=facebook&utm_medium=social&utm_campaign=summer-sale-2026</code>
+        </li>
+        <li>Use this link in your Facebook post, email newsletter, or printed QR code -- not your regular URL.</li>
+      </ol>
+
+      <h4>Viewing Campaign Results</h4>
+      <p>In Google Analytics, go to <strong>Acquisition > Traffic Acquisition</strong> and filter by "Session campaign" to see how many visits each campaign generated. You can also see which campaign visitors stayed longest, viewed the most pages, and converted.</p>
+
+      <div class="example-block">
+        <div class="example-label">Example Campaign</div>
+        <p><strong>Scenario:</strong> You are promoting a summer adoption event on Facebook, Instagram, and an email newsletter.</p>
+        <p>Create three separate tracked URLs -- one for each channel. All three use the same Campaign Name ("summer-adoption-2026") but different Sources ("facebook", "instagram", "mailchimp"). After the event, check Analytics to see which channel drove the most visitors and which visitors stayed longest on your site.</p>
+      </div>
+    </div>
+
+    <!-- Section 9 -->
+    <h2 id="maintenance">9. Ongoing Maintenance Checklist</h2>
+
+    <div class="checklist-box">
+      <ul>
+        <li><strong>Weekly:</strong> Publish at least one blog post or news update. Fresh content signals to Google that your site is active.</li>
+        <li><strong>Weekly:</strong> Check for and respond to contact form submissions and comments.</li>
+        <li><strong>Monthly:</strong> Review Google Analytics (see Section 7). Note trends in traffic, top pages, and referral sources.</li>
+        <li><strong>Monthly:</strong> Check that all pages load correctly. Click through your menu and test key links.</li>
+        <li><strong>Monthly:</strong> Back up your site. Your hosting provider may do this automatically, but verify.</li>
+        <li><strong>Quarterly:</strong> Review and refresh outdated content. Update hours, pricing, team bios, and any seasonal information.</li>
+        <li><strong>Quarterly:</strong> Check Google Search Console for crawl errors, security issues, or indexing problems.</li>
+        <li><strong>As needed:</strong> Contact your developer for plugin updates, WordPress core updates, theme changes, or any technical issues. Do not attempt these yourself.</li>
+      </ul>
+    </div>
+
+    <!-- Section 10 -->
+    <h2 id="handoff">10. Client Handoff Checklist</h2>
+    <p>Use this checklist when delivering a completed WordPress site to a client. Every item should be complete before the handoff meeting.</p>
+
+    <div class="checklist-box">
+      <ul>
+        <li>Client admin account created with strong password</li>
+        <li>All user roles assigned (admin, editors, authors)</li>
+        <li>Login URL and credentials documented and delivered securely</li>
+        <li>Google Analytics installed and tracking confirmed</li>
+        <li>Google Search Console verified and sitemap submitted</li>
+        <li>Contact form tested (send a test submission, verify email delivery)</li>
+        <li>All pages reviewed for placeholder content (lorem ipsum, stock photos)</li>
+        <li>SSL certificate active (site loads with https://)</li>
+        <li>Favicon and site title set correctly</li>
+        <li>Social media meta tags configured (Open Graph, Twitter Cards)</li>
+        <li>Backup system configured and first backup completed</li>
+        <li>This onboarding document customized and delivered to client</li>
+        <li>30-minute walkthrough call scheduled with client</li>
+        <li>Support contact and response time expectations documented</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Need Help With Your WordPress Build?</h2>
+      <p>We build and hand off WordPress sites with complete client documentation. No more support calls about how to change a phone number.</p>
+      <a href="index.html#contact" class="cta-btn">Get in Touch</a>
+    </div>
+
+  </article>
+
+  <footer class="article-footer">
+    <img src="/assets/images/brand/kls-logo-primary.svg" alt="Know Leap Strategies" class="footer-logo"><br>
+    <a href="index.html">Know Leap Strategies</a> · <a href="local-seo-playbook.html">SEO Playbook</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a><br>
+    &copy; 2026 Know Leap Strategies. All rights reserved.
+  </footer>
+
+  <script>
+    function copySection(id) {
+      const el = document.getElementById(id);
+      const text = el.innerText.replace(/Copy This Section/g, '').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = el.querySelector('.copy-btn');
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = orig, 1500);
+      });
+    }
+  </script>
+
+</body>
+</html>
