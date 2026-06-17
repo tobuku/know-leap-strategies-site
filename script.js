@@ -381,6 +381,47 @@ if (!reduceMotion) {
     });
   }
 
+  // How It Works image
+  var howImage = document.querySelector('.how-image');
+  if (howImage) {
+    gsap.from('.how-image', {
+      x: 40,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.how-image',
+        start: 'top 85%',
+      },
+    });
+  }
+
+  // Scenic strip items
+  gsap.from('.scenic-item', {
+    y: 30,
+    opacity: 0,
+    stagger: 0.12,
+    duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '.scenic-strip',
+      start: 'top 85%',
+    },
+  });
+
+  // Studio client images
+  gsap.from('.studio-client-img', {
+    y: 20,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 0.7,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '.studio-clients-strip',
+      start: 'top 85%',
+    },
+  });
+
   // Contact
   gsap.from('.contact-left', {
     y: 40,
