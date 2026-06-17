@@ -309,7 +309,7 @@ function initHeroAnimations() {
   );
 
   heroTl.from(
-    '.meter-card',
+    '.hero-image',
     {
       opacity: 0,
       y: 30,
