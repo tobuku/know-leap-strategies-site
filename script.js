@@ -1,9 +1,8 @@
 /* ================================================
    KNOW LEAP STRATEGIES - JavaScript
-   Simplified Animations
+   Junk Removal & Hauling + Studio Division
    ================================================ */
 
-// prefers-reduced-motion check
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Initialize Lenis smooth scroll
@@ -37,6 +36,41 @@ gsap.ticker.lagSmoothing(0);
 gsap.registerPlugin(ScrollTrigger);
 
 // ==========================================
+// YEAR
+// ==========================================
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ==========================================
+// HEADER SCROLL BEHAVIOR
+// ==========================================
+const hdr = document.getElementById('hdr');
+function onScroll() {
+  hdr.classList.toggle('scrolled', window.scrollY > 24);
+}
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navlinks');
+
+menuBtn.addEventListener('click', function () {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.textContent = open ? 'Close' : 'Menu';
+});
+
+navLinks.addEventListener('click', function (e) {
+  if (e.target.tagName === 'A') {
+    navLinks.classList.remove('open');
+    menuBtn.textContent = 'Menu';
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ==========================================
 // TEXT SCRAMBLE EFFECT
 // ==========================================
 class TextScramble {
@@ -49,7 +83,7 @@ class TextScramble {
   setText(newText) {
     const oldText = this.el.innerText;
     const length = Math.max(oldText.length, newText.length);
-    const promise = new Promise((resolve) => this.resolve = resolve);
+    const promise = new Promise((resolve) => (this.resolve = resolve));
     this.queue = [];
 
     for (let i = 0; i < length; i++) {
@@ -81,7 +115,7 @@ class TextScramble {
           char = this.chars[Math.floor(Math.random() * this.chars.length)];
           this.queue[i].char = char;
         }
-        output += `<span class="scramble-char">${char}</span>`;
+        output += '<span class="scramble-char">' + char + '</span>';
       } else {
         output += from;
       }
@@ -98,77 +132,76 @@ class TextScramble {
   }
 }
 
-// Apply scramble effect to elements
-const scrambleElements = document.querySelectorAll('.scramble-text');
-scrambleElements.forEach(el => {
+// Apply scramble to elements
+document.querySelectorAll('.scramble-text').forEach(function (el) {
   const originalText = el.innerText;
   const scrambler = new TextScramble(el);
-
-  el.addEventListener('mouseenter', () => {
+  el.addEventListener('mouseenter', function () {
     scrambler.setText(originalText);
   });
 });
 
 // ==========================================
-// HERO ANIMATIONS
+// REVEAL + STAGGER OBSERVER
 // ==========================================
-function initHeroAnimations() {
-  if (reduceMotion) return;
+const io = new IntersectionObserver(
+  function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var el = en.target;
+      el.classList.add('in');
 
-  const heroTl = gsap.timeline();
+      // stagger children
+      if (el.hasAttribute('data-stagger') && !reduceMotion) {
+        Array.prototype.forEach.call(el.children, function (c, i) {
+          c.style.transitionDelay = i * 0.08 + 's';
+        });
+      }
 
-  heroTl.from('.eyebrow-line', {
-    scaleX: 0,
-    transformOrigin: 'left',
-    duration: 0.8,
-    ease: 'power3.out'
-  })
-  .from('.eyebrow-text', {
-    opacity: 0,
-    x: -20,
-    duration: 0.6
-  }, '-=0.4');
+      // count-ups inside
+      el.querySelectorAll('[data-count]').forEach(runCount);
 
-  const titleWords = document.querySelectorAll('.title-word');
-  heroTl.from(titleWords, {
-    yPercent: 100,
-    opacity: 0,
-    stagger: 0.1,
-    duration: 1,
-    ease: 'power4.out'
-  }, '-=0.3');
+      // meter fill
+      el.querySelectorAll('[data-fill]').forEach(function (m) {
+        m.style.width = m.getAttribute('data-fill') + '%';
+      });
 
-  heroTl.from('.hero-sub span', {
-    opacity: 0,
-    y: 20,
-    stagger: 0.1,
-    duration: 0.8,
-    ease: 'power3.out'
-  }, '-=0.6');
+      io.unobserve(el);
+    });
+  },
+  { threshold: 0.18 }
+);
 
-  heroTl.from('.hero-cta a', {
-    opacity: 0,
-    y: 30,
-    stagger: 0.15,
-    duration: 0.7,
-    ease: 'power3.out'
-  }, '-=0.4');
+document.querySelectorAll('.reveal, [data-stagger], .meter-card').forEach(function (el) {
+  io.observe(el);
+});
 
-  heroTl.from('.hero-img--primary', {
-    opacity: 0,
-    y: 30,
-    duration: 1.2,
-    ease: 'power3.out'
-  }, '-=0.8');
-
-  heroTl.from('.hero-footer', {
-    opacity: 0,
-    y: 20,
-    duration: 0.6
-  }, '-=0.4');
+// ==========================================
+// COUNT ANIMATION
+// ==========================================
+function runCount(node) {
+  if (node.dataset.done) return;
+  node.dataset.done = '1';
+  var target = parseFloat(node.getAttribute('data-count'));
+  var suffix = node.getAttribute('data-suffix') || '';
+  if (reduceMotion) {
+    node.textContent = formatNum(target) + suffix;
+    return;
+  }
+  var dur = 1400;
+  var start = performance.now();
+  function tick(now) {
+    var p = Math.min((now - start) / dur, 1);
+    var eased = 1 - Math.pow(1 - p, 3);
+    node.textContent = formatNum(Math.round(target * eased)) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 }
 
-document.addEventListener('DOMContentLoaded', initHeroAnimations);
+function formatNum(n) {
+  return n.toLocaleString('en-US');
+}
 
 // ==========================================
 // BACKGROUND RING ANIMATIONS
@@ -180,7 +213,7 @@ if (!reduceMotion) {
     duration: 14,
     ease: 'sine.inOut',
     repeat: -1,
-    yoyo: true
+    yoyo: true,
   });
 
   gsap.to('.bg-ring--2', {
@@ -191,7 +224,7 @@ if (!reduceMotion) {
     ease: 'sine.inOut',
     repeat: -1,
     yoyo: true,
-    delay: 2
+    delay: 2,
   });
 
   gsap.to('.bg-ring--3', {
@@ -201,7 +234,7 @@ if (!reduceMotion) {
     ease: 'sine.inOut',
     repeat: -1,
     yoyo: true,
-    delay: 5
+    delay: 5,
   });
 
   gsap.to('.bg-ring--4', {
@@ -212,74 +245,114 @@ if (!reduceMotion) {
     ease: 'sine.inOut',
     repeat: -1,
     yoyo: true,
-    delay: 1
-  });
-
-  gsap.to('.bg-ring--5', {
-    scale: 1.12,
-    rotation: 25,
-    duration: 22,
-    ease: 'sine.inOut',
-    repeat: -1,
-    yoyo: true
-  });
-
-  gsap.to('.bg-ring--6', {
-    x: -40,
-    y: 60,
-    scale: 0.75,
-    duration: 10,
-    ease: 'sine.inOut',
-    repeat: -1,
-    yoyo: true,
-    delay: 3
+    delay: 1,
   });
 }
 
 // ==========================================
-// ABOUT SECTION - SIMPLE FADE REVEAL
+// HERO ENTRANCE ANIMATION
+// ==========================================
+function initHeroAnimations() {
+  if (reduceMotion) return;
+
+  const heroTl = gsap.timeline();
+
+  heroTl.from('.hero .eyebrow', {
+    opacity: 0,
+    x: -20,
+    duration: 0.6,
+    ease: 'power3.out',
+  });
+
+  heroTl.from(
+    '.hero-title',
+    {
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      ease: 'power4.out',
+    },
+    '-=0.3'
+  );
+
+  heroTl.from(
+    '.hero-lead',
+    {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: 'power3.out',
+    },
+    '-=0.6'
+  );
+
+  heroTl.from(
+    '.hero-actions .btn',
+    {
+      opacity: 0,
+      y: 30,
+      stagger: 0.15,
+      duration: 0.7,
+      ease: 'power3.out',
+    },
+    '-=0.4'
+  );
+
+  heroTl.from(
+    '.hero-note',
+    {
+      opacity: 0,
+      y: 15,
+      duration: 0.5,
+    },
+    '-=0.3'
+  );
+
+  heroTl.from(
+    '.meter-card',
+    {
+      opacity: 0,
+      y: 30,
+      duration: 1.2,
+      ease: 'power3.out',
+    },
+    '-=0.8'
+  );
+}
+
+document.addEventListener('DOMContentLoaded', initHeroAnimations);
+
+// ==========================================
+// SECTION SCROLL ANIMATIONS
 // ==========================================
 if (!reduceMotion) {
-  gsap.from('.about-content > *', {
+  // Services header
+  gsap.from('.services .sec-head > *', {
     y: 40,
     opacity: 0,
     stagger: 0.15,
     duration: 0.8,
     ease: 'power3.out',
     scrollTrigger: {
-      trigger: '.about-content',
-      start: 'top 80%'
-    }
+      trigger: '.services .sec-head',
+      start: 'top 85%',
+    },
   });
 
-  gsap.from('.about-visual', {
-    opacity: 0,
-    y: 30,
-    duration: 1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.about',
-      start: 'top 75%'
-    }
-  });
-}
-
-// ==========================================
-// SHOWCASE SECTION - STAGGERED REVEALS
-// ==========================================
-if (!reduceMotion) {
-  gsap.from('.showcase-header > *', {
+  // How it works header
+  gsap.from('.how-section .sec-head > *', {
     y: 40,
     opacity: 0,
     stagger: 0.15,
     duration: 0.8,
     ease: 'power3.out',
     scrollTrigger: {
-      trigger: '.showcase-header',
-      start: 'top 85%'
-    }
+      trigger: '.how-section .sec-head',
+      start: 'top 85%',
+    },
   });
 
+  // Showcase items
   gsap.from('.showcase-item', {
     y: 60,
     opacity: 0,
@@ -288,125 +361,27 @@ if (!reduceMotion) {
     ease: 'power3.out',
     scrollTrigger: {
       trigger: '.showcase-grid',
-      start: 'top 85%'
-    }
-  });
-}
-
-// ==========================================
-// WORK SECTION - VERTICAL CARD REVEAL
-// ==========================================
-if (!reduceMotion) {
-  gsap.from('.work-card', {
-    y: 60,
-    opacity: 0,
-    stagger: 0.2,
-    duration: 0.9,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.work-track',
-      start: 'top 80%'
-    }
-  });
-}
-
-// ==========================================
-// SERVICES SECTION
-// ==========================================
-if (!reduceMotion) {
-  gsap.from('.service-item', {
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.services-grid',
-      start: 'top 80%'
-    }
-  });
-}
-
-// KLS SERVICES (JUNK REMOVAL) SECTION
-// ==========================================
-if (!reduceMotion) {
-  gsap.from('.kls-service-item', {
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.kls-services-grid',
-      start: 'top 80%'
-    }
-  });
-}
-
-// ==========================================
-// STACK SECTION - SIMPLE CARD REVEAL
-// ==========================================
-if (!reduceMotion) {
-  gsap.from('.stack-header > *', {
-    y: 40,
-    opacity: 0,
-    stagger: 0.15,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.stack-section',
-      start: 'top 80%'
-    }
+      start: 'top 85%',
+    },
   });
 
-  gsap.from('.stack-card', {
-    y: 60,
-    opacity: 0,
-    stagger: 0.2,
-    duration: 0.9,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.stack-cards',
-      start: 'top 80%'
-    }
-  });
-}
+  // Bento items
+  var bentoSection = document.querySelector('.bento-section');
+  if (bentoSection) {
+    gsap.from('.bento-item', {
+      y: 40,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.bento-grid',
+        start: 'top 85%',
+      },
+    });
+  }
 
-// ==========================================
-// BENTO GRID - SIMPLE FADE REVEALS
-// ==========================================
-const bentoSection = document.querySelector('.bento-section');
-
-if (bentoSection && !reduceMotion) {
-  gsap.from('.bento-header > *', {
-    y: 40,
-    opacity: 0,
-    stagger: 0.15,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.bento-header',
-      start: 'top 85%'
-    }
-  });
-
-  gsap.from('.bento-item', {
-    y: 40,
-    opacity: 0,
-    stagger: 0.1,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.bento-grid',
-      start: 'top 85%'
-    }
-  });
-}
-
-// ==========================================
-// CONTACT SECTION ANIMATIONS
-// ==========================================
-if (!reduceMotion) {
+  // Contact
   gsap.from('.contact-left', {
     y: 40,
     opacity: 0,
@@ -414,8 +389,8 @@ if (!reduceMotion) {
     ease: 'power3.out',
     scrollTrigger: {
       trigger: '.contact',
-      start: 'top 70%'
-    }
+      start: 'top 70%',
+    },
   });
 
   gsap.from('.form-group', {
@@ -426,15 +401,11 @@ if (!reduceMotion) {
     ease: 'power3.out',
     scrollTrigger: {
       trigger: '.contact-form',
-      start: 'top 80%'
-    }
+      start: 'top 80%',
+    },
   });
-}
 
-// ==========================================
-// FOOTER ANIMATIONS
-// ==========================================
-if (!reduceMotion) {
+  // Footer
   gsap.from('.footer-top > *', {
     y: 40,
     opacity: 0,
@@ -443,116 +414,129 @@ if (!reduceMotion) {
     ease: 'power3.out',
     scrollTrigger: {
       trigger: '.footer',
-      start: 'top 85%'
+      start: 'top 85%',
+    },
+  });
+}
+
+// ==========================================
+// MAGNETIC CTA BUTTON
+// ==========================================
+var magnet = document.getElementById('magnet');
+if (magnet && !reduceMotion && window.matchMedia('(hover:hover)').matches) {
+  magnet.addEventListener('mousemove', function (e) {
+    var r = magnet.getBoundingClientRect();
+    var x = (e.clientX - r.left - r.width / 2) / r.width;
+    var y = (e.clientY - r.top - r.height / 2) / r.height;
+    magnet.style.transform = 'translate(' + x * 8 + 'px,' + y * 8 + 'px)';
+  });
+  magnet.addEventListener('mouseleave', function () {
+    magnet.style.transform = '';
+  });
+}
+
+// ==========================================
+// NAVIGATION SMOOTH SCROLL
+// ==========================================
+document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    var targetId = anchor.getAttribute('href');
+    if (targetId === '#') return;
+
+    var target = document.querySelector(targetId);
+    if (target) {
+      lenis.scrollTo(target, {
+        offset: 0,
+        duration: 1.5,
+      });
     }
   });
-}
-
-// ==========================================
-// GENERAL SCROLL ANIMATIONS
-// ==========================================
-if (!reduceMotion) {
-  gsap.utils.toArray('.section-header').forEach(header => {
-    gsap.from(header.children, {
-      y: 40,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: header,
-        start: 'top 85%'
-      }
-    });
-  });
-}
-
-// ==========================================
-// REFRESH SCROLLTRIGGER ON RESIZE
-// ==========================================
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 250);
 });
 
 // ==========================================
 // FORM INTERACTIONS
 // ==========================================
-const formInputs = document.querySelectorAll('.form-input');
+var formInputs = document.querySelectorAll('.form-input');
 
-formInputs.forEach(input => {
-  input.addEventListener('focus', () => {
+formInputs.forEach(function (input) {
+  input.addEventListener('focus', function () {
     gsap.to(input.parentElement, {
       scale: 1.02,
       duration: 0.3,
-      ease: 'power2.out'
+      ease: 'power2.out',
     });
   });
 
-  input.addEventListener('blur', () => {
+  input.addEventListener('blur', function () {
     gsap.to(input.parentElement, {
       scale: 1,
       duration: 0.3,
-      ease: 'power2.out'
+      ease: 'power2.out',
     });
   });
 });
 
 // Form submit animation
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+var form = document.querySelector('.contact-form');
+if (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-  const btn = form.querySelector('.btn-submit');
-  const originalText = btn.querySelector('.btn-text').innerText;
+    var btn = form.querySelector('.btn-submit');
+    var originalText = btn.querySelector('.btn-text').innerText;
 
-  gsap.to(btn, {
-    scale: 0.95,
-    duration: 0.1,
-    yoyo: true,
-    repeat: 1
-  });
-
-  btn.querySelector('.btn-text').innerText = 'Sending...';
-
-  setTimeout(() => {
-    btn.querySelector('.btn-text').innerText = 'Message Sent!';
     gsap.to(btn, {
-      background: '#10b981',
-      duration: 0.3
+      scale: 0.95,
+      duration: 0.1,
+      yoyo: true,
+      repeat: 1,
     });
 
-    setTimeout(() => {
-      btn.querySelector('.btn-text').innerText = originalText;
+    btn.querySelector('.btn-text').innerText = 'Sending...';
+
+    setTimeout(function () {
+      btn.querySelector('.btn-text').innerText = 'Message Sent!';
       gsap.to(btn, {
-        background: '#fafafa',
-        duration: 0.3
+        background: '#10b981',
+        duration: 0.3,
       });
-      form.reset();
-    }, 2000);
-  }, 1500);
-});
 
-// ==========================================
-// NAVIGATION SCROLL BEHAVIOR
-// ==========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = anchor.getAttribute('href');
-    if (targetId === '#') return;
-
-    const target = document.querySelector(targetId);
-    if (target) {
-      lenis.scrollTo(target, {
-        offset: 0,
-        duration: 1.5
-      });
-    }
+      setTimeout(function () {
+        btn.querySelector('.btn-text').innerText = originalText;
+        gsap.to(btn, {
+          background: '#111111',
+          duration: 0.3,
+        });
+        form.reset();
+      }, 2000);
+    }, 1500);
   });
+}
+
+// ==========================================
+// SCROLLTRIGGER REFRESH ON RESIZE
+// ==========================================
+var resizeTimer;
+window.addEventListener('resize', function () {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function () {
+    ScrollTrigger.refresh();
+  }, 250);
 });
+
+// ==========================================
+// CONSOLE NOTE
+// ==========================================
+try {
+  console.log(
+    '%cBuilt in-house by the Studio.',
+    'color:#111;font:600 14px monospace'
+  );
+  console.log(
+    '%cLike the site? That\'s the other half of what we do. → knowleapstrategies.com',
+    'color:#585858;font:13px monospace'
+  );
+} catch (e) {}
 
 console.log('Know Leap Strategies loaded successfully');
