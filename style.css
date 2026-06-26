@@ -1537,6 +1537,17 @@ a:focus-visible, button:focus-visible {
   color: rgba(245, 244, 241, 0.5);
 }
 
+.footer-alliance {
+  margin-top: 0.25rem;
+  font-size: 0.74rem;
+}
+.footer-alliance a {
+  color: rgba(245, 244, 241, 0.6);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-alliance a:hover { color: var(--void-white); }
+
 .footer-legal {
   display: flex;
   gap: 1.5rem;
