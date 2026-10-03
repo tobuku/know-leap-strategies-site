@@ -34,12 +34,14 @@ The site is **Know Leap Strategies** — a cinematic, conversion-focused consult
 
 ### Brand Details
 
-- **Full name**: Know Leap Strategies
+- **Legal entity**: Know Leap Strategies LLC
+- **DBA**: KLS Services (covers junk removal, landscaping, pressure washing, and the Studio)
 - **Short name**: KLS
 - **Contact email**: info@knowleapstrategies.com
 - **Mailing address**: 1785 S King St Suite 3, Honolulu, HI 96826, USA
 - **Tagline**: Clear systems for complex decisions. Proof first. Clean outcomes.
 - **Industries**: Tech and real estate
+- **Naming convention**: "Know Leap Strategies" remains the primary site brand in headers and body copy. "KLS Services" appears in hero badge, footer brand name, contact address, copyright, schema `alternateName`, and legal pages. "Know Leap Strategies LLC" is used in legal/entity contexts. KLS Services should not dominate the site.
 
 ### Favicon & Logo Assets
 

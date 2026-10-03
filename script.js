@@ -580,4 +580,4 @@ try {
   );
 } catch (e) {}
 
-console.log('Know Leap Strategies loaded successfully');
+console.log('Know Leap Strategies | KLS Services loaded successfully');
