@@ -1,6 +1,6 @@
 /* ================================================
    KNOW LEAP STRATEGIES - JavaScript
-   Junk Removal & Hauling + Studio Division
+   Junk Removal & Hauling — Oahu, Hawaii
    ================================================ */
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -571,11 +571,11 @@ window.addEventListener('resize', function () {
 // ==========================================
 try {
   console.log(
-    '%cBuilt in-house by the Studio.',
+    '%cKLS Services — Junk Removal & Hauling, Oahu',
     'color:#111;font:600 14px monospace'
   );
   console.log(
-    '%cLike the site? That\'s the other half of what we do. → knowleapstrategies.com',
+    '%cknowleapstrategies.com',
     'color:#585858;font:13px monospace'
   );
 } catch (e) {}
